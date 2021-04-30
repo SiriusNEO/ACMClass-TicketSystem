@@ -144,7 +144,7 @@
 
 每一条指令有一个“常用度”参数，为其在实际情况中的常用程度，也是它在压力测试中的大致出现比例，分为以下几个等级，你可以将其作为设计算法的依据。
 
-- SF：Super frequently used. (~1000000)
+- SF：Super frequently used. (~1000000)g
 - F：Frequently used. (~100000)
 - N：Normally used. (~10000)
 - R：Rarely used. (~100)
@@ -246,6 +246,7 @@
 
 
 - [N] `add_train`
+  
   - 参数列表
   
     `-i -n -m -s -p -x -t -o -d -y`

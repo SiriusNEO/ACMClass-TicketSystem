@@ -1,0 +1,59 @@
+//
+// Created by SiriusNEO on 2021/4/26.
+//
+
+#ifndef TICKETSYSTEM_2021_MAIN_CMDPROCESSOR_HPP
+#define TICKETSYSTEM_2021_MAIN_CMDPROCESSOR_HPP
+
+#include "../lib/toolfunctions.hpp"
+#include "../lib/fixedstr.hpp"
+#include "../lib/hashtable.hpp"
+#include "../lib/timetype.hpp"
+
+namespace Sirius {
+    constexpr int Argc_Max = 24, CmdTypeNum_Max = 16;
+    constexpr int Username_Max = 21, Password_Max = 31, Name_Max = 16, MailAddr_Max = 31, UserNum_Max = 122777;
+    constexpr int TrainID_Max = 21, StationNum_Max = 100, Stationname_Max = 31;
+
+    const std::string CMD[CmdTypeNum_Max] = {"add_user", "login", "logout", "query_profile", "modify_profile", "add_train",
+                                            "release_train", "query_train", "delete_train", "query_ticket", "query_transfer",
+                                            "buy_ticket", "query_order", "refund_ticket", "clean", "exit"
+                                            };
+
+    struct cmdType {
+        int cmdNo, argNum;
+        std::string args[26];
+        cmdType() : cmdNo(0), argNum(0), args() {}
+    };
+
+    //interpret and simply validate
+    std::pair<cmdType, bool> parse(const std::string& cmdStr) {
+        cmdType ret;
+        int argc = 0;
+        bool valid = false;
+        std::string argv[Argc_Max];
+        for (int i = 0, j = 0; i < cmdStr.size(); ) {
+            while (j < cmdStr.size() && cmdStr[j] != ' ') ++j;
+            argv[argc++] = cmdStr.substr(i, j-i);
+            while (j < cmdStr.size() && cmdStr[j] == ' ') ++j;
+            i = j;
+        }
+        //MINE(argc)
+        //for (int i = 0; i < argc; ++i) MINE(argv[i])
+        for (int i = 0; i < CmdTypeNum_Max; ++i) {
+            if (argv[0] == CMD[i]) {
+                ret.cmdNo = i; ret.argNum = ((argc-1)>>1);
+                valid = true;
+                break;
+            }
+        }
+        if (!(argc & 1)) valid = false;
+        for (int i = 1; i < argc; i += 2) {
+            if (argv[i][0] != '-' || argv[i].size() != 2 || argv[i][1] < 'a' || argv[i][1] > 'z') valid = false;
+            else ret.args[int(argv[i][1]-'a')] = argv[i+1];
+        }
+        return std::make_pair(ret, valid);
+    }
+}
+
+#endif //TICKETSYSTEM_2021_MAIN_CMDPROCESSOR_HPP

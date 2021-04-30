@@ -1,0 +1,3 @@
+/mnt/c/Users/17138/Desktop/TicketSystem-2021-main/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/17138/Desktop/TicketSystem-2021-main/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/c/Users/17138/Desktop/TicketSystem-2021-main/cmake-build-debug/CMakeFiles/TicketSystem_2021_main.dir
