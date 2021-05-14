@@ -1,6 +1,5 @@
-//还在调试
 //
-// 还用不了，仍在调试
+// 仍在调试.
 //
 //64 76 112 121 163
 #ifndef B_PLUS_TREE_DISK_MANAGER_H
@@ -16,10 +15,13 @@ class Diskmanager
 {
 private:
 
+    class list;
+    
     using data_type=typename sjtu::bptree<key_type,value_type,Compare>::node;
     using basicinfo= typename sjtu::bptree<key_type,value_type,Compare>::basic_info;
+    using map_back=typename sjtu::pair<bool,typename list:: node*>;
 
-     FILE * f1;
+    FILE * f1;
      FILE * f_value;
 
     class recycle_pool{//动态数组不好存进外存诶
@@ -292,6 +294,13 @@ public:
         fwrite(&(value_),the_tree->value_size,1,f_value);
     }
 
+    void erase_value(long long off_)
+    {
+        //cache.erase()
+        recyclePool.push_back_value(off_);
+    }
+    
+    
     //还要写一个更新root的函数
 
     //offset在这个函数里面得到  //这个函数里面要更新缓存池 //这个应该是写进新节点
@@ -312,11 +321,37 @@ public:
         //
         return off_;
     }
+    
+    
     //更新节点，应该只用于更新root时，将原来的root写进缓存
     void write_node(long long off_,const bpt_node_type& bpt_node_)
     {
         typename  list::node* list_node_=cache.push_front(off_,bpt_node_);
         the_map.insert(off_,list_node_);
+    }
+
+    bpt_node_type* read_node(long long off_){
+        map_back mapBack=the_map.find(off_);
+        if (mapBack.first){
+            typename list::node* list_node=mapBack.second;
+            cache.updata(list_node);
+            return list_node->data;
+        }
+        bpt_node_type* bptNode=new bpt_node_type;
+        fseek(f1,off_,SEEK_SET);
+        fread(bptNode,the_tree->node_size,1,f1);
+        typename list::node* list_node= cache.push_front(off_,bptNode);
+        the_map.insert(off_,list_node);
+        return bptNode;
+    }
+
+    //应该用到这个函数时，只会发生在合并节点或者删干净的情况
+    //反正被删的点，一定出现在缓存中了  吧
+    void erase_node(long long off_)
+    {
+        typename  list::node* list_node_=the_map.find(off_).second;
+        the_map.erase(off_);
+        cache.erase(list_node_);
     }
     
     long long tell_off_1(){
@@ -328,7 +363,44 @@ public:
             return ftell(f1);
         }
     }
+    
+    //虽然我觉得没用
+    long long tell_off_2(){
+        if (recyclePool.free_num2>0){
+            return recyclePool.free_off2[recyclePool.free_num2--];
+        } else
+        {
+            fseek(f_value,0,SEEK_END);
+            return ftell(f_value);
+        }
+    }
 
+    void clear()
+    {
+        cache.clear();
+        the_map.clear();
+        recyclePool.free_num1=0;
+        recyclePool.free_num2=0;
+        delete the_tree->root;
+        fclose(f1);fclose(f_value);
+        f1=fopen(the_tree->basicInfo.file_name1,"wb+");
+        f_value=fopen(the_tree->basicInfo.file_name2,"wb+");
+       // strcpy((the_tree_->basicInfo.file_name1),filename1_);
+        //strcpy((the_tree_->basicInfo.file_name2),filename2_);
+        fseek(f1,0,SEEK_SET);
+        fwrite(&(the_tree->basicInfo),sizeof(the_tree->basicInfo),1,f1);
+        fseek(f1,0,SEEK_END);
+        fwrite(&(recyclePool),sizeof(recyclePool),1,f1);
+        fseek(f1,0,SEEK_END);
+        the_tree->root->this_node_offset=ftell(f1);
+        the_tree->root->is_leaf=true;
+        the_tree->basicInfo.root_offset=ftell(f1);
+        the_tree->basicInfo.head_leaf_offset=ftell(f1);
+        fwrite((the_tree->root),the_tree->node_size,1,f1);
+        fseek(f1,0,SEEK_SET);
+        fwrite(&(the_tree->basicInfo),sizeof(the_tree->basicInfo),1,f1);
+    }
+    
 };
 
 #endif //B_PLUS_TREE_DISK_MANAGER_H
