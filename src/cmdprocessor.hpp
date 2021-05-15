@@ -5,15 +5,24 @@
 #ifndef TICKETSYSTEM_2021_MAIN_CMDPROCESSOR_HPP
 #define TICKETSYSTEM_2021_MAIN_CMDPROCESSOR_HPP
 
-#include "../lib/toolfunctions.hpp"
-#include "../lib/fixedstr.hpp"
+#include "../lib/mytools.hpp"
 #include "../lib/hashtable.hpp"
 #include "../lib/timetype.hpp"
 
 namespace Sirius {
     constexpr int Argc_Max = 24, CmdTypeNum_Max = 16;
-    constexpr int Username_Max = 21, Password_Max = 31, Name_Max = 16, MailAddr_Max = 31, UserNum_Max = 122777;
-    constexpr int TrainID_Max = 21, StationNum_Max = 100, Stationname_Max = 31;
+    constexpr int UserID_Max = 21, Password_Max = 31, Name_Max = 16, MailAddr_Max = 31, UserNum_Max = 122777; //Username = UserID
+    constexpr int TrainID_Max = 21, StationNum_Max = 100, StationName_Max = 31;
+    constexpr int Int_Max = 10000000000;
+
+    typedef FixedStr<UserID_Max> uidType;
+    typedef FixedStr<Password_Max> pwdType;
+    typedef FixedStr<Name_Max> uNameType;
+    typedef FixedStr<MailAddr_Max> addrType;
+    typedef FixedStr<TrainID_Max> tidType;
+    typedef FixedStr<StationName_Max> staNameType;
+
+    const tidType TrainIDStr_Max = "zzzzzzzzzzzzzzzzzzzz";
 
     const std::string CMD[CmdTypeNum_Max] = {"add_user", "login", "logout", "query_profile", "modify_profile", "add_train",
                                             "release_train", "query_train", "delete_train", "query_ticket", "query_transfer",
@@ -26,21 +35,15 @@ namespace Sirius {
         cmdType() : cmdNo(0), argNum(0), args() {}
     };
 
-    //interpret and simply validate
+    //翻译命令字符串，以及简单的合法性检查
     std::pair<cmdType, bool> parse(const std::string& cmdStr) {
         cmdType ret;
-        int argc = 0;
+        int argc = 0, len = cmdStr.size();
         bool valid = false;
         std::string argv[Argc_Max];
-        for (int i = 0, j = 0; i < cmdStr.size(); ) {
-            while (j < cmdStr.size() && cmdStr[j] != ' ') ++j;
-            argv[argc++] = cmdStr.substr(i, j-i);
-            while (j < cmdStr.size() && cmdStr[j] == ' ') ++j;
-            i = j;
-        }
-        //MINE(argc)
-        //for (int i = 0; i < argc; ++i) MINE(argv[i])
-        for (int i = 0; i < CmdTypeNum_Max; ++i) {
+        while (cmdStr[len-1] == ' ' || cmdStr[len-1] == '\r' || cmdStr[len-1] == '\n') --len; //过滤尾部无用字符
+        split(cmdStr.substr(0, len), argv, argc, ' ');
+        for (int i = 0; i < CmdTypeNum_Max; ++i) { //找到对应函数的编号
             if (argv[0] == CMD[i]) {
                 ret.cmdNo = i; ret.argNum = ((argc-1)>>1);
                 valid = true;
@@ -48,7 +51,7 @@ namespace Sirius {
             }
         }
         if (!(argc & 1)) valid = false;
-        for (int i = 1; i < argc; i += 2) {
+        for (int i = 1; i < argc; i += 2) { //从字符串中记录参数
             if (argv[i][0] != '-' || argv[i].size() != 2 || argv[i][1] < 'a' || argv[i][1] > 'z') valid = false;
             else ret.args[int(argv[i][1]-'a')] = argv[i+1];
         }

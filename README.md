@@ -442,7 +442,7 @@
     
   - 样例
 
-    `> query_order -u Lappland`
+    `> query_order -u Lappland` 
 
     `1`
 

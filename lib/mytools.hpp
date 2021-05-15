@@ -1,9 +1,9 @@
 //
-// Created by SiriusNEO on 2021/4/26.
+// Created by SiriusNEO on 2021/5/14.
 //
 
-#ifndef TICKETSYSTEM_2021_MAIN_TOOLFUNCTIONS_HPP
-#define TICKETSYSTEM_2021_MAIN_TOOLFUNCTIONS_HPP
+#ifndef TICKETSYSTEM_2021_MAIN_MYTOOLS_HPP
+#define TICKETSYSTEM_2021_MAIN_MYTOOLS_HPP
 
 #include <iostream>
 #include <sstream>
@@ -18,7 +18,39 @@
 #define COMPLETE(_x) printf(_x": %.6lf\n", (clock()-st)/(double)CLOCKS_PER_SEC);
 
 namespace Sirius {
-    /* Type Cast */
+    /* FixedStr */
+    template<int SIZE>
+    struct FixedStr { /* Warning: Don't use too long string to initialize it. */
+        char str[SIZE];
+        FixedStr():str() {}
+        FixedStr(const std::string& _str):str() {
+            strcpy(str, _str.c_str());
+        }
+        FixedStr(const char* _str):str() {
+            strcpy(str, _str);
+        }
+        char& operator [] (int pos) {
+            return str[pos];
+        }
+        bool operator < (const FixedStr<SIZE>& obj) const {
+            return strcmp(str, obj.str) < 0;
+        }
+        bool operator == (const FixedStr<SIZE>& obj) const {
+            for (int i = 0; i < SIZE; ++i)
+                if (str[i] != obj.str[i]) return false;
+            return true;
+        }
+        bool operator <= (const FixedStr<SIZE>& obj) const {return *this < obj || *this == obj;}
+        bool operator > (const FixedStr<SIZE>& obj) const {return !(*this <= obj);}
+        bool operator >= (const FixedStr<SIZE>& obj) const {return !(*this < obj);}
+        bool operator != (const FixedStr<SIZE>& obj) const {return !(*this==obj);}
+
+        friend std::ostream& operator << (std::ostream& os, const FixedStr& obj) {
+            return os << obj.str;
+        }
+    };
+
+    /* Processor */
     std::string intToString(int num) {
         std::stringstream ss;
         ss << num;
@@ -48,6 +80,17 @@ namespace Sirius {
         std::stringstream ss;
         ss << num;
         return ss.str();
+    }
+
+    void split(const std::string& originStr, std::string ret[], int& retc, char delim) {
+        retc = 0;
+        for (int i = 0, j = 0; i < originStr.size(); ) {
+            while (j < originStr.size() && originStr[j] != delim) ++j;
+            ret[retc].clear();
+            ret[retc++] = originStr.substr(i, j-i);
+            while (j < originStr.size() && originStr[j] == delim) ++j;
+            i = j;
+        }
     }
 
     /* Char Validator */
@@ -89,4 +132,4 @@ namespace Sirius {
     }
 }
 
-#endif //TICKETSYSTEM_2021_MAIN_TOOLFUNCTIONS_HPP
+#endif //TICKETSYSTEM_2021_MAIN_MYTOOLS_HPP
