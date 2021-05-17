@@ -1,7 +1,5 @@
-//there is nothing
-//正在调试
 //
-// 
+// Created by sunshine on 2020/5/13.
 //
 
 #ifndef BTREE_BPTREE_HPP
@@ -19,6 +17,7 @@
 using namespace sjtu;
 
 //debug
+//cout<<
 int bug_num=0;
 int split_num=0;
 int delete_num=0;
@@ -127,9 +126,6 @@ int delete_num=0;
 
                 void pop_back() {
 
-                    //cout
-                    //delete_num++;
-                    //std::cout<<delete_num<<"delete_num"<<std::endl;
 
                     node *mid = tail_node->front_node;
                     write_(mid->node_offset, mid->data);
@@ -317,9 +313,13 @@ int delete_num=0;
             //或许，value也应该设置一个缓存池
             //将新value写进外存
             int write_value(const value_type &value_) {
-                int off_ = fseek(f_value, 0, SEEK_END);
+               // std::cout<<value_<<'\n';
+                fseek(f_value, 0, SEEK_END);
+                int off_ =ftell(f_value);
                 fwrite(&(value_), the_tree->value_size, 1, f_value);
+               // std::cout<<off_<<'\n';
                 return off_;
+
             }
 
             //更新value
@@ -329,9 +329,10 @@ int delete_num=0;
             }
 
             //用引用传递而不是return应该可以提高效率
-            void read_value(int off_,const value_type &value_) {
+            void read_value(int off_, value_type &value_) {
                 fseek(f_value, off_, SEEK_SET);
-                fwrite(&(value_), the_tree->value_size, 1, f_value);
+                fread(&value_,the_tree->value_size,1,f_value);
+               // fwrite(&(value_), the_tree->value_size, 1, f_value);
             }
 
             void erase_value(int off_) {
@@ -343,7 +344,8 @@ int delete_num=0;
             //还要写一个更新root的函数
 
             //offset在这个函数里面得到  //这个函数里面要更新缓存池 //这个应该是写进新节点
-            int write_node( bpt_node_type &bpt_node_) {
+            int write_node( bpt_node_type &bpt_node_)
+            {
                 int off_;
                 if (recyclePool.free_num1 > 0) {
                     off_ = recyclePool.free_off1[recyclePool.free_num1--];
@@ -353,6 +355,9 @@ int delete_num=0;
                     off_ = ftell(f1);
                 }
                 bpt_node_.this_node_off = off_;
+
+             //   std::cout<<off_<<'\n';
+
                 fwrite(&(bpt_node_), the_tree->node_size, 1, f1);
                 typename list::node *list_node_ = cache->push_front(off_, &bpt_node_);
                 the_map->insert(off_, list_node_);
@@ -526,7 +531,7 @@ int delete_num=0;
 
 
         //v
-        void search_to_leaf_node(const Key& key_,Node* & now_node)
+        void search_to_leaf_node(const Key& key_,Node * & now_node)
         {
             while (!now_node->is_leaf)
             {
@@ -611,6 +616,7 @@ int delete_num=0;
             int new_offset;
            Node* new_node=new Node;
            new_offset=the_manager->write_node(*new_node);
+
             new_node->is_leaf = true;
             new_node->siz = now_node->siz - MIN_SIZ;
             now_node->siz = MIN_SIZ;
@@ -772,7 +778,7 @@ int delete_num=0;
                 int bro_pos = father_node->little_node[1].second;
                 Node *bro_node = the_manager->read_node(bro_pos);
                 if(bro_node->siz > MIN_SIZ){
-                 leaf_borrow_from_r(now_node,bro_node,father_node,now_node);
+                 leaf_borrow_from_r(now_node,bro_node,father_node,now_pos);
                  return;
                 } else {
                   leaf_merge_r(now_node,bro_node,father_node,now_pos);
@@ -908,7 +914,7 @@ int delete_num=0;
                     now_node->little_node[i] = now_node->little_node[i + 1];
                 }
                 node_index father;
-                father.first=now_node->father;
+                father.first=now_node->father.first;
                 father.second=0;
                 modify_father_key(father,now_node->little_node[0].first);
             }
@@ -919,6 +925,8 @@ int delete_num=0;
                 merge_mid(now_node);
             }
         }
+
+
 
     public:
 
@@ -946,8 +954,8 @@ int delete_num=0;
         bool insert(const Key &key, const Value &value)
         {
 
-            bug_num++;
-            std::cout<<bug_num<<'\n';
+            //bug_num++;
+            //std::cout<<bug_num<<'\n';
 
             if (basicInfo.values_num == 0){
                 root->is_leaf = true;
@@ -973,7 +981,7 @@ int delete_num=0;
             if (now_node->siz >= MAX_SIZ) {
                 split_leaf(now_node);
                // split_num++;
-                std::cout<<"split"<<'\n';
+                //std::cout<<"split"<<'\n';
             }
             return true;
         }
@@ -990,20 +998,28 @@ int delete_num=0;
 
        Value  find(const Key &key)
         {
-            node_index p = search_node(key);
-            if (p.first != nullptr){
+            node_index parent = search_node(key);
+            if (parent.first != nullptr){
                 Value val;
-                the_manager->read_value(p.first->little_node[p.second].second,val);
+               // std::cout<<val<<"\n";
+
+                the_manager->read_value(parent.first->little_node[parent.second].second,val);
+
+               // std::cout<<val<<"\n";
+
                 return val;
                 //return pair<bool,Value>(true,val);
             }
+
+            //std::cout<<"k";
+
             return Value();
            // return pair<bool,Value>(false,Value());
         }
 
         bool exist(const Key &key) {
-            node_index p = search_node(key);
-            return p.first != nullptr;
+            node_index parent = search_node(key);
+            return parent.first != nullptr;
         }
 
         bool end(){
@@ -1038,9 +1054,52 @@ int delete_num=0;
             return true;
         }
 
+        void range_find(const Key &key_low,const Key& key_high,std::vector<Value>&vector_){
+          //  Key low=key_low,high=key_high;
+
+         // std::cout<<key_low<<'\n';
+
+            node_index now_node_index=search_node(key_low);
+            Node* now_node=now_node_index.first;  int index=now_node_index.second;
+            if (now_node== nullptr){
+                now_node=root;
+                search_to_leaf_node(key_low,now_node);
+                index=1;
+            }
+
+            //std::cout<<index<<'\n';
+
+            while (now_node->little_node[index].first<=key_high)
+            {
+                if (now_node->little_node[index].first>=key_low)
+                {
+                    Value value;
+                    the_manager->read_value(now_node->little_node[index].second,value);
+                    vector_.push_back(value);
+                }
+                if (index<now_node->siz)index++;
+                else
+                {
+                    if (now_node->r_node_off==-1)return;
+                    now_node=the_manager->read_node(now_node->r_node_off);
+                    index=1;
+                }
+            }
+        }
+
+//        void debug_(){
+//            for (int i=1;i<=10;i++) {
+//                std::cout<<the_manager->write_value(i);
+//            }
+//        }
+
        // std::vector<key>
     };
 
 
 
 #endif //BTREE_BPTREE_HPP
+
+
+    //裂开
+    //千古风流八咏楼，江山留与后人愁。水通南国三千里，气压江城十四州。
