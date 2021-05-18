@@ -44,29 +44,33 @@ int delete_num=0;
             using data_type=bpt_node_type;
             using map_back = typename sjtu::pair<bool, typename list::node *>;
 
-            FILE *f1;
-            FILE *f_value;
+            FILE *f1= nullptr;
+            FILE *f_value= nullptr;
 
-            class recycle_pool {//动态数组不好存进外存诶
+            class recycle_pool{//动态数组不好存进外存诶
             public://1--base
-                int free_off1[500] = {0};
-                int free_off2[500] = {0};
+                int free_off1[5001] = {0};
+                int free_off2[5001] = {0};
                 int free_num1 = 0;
                 int free_num2 = 0;
-                int capacity = 500;
+                const  int capacity = 5000;
 
-                recycle_pool() = default;
+                recycle_pool() {
+                    memset(&(free_off1),0,sizeof(free_off1));
+                    memset(&(free_off2),0,sizeof(free_off2));
+                }
 
                 ~recycle_pool() = default;
 
                 //如果超过上限，将浪费一定外存
                 void push_back_node( int offset_) {
-                    if (free_num1 < capacity - 1)
+                    if (free_num1 < capacity ) {
                         free_off1[++free_num1] = offset_;
+                    }
                 }
 
                 void push_back_value(int offset_) {
-                    if (free_num2 < capacity - 1)
+                    if (free_num2 < capacity )
                         free_off2[++free_num2] = offset_;
                 }
 
@@ -109,6 +113,7 @@ int delete_num=0;
                         if (data != nullptr) {
                             delete data;
                         }
+                        data= nullptr;
                     }
 
                 };
@@ -121,11 +126,12 @@ int delete_num=0;
 
                 void write_(int off_, data_type *data_) {
                     fseek(themanager->f1, off_, SEEK_SET);
-                    fwrite(data_, sizeof(data_type), 1, themanager->f1);
+                    fwrite(data_, sizeof(data_type), 1, themanager->f1);//???
                 }
 
                 void pop_back() {
 
+                   // std::cout<<data_num<<'\n';
 
                     node *mid = tail_node->front_node;
                     write_(mid->node_offset, mid->data);
@@ -138,9 +144,7 @@ int delete_num=0;
 
                 list() = delete;
 
-                explicit list(int capacity_, Diskmanager *the_manager_) {
-                    capacity = capacity_;
-                    themanager = the_manager_;
+                explicit list(int capacity_, Diskmanager *the_manager_):capacity(capacity_),themanager(the_manager_) {
                     head_node = new node(nullptr, nullptr);
                     tail_node = new node(nullptr, nullptr);
                     head_node->next_node = tail_node;
@@ -152,7 +156,7 @@ int delete_num=0;
                     //如果在delete list 之前关闭了文件，就得打开
                     //如果在关闭文件之前delete list 则不用可能也不能打开文件
                     node *mid = head_node;
-                    node *mid2;
+                    node *mid2= nullptr;
                     while (mid != nullptr) {
                         if (mid->node_offset != -1) {
                             write_(mid->node_offset, mid->data);
@@ -165,6 +169,9 @@ int delete_num=0;
 
                 node *push_front(int off_, data_type *data_) {
                     //offset可能来自内存池
+
+                    //std::cout<<data_num<<'\n';
+
                     node *now_node = new node(head_node, head_node->next_node, data_, off_);
                     head_node->next_node->front_node = now_node;
                     head_node->next_node = now_node;
@@ -173,7 +180,7 @@ int delete_num=0;
                     return now_node;
                 }
 
-                void updata(node *now_node) {
+                void updata_node(node *now_node) {
                     if (now_node == head_node->next_node)return;
 
                     now_node->front_node->next_node = now_node->next_node;
@@ -191,7 +198,7 @@ int delete_num=0;
                     delete_node->next_node->front_node = delete_node->front_node;
                     delete_node->front_node->next_node = delete_node->next_node;
                     data_num--;
-                    themanager->recyclePool.push_back_node(delete_node->node_offset);
+                    themanager->recyclePool->push_back_node(delete_node->node_offset);
                     delete delete_node;
                 }
 
@@ -200,7 +207,7 @@ int delete_num=0;
                     delete_node->next_node->front_node = delete_node->front_node;
                     delete_node->front_node->next_node = delete_node->next_node;
                     data_num--;
-                    // themanager->recyclePool.push_back_node(delete_node->node_offset);
+                    // themanager->recyclePool->push_back_node(delete_node->node_offset);
                     delete_node->data = nullptr;//防止把现在的root给delete掉
                     delete delete_node;
                 }
@@ -228,7 +235,7 @@ int delete_num=0;
         public:
             list* cache= nullptr;
             hash_map<int, typename list::node *>* the_map= nullptr;
-            recycle_pool recyclePool;
+            recycle_pool* recyclePool= nullptr;
             // Bptree
 
             Bptree<key_type, value_type, Compare> *the_tree = nullptr;
@@ -250,10 +257,11 @@ int delete_num=0;
             Diskmanager() = delete;
 
             Diskmanager(Bptree<key_type, value_type, Compare> *the_tree_, int capacity_,const char *filename1_,
-                    const    char *filename2_)  {
+                    const    char *filename2_):the_tree(the_tree_)  {
                 cache=new list(capacity_,this);
                 the_map=new hash_map<int,typename list::node*>(capacity_);
-                the_tree = the_tree_;
+                recyclePool=new recycle_pool;
+                //the_tree = the_tree_;
                 the_tree->root = new data_type;
                 f1 = fopen(filename1_, "rb+");
                 f_value = fopen(filename2_, "rb+");
@@ -266,12 +274,12 @@ int delete_num=0;
                     fseek(f1, 0, SEEK_SET);
                     fwrite(&(the_tree_->basicInfo), sizeof(the_tree_->basicInfo), 1, f1);
                     fseek(f1, 0, SEEK_END);
-                    fwrite(&(recyclePool), sizeof(recyclePool), 1, f1);
+                    fwrite((recyclePool), sizeof(recycle_pool), 1, f1);
                     fseek(f1, 0, SEEK_END);
                     the_tree_->root->this_node_off = ftell(f1);
                     the_tree_->root->is_leaf = true;
                     the_tree_->basicInfo.root_offset = ftell(f1);
-                    the_tree_->basicInfo.head_leaf_offset = ftell(f1);
+                   // the_tree_->basicInfo.head_leaf_offset = ftell(f1);
                     fwrite((the_tree->root), the_tree->node_size, 1, f1);
                     fseek(f1, 0, SEEK_SET);
                     fwrite(&(the_tree_->basicInfo), sizeof(the_tree_->basicInfo), 1, f1);
@@ -280,7 +288,7 @@ int delete_num=0;
                     fseek(f1, 0, SEEK_SET);
                     fread(&(the_tree_->basicInfo), sizeof(the_tree_->basicInfo), 1, f1);
                     fseek(f1, sizeof(the_tree_->basicInfo), SEEK_SET);
-                    fread(&(recyclePool), sizeof(recycle_pool), 1, f1);
+                    fread((recyclePool), sizeof(recycle_pool), 1, f1);
                     fseek(f1, (the_tree_->basicInfo.root_offset), SEEK_SET);
                     fread(the_tree_->root, the_tree_->node_size, 1, f1);
                 }
@@ -293,13 +301,15 @@ int delete_num=0;
                 fwrite((the_tree->root), the_tree->node_size, 1, f1);
 
                 delete the_tree->root;
+                the_tree->root= nullptr;
 
                 fseek(f1, 0, SEEK_SET);
                 fwrite(&(the_tree->basicInfo), sizeof(the_tree->basicInfo), 1, f1);
                 fseek(f1, sizeof(the_tree->basicInfo), SEEK_SET);
-                fwrite(&(recyclePool), sizeof(recyclePool), 1, f1);
+                fwrite((recyclePool), sizeof(recycle_pool), 1, f1);
                 delete (cache);
                 delete (the_map);
+                delete recyclePool;
                 fclose(f1);
                 fclose(f_value);
                 // fseek()
@@ -314,8 +324,13 @@ int delete_num=0;
             //将新value写进外存
             int write_value(const value_type &value_) {
                // std::cout<<value_<<'\n';
+                int off_;
+                if (recyclePool->free_num2>0){
+                    off_=recyclePool->pop_back_value();
+                    fseek(f_value,off_,SEEK_SET);
+                } else{
                 fseek(f_value, 0, SEEK_END);
-                int off_ =ftell(f_value);
+                 off_ =ftell(f_value);}
                 fwrite(&(value_), the_tree->value_size, 1, f_value);
                // std::cout<<off_<<'\n';
                 return off_;
@@ -337,7 +352,7 @@ int delete_num=0;
 
             void erase_value(int off_) {
                 //cache.erase()
-                recyclePool.push_back_value(off_);
+                recyclePool->push_back_value(off_);
             }
 
 
@@ -347,9 +362,11 @@ int delete_num=0;
             int write_node( bpt_node_type &bpt_node_)
             {
                 int off_;
-                if (recyclePool.free_num1 > 0) {
-                    off_ = recyclePool.free_off1[recyclePool.free_num1--];
+                if (recyclePool->free_num1 > 0)
+                {
+                    off_=recyclePool->pop_back_node();
                     fseek(f1, off_, SEEK_SET);
+
                 } else {
                     fseek(f1, 0, SEEK_END);
                     off_ = ftell(f1);
@@ -369,9 +386,12 @@ int delete_num=0;
             //?????
             int write_node_root( bpt_node_type &bpt_node_) {
                 int off_;
-                if (recyclePool.free_num1 > 0) {
-                    off_ = recyclePool.free_off1[recyclePool.free_num1--];
+                if (recyclePool->free_num1 > 0) {
+                  //  off_ = recyclePool.free_off1[recyclePool.free_num1--];
+                  off_=recyclePool->pop_back_node();
                     fseek(f1, off_, SEEK_SET);
+                   // fseek(f1, 0, SEEK_END);
+                   // off_ = ftell(f1);
                 } else {
                     fseek(f1, 0, SEEK_END);
                     off_ = ftell(f1);
@@ -396,7 +416,7 @@ int delete_num=0;
                 map_back mapBack = the_map->find(off_);
                 if (mapBack.first) {
                     typename list::node *list_node = mapBack.second;
-                    cache->updata(list_node);
+                    cache->updata_node(list_node);
                     return list_node->data;
                 }
                 bpt_node_type *bptNode = new bpt_node_type;
@@ -431,8 +451,8 @@ int delete_num=0;
 
 
             int tell_off_1() {
-                if (recyclePool.free_num1 > 0) {
-                    return recyclePool.free_off1[recyclePool.free_num1];
+                if (recyclePool->free_num1 > 0) {
+                    return recyclePool->free_off1[recyclePool->free_num1];
                 } else {
                     fseek(f1, 0, SEEK_END);
                     return ftell(f1);
@@ -441,8 +461,8 @@ int delete_num=0;
 
             //虽然我觉得没用
             int tell_off_2() {
-                if (recyclePool.free_num2 > 0) {
-                    return recyclePool.free_off2[recyclePool.free_num2--];
+                if (recyclePool->free_num2 > 0) {
+                    return recyclePool->free_off2[recyclePool->free_num2];
                 } else {
                     fseek(f_value, 0, SEEK_END);
                     return ftell(f_value);
@@ -456,8 +476,8 @@ int delete_num=0;
                 the_tree->root=new Node;
                 cache->clear();
                 the_map->clear();
-                recyclePool.free_num1 = 0;
-                recyclePool.free_num2 = 0;
+                recyclePool->free_num1 = 0;
+                recyclePool->free_num2 = 0;
                 //delete the_tree->root;
                 fclose(f1);
                 fclose(f_value);
@@ -469,12 +489,12 @@ int delete_num=0;
                 fseek(f1, 0, SEEK_SET);
                 fwrite(&(the_tree->basicInfo), sizeof(the_tree->basicInfo), 1, f1);
                 fseek(f1, 0, SEEK_END);
-                fwrite(&(recyclePool), sizeof(recyclePool), 1, f1);
+                fwrite((recyclePool), sizeof(recycle_pool), 1, f1);
                 fseek(f1, 0, SEEK_END);
                 the_tree->root->this_node_off = ftell(f1);
                 the_tree->root->is_leaf = true;
                 the_tree->basicInfo.root_offset = ftell(f1);
-                the_tree->basicInfo.head_leaf_offset = ftell(f1);
+             //   the_tree->basicInfo.head_leaf_offset = ftell(f1);
                 fwrite((the_tree->root), the_tree->node_size, 1, f1);
                 fseek(f1, 0, SEEK_SET);
                 fwrite(&(the_tree->basicInfo), sizeof(the_tree->basicInfo), 1, f1);
@@ -495,10 +515,10 @@ int delete_num=0;
         class basic_info{
         public:
             int root_offset=-1;
-            int head_leaf_offset=-1;
+            //int head_leaf_offset=-1;
             int values_num=0;
-            char file_name1[25]{};
-            char file_name2[25]{};
+            char file_name1[25]={0};
+            char file_name2[25]={0};
             basic_info(){
                 memset(file_name1,0,sizeof(file_name1));
                 memset(file_name2,0,sizeof(file_name2));
@@ -509,12 +529,12 @@ int delete_num=0;
 
         class Node{
         public:
-            sjtu::pair<Node *, int> father;
-            int this_node_off;
-            int r_node_off;
-            bool is_leaf;
-            int siz;
             key_offset little_node[MAX_SIZ + 1];
+            sjtu::pair<Node *, int> father;
+            int this_node_off=0;
+            int r_node_off=-1;
+            bool is_leaf=false;
+            int siz=0;
 
             Node(): this_node_off(0), is_leaf(false), siz(0){
                 father.first = nullptr;
@@ -533,6 +553,9 @@ int delete_num=0;
         //v
         void search_to_leaf_node(const Key& key_,Node * & now_node)
         {
+
+            std::cout<<" search_to_leaf_node"<<'\n';
+
             while (!now_node->is_leaf)
             {
                 int now_node_siz_ = now_node->siz;
@@ -556,6 +579,9 @@ int delete_num=0;
         //v
         node_index search_node(const Key &key)
         {
+
+            std::cout<<" search_node"<<'\n';
+
             Node *now_node = root;
             node_index new_pos;
             search_to_leaf_node(key,now_node);
@@ -575,6 +601,9 @@ int delete_num=0;
 
         //v
         node_index search_for_insert (const Key &key){
+
+            std::cout<<" search_for_insert"<<'\n';
+
             Node *now_node = root;
             node_index new_pos;
            search_to_leaf_node(key,now_node);
@@ -603,6 +632,9 @@ int delete_num=0;
 
         //v
         void modify_father_key( node_index &father, Key &key){
+
+            std::cout<<" modify_father_key"<<'\n';
+
             if (father.second == 0 && father.first != root){
                 modify_father_key(father.first->father, key);
                 return;
@@ -613,6 +645,9 @@ int delete_num=0;
 
         //v
         void split_leaf(Node *now_node){
+
+            std::cout<<" split_leaf"<<'\n';
+
             int new_offset;
            Node* new_node=new Node;
            new_offset=the_manager->write_node(*new_node);
@@ -652,6 +687,9 @@ int delete_num=0;
         //v
         void split_inner(Node *now_node)
         {
+
+            std::cout<<" split_inner"<<'\n';
+
             int new_offset;Node *new_node ;
             new_offset=the_manager->write_node(*new_node);
             new_node->is_leaf = false;
@@ -689,6 +727,9 @@ int delete_num=0;
 
         //v
         void insert_inner( node_index father_node,int off_, Key key) {
+
+            std::cout<<"insert_inner"<<'\n';
+
             Node *now_node = father_node.first;
             now_node->siz++;
             int cur_pos = father_node.second + 1;
@@ -702,6 +743,9 @@ int delete_num=0;
 
         //v
         void leaf_borrow_from_r(Node* now_node,Node* bro_node,Node* father_node,int now_pos){
+
+            std::cout<<"leaf_borrow_from_r"<<'\n';
+
             now_node->little_node[++now_node->siz].second = bro_node->little_node[1].second;
             --bro_node->siz;
             int bro_siz = bro_node->siz;
@@ -716,6 +760,9 @@ int delete_num=0;
 
         void leaf_borrow_from_l(Node* now_node,Node* bro_node,Node* father_node,int now_pos)
         {
+
+            std::cout<<"leaf_borrow_from_l"<<'\n';
+
             now_node->siz++;
             for(int i = now_node->siz; i > 1; --i){
                 now_node->little_node[i] = now_node->little_node[i - 1];
@@ -934,7 +981,7 @@ int delete_num=0;
 
 
         explicit Bptree(const char *file_name1 = "data1", const char *file_name2 = "data2") {
-            the_manager=new Diskmanager(this,173,file_name1,file_name2);
+            the_manager=new Diskmanager(this,91,file_name1,file_name2);
         }
 
         ~Bptree() {
