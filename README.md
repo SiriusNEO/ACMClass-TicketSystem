@@ -2,6 +2,18 @@
 
 火车票管理系统为组队作业，共15组，每组由两人组成。
 
+## 关于我们
+
+### We are [@PingPong Doubles Smash Locomotive](https://github.com/SiriusNEO/ACMClass-TicketSystem)
+
+> 希望我们的代码能像乒乓球的扣杀一样又快又狠
+
+
+|  组员   | 分工  |
+|  ----  | ----  |
+| 林超凡 [@SiriusNEO](https://github.com/siriusneo)  | 后端逻辑，前端（待定？） |
+| 王崑运 [@wangky-ac](https://github.com/wangky-ac) | B+树，缓存 |
+
 ## 概况
 
 #### 组队要求
