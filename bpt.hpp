@@ -11,7 +11,6 @@
 #include "utility.h"
 #include "hash_map.h"
 #include <vector>
-//#include "disk_manager.h"
 
 //long long
 using namespace sjtu;
@@ -49,11 +48,11 @@ int delete_num=0;
 
             class recycle_pool{//动态数组不好存进外存诶
             public://1--base
-                int free_off1[5001] = {0};
-                int free_off2[5001] = {0};
+                int free_off1[25001] = {0};
+                int free_off2[25001] = {0};
                 int free_num1 = 0;
                 int free_num2 = 0;
-                const  int capacity = 5000;
+                const  int capacity = 25000;
 
                 recycle_pool() {
                     memset(&(free_off1),0,sizeof(free_off1));
@@ -94,17 +93,14 @@ int delete_num=0;
                     //这里面其实是data所在文件的offset
                     int node_offset = -1;
 
-                    node() = delete;
-
                     node(node *front_, node *next_, data_type *data_, int offset_) {
                         front_node = front_;
                         next_node = next_;
                         node_offset = offset_;
-                        // data=new data_type(data_);
                         data = data_;
                     }
 
-                    node(node *front_, node *next_) {
+                    node(node *front_= nullptr, node *next_= nullptr) {
                         front_node = front_;
                         next_node = next_;
                     }
@@ -154,7 +150,7 @@ int delete_num=0;
                 ~list() {
                     //需要打开文件吗？？？
                     //如果在delete list 之前关闭了文件，就得打开
-                    //如果在关闭文件之前delete list 则不用可能也不能打开文件
+                   //如果在关闭文件之前delete list 则不用可能也不能打开文件
                     node *mid = head_node;
                     node *mid2= nullptr;
                     while (mid != nullptr) {
@@ -169,9 +165,7 @@ int delete_num=0;
 
                 node *push_front(int off_, data_type *data_) {
                     //offset可能来自内存池
-
                     //std::cout<<data_num<<'\n';
-
                     node *now_node = new node(head_node, head_node->next_node, data_, off_);
                     head_node->next_node->front_node = now_node;
                     head_node->next_node = now_node;
@@ -182,10 +176,8 @@ int delete_num=0;
 
                 void updata_node(node *now_node) {
                     if (now_node == head_node->next_node)return;
-
                     now_node->front_node->next_node = now_node->next_node;
                     now_node->next_node->front_node = now_node->front_node;
-
                     now_node->next_node = head_node->next_node;
                     now_node->front_node = head_node;
                     head_node->next_node->front_node = now_node;
@@ -322,6 +314,13 @@ int delete_num=0;
 
             //或许，value也应该设置一个缓存池
             //将新value写进外存
+
+            void write_(int off_, data_type *data_){
+                fseek(f1,off_,SEEK_SET);
+                fwrite(data_,the_tree->node_size,1,f1);
+            }
+
+
             int write_value(const value_type &value_) {
                // std::cout<<value_<<'\n';
                 int off_;
@@ -357,7 +356,6 @@ int delete_num=0;
 
 
             //还要写一个更新root的函数
-
             //offset在这个函数里面得到  //这个函数里面要更新缓存池 //这个应该是写进新节点
             int write_node( bpt_node_type &bpt_node_)
             {
@@ -382,7 +380,7 @@ int delete_num=0;
                 return off_;
             }
 
-            //把root写进外存
+            //把新的root写进外存
             //?????
             int write_node_root( bpt_node_type &bpt_node_) {
                 int off_;
@@ -554,13 +552,14 @@ int delete_num=0;
         void search_to_leaf_node(const Key& key_,Node * & now_node)
         {
 
-            std::cout<<" search_to_leaf_node"<<'\n';
+          //  std::cout<<" search_to_leaf_node"<<'\n';
 
             while (!now_node->is_leaf)
             {
                 int now_node_siz_ = now_node->siz;
                 int i;
-                for ( i = 1; i <= now_node_siz_; i++){
+                for ( i = 1; i <= now_node_siz_; i++)
+                {
                     if(cmp(key_, now_node->little_node[i].first)){
                         Node *mid_node =the_manager->read_node(now_node->little_node[i-1].second);
                         mid_node->father.first = now_node;mid_node->father.second = i - 1;
@@ -580,7 +579,7 @@ int delete_num=0;
         node_index search_node(const Key &key)
         {
 
-            std::cout<<" search_node"<<'\n';
+           // std::cout<<" search_node"<<'\n';
 
             Node *now_node = root;
             node_index new_pos;
@@ -602,7 +601,7 @@ int delete_num=0;
         //v
         node_index search_for_insert (const Key &key){
 
-            std::cout<<" search_for_insert"<<'\n';
+           // std::cout<<" search_for_insert"<<'\n';
 
             Node *now_node = root;
             node_index new_pos;
@@ -633,8 +632,9 @@ int delete_num=0;
         //v
         void modify_father_key( node_index &father, Key &key){
 
-            std::cout<<" modify_father_key"<<'\n';
+            //std::cout<<" modify_father_key"<<'\n';
 
+           // if (father)
             if (father.second == 0 && father.first != root){
                 modify_father_key(father.first->father, key);
                 return;
@@ -645,8 +645,6 @@ int delete_num=0;
 
         //v
         void split_leaf(Node *now_node){
-
-            std::cout<<" split_leaf"<<'\n';
 
             int new_offset;
            Node* new_node=new Node;
@@ -688,9 +686,9 @@ int delete_num=0;
         void split_inner(Node *now_node)
         {
 
-            std::cout<<" split_inner"<<'\n';
+           // std::cout<<" split_inner"<<'\n';
 
-            int new_offset;Node *new_node ;
+            int new_offset;Node *new_node=new Node ;
             new_offset=the_manager->write_node(*new_node);
             new_node->is_leaf = false;
             new_node->siz = now_node->siz - MIN_SIZ - 1;
@@ -701,26 +699,25 @@ int delete_num=0;
             }
             new_node->r_node_off=now_node->r_node_off;
             now_node->r_node_off=new_node->this_node_off;
-         //   Node* father_node=now_node->father.first;int brother_index=now_node->father.second+1;
-//            if (now_node!=root){
-//            if (brother_index<=father_node->siz){
-//                int bro_off=father_node->little_node[brother_index].second;
-//                new_node->r_node_off=bro_off;}
-//            }
-
 
             if (now_node != root) {
                 insert_inner(now_node->father, new_offset, now_node->little_node[MIN_SIZ + 1].first);
             } else {
+
+                Node* mid=new Node;
+                mid->little_node[0].second = now_node->this_node_off;
+                mid->little_node[1].second = new_offset;
+                mid->little_node[1].first = now_node->little_node[MIN_SIZ + 1].first;
                 int new_root_offset;
-                the_manager->write_node(root->this_node_off,*root);
-                root = new Node;
+                the_manager->write_(root->this_node_off,root);
+                delete root;
+                root=mid;
+                //the_manager->write_node(root->this_node_off,*root);
+                //root = new Node;
                 new_root_offset=the_manager->write_node_root(*root);
+            //    the_manager->erase_node_2(new_root_offset);
                 root->is_leaf = false;
                 root->siz = 1;
-                root->little_node[0].second = now_node->this_node_off;
-                root->little_node[1].second = new_offset;
-                root->little_node[1].first = now_node->little_node[MIN_SIZ + 1].first;
                 basicInfo.root_offset = new_root_offset;
             }
         }
@@ -728,7 +725,7 @@ int delete_num=0;
         //v
         void insert_inner( node_index father_node,int off_, Key key) {
 
-            std::cout<<"insert_inner"<<'\n';
+            //std::cout<<"insert_inner"<<'\n';
 
             Node *now_node = father_node.first;
             now_node->siz++;
@@ -746,11 +743,13 @@ int delete_num=0;
 
             std::cout<<"leaf_borrow_from_r"<<'\n';
 
-            now_node->little_node[++now_node->siz].second = bro_node->little_node[1].second;
+            now_node->little_node[++now_node->siz] = bro_node->little_node[1];
+
             --bro_node->siz;
             int bro_siz = bro_node->siz;
             for(int i = 1; i <= bro_siz; ++i){
-                bro_node->little_node[i] = bro_node->little_node[i + 1];
+                bro_node->little_node[i].first = bro_node->little_node[i + 1].first;
+                bro_node->little_node[i].second = bro_node->little_node[i + 1].second;
             }
             node_index parent;
             parent.first = father_node;
@@ -761,7 +760,7 @@ int delete_num=0;
         void leaf_borrow_from_l(Node* now_node,Node* bro_node,Node* father_node,int now_pos)
         {
 
-            std::cout<<"leaf_borrow_from_l"<<'\n';
+           // std::cout<<"leaf_borrow_from_l"<<'\n';
 
             now_node->siz++;
             for(int i = now_node->siz; i > 1; --i){
@@ -773,6 +772,7 @@ int delete_num=0;
 
         //v
         void leaf_merge_r(Node* now_node,Node* bro_node,Node* father_node,int now_pos){
+            std::cout<<"leaf_merge_r"<<'\n';
             for(int i = 1; i <= bro_node->siz; ++i){
                 now_node->little_node[now_node->siz + i] = bro_node->little_node[i];
             }
@@ -986,6 +986,14 @@ int delete_num=0;
 
         ~Bptree() {
             delete (the_manager);
+        }
+
+        int get_maxn(){
+            return MAX_SIZ;
+        }
+
+        int get_min(){
+            return MIN_SIZ;
         }
 
         // Clear the BTree
