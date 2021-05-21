@@ -34,25 +34,24 @@ int delete_num=0;
         using value_type=Value;
         using bpt_node_type=Node;
 
-        class Diskmanager {
+        class Diskmanager{
         private:
             class list;
-            //using data_type=sjtu::B
-            // using data_type = typename sjtu::Bptree<key_type, value_type, Compare>::Node;
-            // using basicinfo= typename sjtu::bptree<key_type,value_type,Compare>::basic_info;
+
             using data_type=bpt_node_type;
             using map_back = typename sjtu::pair<bool, typename list::node *>;
 
             FILE *f1= nullptr;
             FILE *f_value= nullptr;
 
+            //这个是外存回收池
             class recycle_pool{//动态数组不好存进外存诶
             public://1--base
-                int free_off1[25001] = {0};
-                int free_off2[25001] = {0};
+                const static int capacity = 100000;
+                int free_off1[capacity+1] = {0};
+                int free_off2[capacity+1] = {0};
                 int free_num1 = 0;
                 int free_num2 = 0;
-                const  int capacity = 25000;
 
                 recycle_pool() {
                     memset(&(free_off1),0,sizeof(free_off1));
@@ -134,7 +133,14 @@ int delete_num=0;
                     mid->front_node->next_node = tail_node;
                     tail_node->front_node = mid->front_node;
                     themanager->the_map->erase(mid->node_offset);
-                    data_num--;///!!!!!!!!!!!!!!!!!!!!!!!!!!!可能错了//todo
+
+
+
+                    data_num--;//把这里注释掉，就是无限缓存了
+
+
+
+
                     delete mid;//这时顺便把data给delete掉了,所以，记得不要double delete
                 }
 
@@ -148,9 +154,6 @@ int delete_num=0;
                 }
 
                 ~list() {
-                    //需要打开文件吗？？？
-                    //如果在delete list 之前关闭了文件，就得打开
-                   //如果在关闭文件之前delete list 则不用可能也不能打开文件
                     node *mid = head_node;
                     node *mid2= nullptr;
                     while (mid != nullptr) {
@@ -314,6 +317,7 @@ int delete_num=0;
 
             //或许，value也应该设置一个缓存池
             //将新value写进外存
+            //不需要
 
             void write_(int off_, data_type *data_){
                 fseek(f1,off_,SEEK_SET);
@@ -481,8 +485,6 @@ int delete_num=0;
                 fclose(f_value);
                 f1 = fopen(the_tree->basicInfo.file_name1, "wb+");
                 f_value = fopen(the_tree->basicInfo.file_name2, "wb+");
-                // strcpy((the_tree_->basicInfo.file_name1),filename1_);
-                //strcpy((the_tree_->basicInfo.file_name2),filename2_);
                 the_tree->basicInfo.values_num=0;
                 fseek(f1, 0, SEEK_SET);
                 fwrite(&(the_tree->basicInfo), sizeof(the_tree->basicInfo), 1, f1);
@@ -500,7 +502,7 @@ int delete_num=0;
 
         };
 
-        static const int MAX_SIZ = (4088 - sizeof(long)*3 -  sizeof(bool)) / sizeof(key_offset);
+        static const int MAX_SIZ = (4096 - sizeof(int)*3 -  sizeof(bool)-sizeof(sjtu::pair<Node *, int>)) / sizeof(key_offset)-1;
         static const int MIN_SIZ = MAX_SIZ / 2;
         typedef sjtu::pair<Node *, int > node_index;
         static const int Node_size = sizeof(Node);
@@ -659,11 +661,6 @@ int delete_num=0;
             new_node->r_node_off=now_node->r_node_off;
             now_node->r_node_off=new_node->this_node_off;
             Node* father_node=now_node->father.first;int brother_index=now_node->father.second+1;
-//            if (now_node!=root){
-//            if (brother_index<=father_node->siz){
-//                int bro_off=father_node->little_node[brother_index].second;
-//                new_node->r_node_off=bro_off;}
-//            }
 
 
             if (now_node != root){
@@ -741,7 +738,7 @@ int delete_num=0;
         //v
         void leaf_borrow_from_r(Node* now_node,Node* bro_node,Node* father_node,int now_pos){
 
-            std::cout<<"leaf_borrow_from_r"<<'\n';
+           // std::cout<<"leaf_borrow_from_r"<<'\n';
 
             now_node->little_node[++now_node->siz] = bro_node->little_node[1];
 
@@ -772,7 +769,7 @@ int delete_num=0;
 
         //v
         void leaf_merge_r(Node* now_node,Node* bro_node,Node* father_node,int now_pos){
-            std::cout<<"leaf_merge_r"<<'\n';
+           // std::cout<<"leaf_merge_r"<<'\n';
             for(int i = 1; i <= bro_node->siz; ++i){
                 now_node->little_node[now_node->siz + i] = bro_node->little_node[i];
             }
@@ -980,8 +977,8 @@ int delete_num=0;
         //debug
 
 
-        explicit Bptree(const char *file_name1 = "data1", const char *file_name2 = "data2") {
-            the_manager=new Diskmanager(this,91,file_name1,file_name2);
+        explicit Bptree(const char *file_name1 = "data1.dat", const char *file_name2 = "data2.dat",int capacity_of_cache=997) {
+            the_manager=new Diskmanager(this,capacity_of_cache,file_name1,file_name2);
         }
 
         ~Bptree() {
@@ -1056,20 +1053,10 @@ int delete_num=0;
             node_index parent = search_node(key);
             if (parent.first != nullptr){
                 Value val;
-               // std::cout<<val<<"\n";
-
                 the_manager->read_value(parent.first->little_node[parent.second].second,val);
-
-               // std::cout<<val<<"\n";
-
                 return val;
-                //return pair<bool,Value>(true,val);
             }
-
-            //std::cout<<"k";
-
             return Value();
-           // return pair<bool,Value>(false,Value());
         }
 
         bool exist(const Key &key) {
@@ -1110,9 +1097,6 @@ int delete_num=0;
         }
 
         void range_find(const Key &key_low,const Key& key_high,std::vector<Value>&vector_){
-          //  Key low=key_low,high=key_high;
-
-         // std::cout<<key_low<<'\n';
 
             node_index now_node_index=search_node(key_low);
             Node* now_node=now_node_index.first;  int index=now_node_index.second;
@@ -1122,7 +1106,6 @@ int delete_num=0;
                 index=1;
             }
 
-            //std::cout<<index<<'\n';
 
             while (now_node->little_node[index].first<=key_high)
             {
