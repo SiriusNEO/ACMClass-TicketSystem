@@ -6,7 +6,8 @@
 #define B_PLUS_TREE_HASH_MAP_H
 #include<functional>
 #include "utility.h"
-
+//long long
+//std::cout<<
 template<class key_type,class value_type,class my_hash=std::hash<key_type>>
 class hash_map{
 private:
@@ -23,7 +24,7 @@ private:
 
     class link_list{
     public:
-        long long node_num=0;
+        int node_num=0;
         node* head= nullptr;
         link_list()=default;
         ~link_list(){
@@ -86,17 +87,17 @@ private:
 
     };
 
-    long long contain_num=0;
+    int contain_num=0;
     link_list* the_list= nullptr;
     my_hash myHash;
 public:
-    long long get_index(const key_type& key){
+    int get_index(const key_type& key){
         return myHash(key)%contain_num;
     }
 
     hash_map()=delete;
 
-    explicit hash_map(long long contain_num_){
+    explicit hash_map(int contain_num_){
         contain_num=contain_num_;
         the_list=new link_list[contain_num];
     }
@@ -105,20 +106,20 @@ public:
         delete [] the_list;
     }
 
-     sjtu::pair<bool,key_type> find(const key_type& key_){
-        long long index=get_index(key_);
+     sjtu::pair<bool,value_type> find(const key_type& key_){
+        int index=get_index(key_);
         node* the_node=the_list[index].find_node(key_);
-         if (the_node== nullptr)return sjtu::pair<bool,key_type>(false,value_type());
-         return sjtu::pair<bool,key_type>(true,the_node->value);
+         if (the_node== nullptr)return sjtu::pair<bool,value_type>(false,value_type());
+         return sjtu::pair<bool,value_type>(true,the_node->value);
     }
 
     void insert(const key_type& key_,const value_type& value_){
-        long long index=get_index(key_);
+        int index=get_index(key_);
         the_list[index].insert_node(key_,value_);
     }
 
     void erase(const key_type& key_){
-        long long index=get_index(key_);
+        int index=get_index(key_);
         the_list[index].erase_node(key_);
     }
 
