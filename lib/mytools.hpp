@@ -18,6 +18,11 @@
 #define COMPLETE(_x) printf(_x": %.6lf\n", (clock()-st)/(double)CLOCKS_PER_SEC);
 
 namespace Sirius {
+    constexpr int Int_Max = 0x7fffffff;
+    constexpr unsigned long long LL_Max = (1ll << 60) + 7;
+
+    typedef unsigned long long hashCode;
+
     /* FixedStr */
     template<int SIZE>
     struct FixedStr { /* Warning: Don't use too long string to initialize it. */
@@ -36,9 +41,7 @@ namespace Sirius {
             return strcmp(str, obj.str) < 0;
         }
         bool operator == (const FixedStr<SIZE>& obj) const {
-            for (int i = 0; i < SIZE; ++i)
-                if (str[i] != obj.str[i]) return false;
-            return true;
+            return strcmp(str, obj.str) == 0;
         }
         bool operator <= (const FixedStr<SIZE>& obj) const {return *this < obj || *this == obj;}
         bool operator > (const FixedStr<SIZE>& obj) const {return !(*this <= obj);}
@@ -50,13 +53,55 @@ namespace Sirius {
         }
     };
 
-    /* Processor */
-    std::string intToString(int num) {
-        std::stringstream ss;
-        ss << num;
-        return ss.str();
-    }
+    /* LinkList */
+    template<class T>
+    class LinkList {
+    public:
+        struct Node {
+            T data;
+            Node *nxt;
+            Node():data(), nxt(nullptr) {}
+            explicit Node(const T& _data):data(_data), nxt(nullptr){}
+        };
+        int siz;
+        Node* head;
+        LinkList():head(), siz(0){head = new Node();}
+        ~LinkList(){while(siz)del(1);delete head;}
+        void push_front(const T& _data) {
+            Node *newNode = new Node(_data);
+            newNode->nxt = head->nxt, head->nxt = newNode;
+            siz++;
+        }
+        int insert(int pos, const T& _data) {
+            Node *newNode = new Node(_data), *nowNode = head;
+            int ret = pos+1;
+            while (nowNode->nxt && pos--) nowNode = nowNode->nxt;
+            newNode->nxt = nowNode->nxt, nowNode->nxt = newNode;
+            siz++;
+            return ret;
+        }
+        void del(int pos) {
+            Node *nowNode = head;
+            while (nowNode->nxt && --pos) nowNode = nowNode->nxt;
+            Node *targetNode = nowNode->nxt;
+            nowNode->nxt = nowNode->nxt->nxt;
+            delete targetNode;
+            siz--;
+        }
+        int find(const T& _data) {
+            Node* nowNode = head->nxt;
+            int ret = 0;
+            while (nowNode) {
+                ++ret;
+                if (nowNode->data == _data) return ret;
+                nowNode = nowNode->nxt;
+            }
+            return -1;
+        }
+        int size(){return siz;}
+    };
 
+    /* Processor */
     int stringToInt(const std::string& str) {
         int ret = 0;
         for (auto ch : str) ret = ret * 10 + ch - '0';
@@ -64,22 +109,8 @@ namespace Sirius {
     }
 
     std::string dateFormat(int num) {
-        if (num < 10) return "0"+intToString(num);
-        return intToString(num);
-    }
-
-    double stringToDouble(const std::string& str) {
-        double ret = 0, floatBase = 0.1;
-        int i = 0;
-        for (; i < str.size() && str[i] != '.'; ++i) ret = ret * 10 + str[i] - '0';
-        for (++i; i < str.size(); ++i) ret += (str[i] - '0')*floatBase, floatBase *= 0.1;
-        return ret;
-    }
-
-    std::string doubleToString(double num) {
-        std::stringstream ss;
-        ss << num;
-        return ss.str();
+        if (num < 10) return "0"+std::to_string(num);
+        return std::to_string(num);
     }
 
     void split(const std::string& originStr, std::string ret[], int& retc, char delim) {
@@ -129,6 +160,28 @@ namespace Sirius {
             else if (typ == 64) ret += '_';
         }
         return ret;
+    }
+
+    /* Hash */
+    constexpr int HashSeed = 131;
+    hashCode hash(const char* nowStr) {
+        unsigned long long ret = 0;
+        const char* p = nowStr;
+        while (*p) ret = ret * HashSeed + (*p++) - '0';
+        return ret % LL_Max;
+    }
+
+    /* Fastout */
+    void write(const char* str) {
+        fwrite(str, sizeof(char), strlen(str), stdout);
+    }
+
+    void writeInt(int x) {
+        if (!x) {putchar('0');return;}
+        char ret[33];
+        int p = 0;
+        while (x) ret[p++] = (x%10)+48, x /= 10;
+        while (p) --p, putchar(ret[p]);
     }
 }
 

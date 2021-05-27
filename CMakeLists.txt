@@ -1,9 +1,20 @@
-cmake_minimum_required(VERSION 3.16)
-project(TicketSystem_2021_main)
+cmake_minimum_required(VERSION 3.15)
+project(code)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(TicketSystem_2021_main
-               src/main.cpp src/cmdprocessor.hpp src/systemcore.hpp
-               lib/mytool.hpp lib/hashtable.hpp lib/timetype.hpp
-               db/blocklist.h db/filemanager.hpp lib/mytools.hpp)
+add_definitions(-O2)
+
+include_directories(db)
+include_directories(lib)
+include_directories(src)
+
+add_executable(code
+        db/bpt.hpp
+        db/hash_map.h
+        lib/bst.hpp
+        lib/mytools.hpp
+        lib/timetype.hpp
+        src/cmdprocessor.hpp
+        src/main.cpp
+        src/systemcore.hpp)
