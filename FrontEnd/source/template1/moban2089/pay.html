@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<!-- html -->
+<html>
+<!-- head -->
+<head>
+<title>Pay</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" /><!-- bootstrap-CSS -->
+<link href="css/font-awesome.css" rel="stylesheet" type="text/css" media="all" /><!-- Fontawesome-CSS -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script type='text/javascript' src='js/jquery-2.2.3.min.js'></script>
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<!--//theme-style-->
+<!-- metatags -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- /metatags -->
+<!-- online fonts -->
+<link href="http://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=Oxygen:300,400,700&amp;subset=latin-ext" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+<!-- /online fonts -->
+
+</head>
+<!-- /head -->
+<!-- body -->
+<body>
+<!--header-->
+<header>
+	<div class="container">
+		<!--logo-->
+			<div class="logo">
+				<h1><a href="index.html">Online Recharge</a></h1>
+			</div>
+		<!--//logo-->
+		  <div class="w3layouts-login">
+				<a data-toggle="modal" data-target="#myModal" href="#"><i class="glyphicon glyphicon-user"> </i>Login/Register</a>
+			</div>    
+				<div class="clearfix"></div>
+    <!--Login modal-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;</button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Online Recharge</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-8 extra-w3layouts" style="border-right: 1px dotted #C2C2C2;padding-right: 30px;">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#Login" data-toggle="tab">Login</a></li>
+                                    <li><a href="#Registration" data-toggle="tab">Register</a></li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="Login">
+                                        <form  class="form-horizontal" action="#" method="get">
+                                        <div class="form-group">
+                                            <label for="email" class="col-sm-2 control-label">
+                                                Email</label>
+                                            <div class="col-sm-10">
+                                                <input type="email" class="form-control" id="email1" placeholder="Email" required="required" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1" class="col-sm-2 control-label">
+                                                Password</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="password" required="required" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <button type="submit" class="submit btn btn-primary btn-sm">
+                                                    Submit</button>
+                                                <a href="javascript:;" class="agileits-forgot">Forgot your password?</a>
+                                            </div>
+                                        </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="Registration">
+                                        <form  class="form-horizontal" action="#" method="get">
+                                        <div class="form-group">
+                                            <label for="email" class="col-sm-2 control-label">
+                                                Name</label>
+                                            <div class="col-sm-10">
+                                                <div class="row">
+                                                    <div class="col-md-3 col-sm-3 col-xs-3">
+                                                        <select class="form-control">
+                                                            <option>Mr.</option>
+                                                            <option>Ms.</option>
+                                                            <option>Mrs.</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                                        <input type="text" class="form-control" placeholder="Name" required="required" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email" class="col-sm-2 control-label">
+                                                Email</label>
+                                            <div class="col-sm-10">
+                                                <input type="email" class="form-control" id="email" placeholder="Email" required="required" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="mobile" class="col-sm-2 control-label">
+                                                Mobile</label>
+                                            <div class="col-sm-10">
+                                                <input type="tel" class="form-control" id="mobile" placeholder="Mobile" required="required" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password" class="col-sm-2 control-label">
+                                                Password</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="password" placeholder="Password" required="required" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <button type="submit" class="submit btn btn-primary btn-sm">
+                                                    Save & Continue</button>
+                                                <button type="reset" class="submit btn btn-default btn-sm">
+                                                    Cancel</button>
+                                            </div>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div id="OR"  >
+                                    OR</div>
+                            </div>
+                            <div class="col-md-4 extra-agileits">
+                                <div class="row text-center sign-with">
+                                    <div class="col-md-12">
+                                        <h3 class="other-nw">
+                                            Sign in with</h3>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="btn-group btn-group-justified">
+                                            <a href="#" class="btn btn-primary">Facebook</a> <a href="#" class="btn btn-danger">
+                                                Google +</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--//Login modal-->
+    </div>
+</header>
+<!-- //header -->
+	
+<!-- innerbanner -->	
+	<div class="agileits-inner-banner">
+		
+	</div>
+<!-- //innerbanner -->
+
+<!-- breadcrumbs -->
+	<div class="w3layouts-breadcrumbs text-center">
+		<div class="container">
+			<span class="agile-breadcrumbs"><a href="index.html"><i class="fa fa-home home_1"></i></a> / <span>Pay</span></span>
+		</div>
+	</div>
+	<!-- //breadcrumbs -->
+	<!-- Pay -->
+	<div class="agile-pay w3layouts-content">
+    <div class="container">
+			<h3 class="w3-head">Payment</h3>
+	<!--Horizontal Tab-->
+        <div id="parentHorizontalTab">
+            <ul class="resp-tabs-list hor_1">
+                <li>Credit/Debit</li>
+                <li>Netbanking</li>
+                <li>Paypal Account</li>
+            </ul>
+            <div class="resp-tabs-container hor_1">
+                <div>
+                    <form action="#" method="post" class="creditly-card-form agileinfo_form">
+									<section class="creditly-wrapper wthree, w3_agileits_wrapper">
+										<div class="credit-card-wrapper">
+											<div class="first-row form-group">
+												<div class="controls">
+													<label class="control-label">Name on Card</label>
+													<input class="billing-address-name form-control" type="text" name="name" placeholder="John Smith">
+												</div>
+												<div class="w3_agileits_card_number_grids">
+													<div class="w3_agileits_card_number_grid_left">
+														<div class="controls">
+															<label class="control-label">Card Number</label>
+															<input class="number credit-card-number form-control" type="text" name="number"
+																		  inputmode="numeric" autocomplete="cc-number" autocompletetype="cc-number" x-autocompletetype="cc-number"
+																		  placeholder="&#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149;">
+														</div>
+													</div>
+													<div class="w3_agileits_card_number_grid_right">
+														<div class="controls">
+															<label class="control-label">CVV</label>
+															<input class="security-code form-control"Â·
+																		  inputmode="numeric"
+																		  type="text" name="security-code"
+																		  placeholder="&#149;&#149;&#149;">
+														</div>
+													</div>
+													<div class="clear"> </div>
+												</div>
+												<div class="controls">
+													<label class="control-label">Expiration Date</label>
+													<input class="expiration-month-and-year form-control" type="text" name="expiration-month-and-year" placeholder="MM / YY">
+												</div>
+											</div>
+											<button class="submit"><span>Make a payment <i class="fa fa-long-arrow-right" aria-hidden="true"></i></span></button>
+										</div>
+									</section>
+								</form>
+<!-- credit-card -->
+		<script type="text/javascript" src="js/creditly.js"></script>
+                    <link rel="stylesheet" href="css/creditly.css" type="text/css" media="all" />
+
+		<script type="text/javascript">
+			$(function() {
+			  var creditly = Creditly.initialize(
+				  '.creditly-wrapper .expiration-month-and-year',
+				  '.creditly-wrapper .credit-card-number',
+				  '.creditly-wrapper .security-code',
+				  '.creditly-wrapper .card-type');
+
+			  $(".creditly-card-form .submit").click(function(e) {
+				e.preventDefault();
+				var output = creditly.validate();
+				if (output) {
+				  // Your validated credit card output
+				  console.log(output);
+				}
+			  });
+			});
+		</script>
+	<!-- //credit-card -->
+
+                </div>
+                <div>
+                    <div class="vertical_post">
+									<form>
+										<h5>Select From Popular Banks</h5>
+										<div class="swit-radio">								
+											<div class="check_box_one"> <div class="radio_one"> <label><input type="radio" name="radio" checked=""><i></i>Syndicate Bank</label> </div></div>
+											<div class="check_box_one"> <div class="radio_one"> <label><input type="radio" name="radio"><i></i>Bank of Baroda</label> </div></div>
+											<div class="check_box_one"> <div class="radio_one"> <label><input type="radio" name="radio"><i></i>Canara Bank</label> </div></div>	
+											<div class="check_box_one"> <div class="radio_one"> <label><input type="radio" name="radio"><i></i>ICICI Bank</label> </div></div>	
+											<div class="check_box_one"> <div class="radio_one"> <label><input type="radio" name="radio"><i></i>State Bank Of India</label> </div></div>		
+											<div class="clearfix"></div>
+										</div>
+										<h5>Or SELECT OTHER BANK</h5>
+										<div class="section_room_pay">
+                                            <select class="year"><option value="">=== Other Banks ===</option><option value="ALB-NA">Allahabad Bank NetBanking</option><option value="ADB-NA">Andhra Bank</option><option value="BBK-NA">Bank of Bahrain and Kuwait NetBanking</option><option value="BBC-NA">Bank of Baroda Corporate NetBanking</option><option value="BBR-NA">Bank of Baroda Retail NetBanking</option><option value="BOI-NA">Bank of India NetBanking</option><option value="BOM-NA">Bank of Maharashtra NetBanking</option><option value="CSB-NA">Catholic Syrian Bank NetBanking</option><option value="CBI-NA">Central Bank of India</option><option value="CUB-NA">City Union Bank NetBanking</option><option value="CRP-NA">Corporation Bank</option><option value="DBK-NA">Deutsche Bank NetBanking</option><option value="DCB-NA">Development Credit Bank</option><option value="DC2-NA">Development Credit Bank - Corporate</option><option value="DLB-NA">Dhanlaxmi Bank NetBanking</option><option value="FBK-NA">Federal Bank NetBanking</option><option value="IDS-NA">Indusind Bank NetBanking</option><option value="IOB-NA">Indian Overseas Bank</option><option value="ING-NA">ING Vysya Bank (now Kotak)</option><option value="JKB-NA">Jammu and Kashmir NetBanking</option><option value="JSB-NA">Janata Sahakari Bank Limited</option><option value="KBL-NA">Karnataka Bank NetBanking</option><option value="KVB-NA">Karur Vysya Bank NetBanking</option><option value="LVR-NA">Lakshmi Vilas Bank NetBanking</option><option value="OBC-NA">Oriental Bank of Commerce NetBanking</option><option value="CPN-NA">PNB Corporate NetBanking</option><option value="PNB-NA">PNB NetBanking</option><option value="RSD-DIRECT">Rajasthan State Co-operative Bank-Debit Card</option><option value="RBS-NA">RBS (The Royal Bank of Scotland)</option><option value="SWB-NA">Saraswat Bank NetBanking</option><option value="SBJ-NA">SB Bikaner and Jaipur NetBanking</option><option value="SBH-NA">SB Hyderabad NetBanking</option><option value="SBM-NA">SB Mysore NetBanking</option><option value="SBT-NA">SB Travancore NetBanking</option><option value="SVC-NA">Shamrao Vitthal Co-operative Bank</option><option value="SIB-NA">South Indian Bank NetBanking</option><option value="SBP-NA">State Bank of Patiala NetBanking</option><option value="SYD-NA">Syndicate Bank NetBanking</option><option value="TNC-NA">Tamil Nadu State Co-operative Bank NetBanking</option><option value="UCO-NA">UCO Bank NetBanking</option><option value="UBI-NA">Union Bank NetBanking</option><option value="UNI-NA">United Bank of India NetBanking</option><option value="VJB-NA">Vijaya Bank NetBanking</option></select>
+										</div>
+										<input type="submit" value="PAY NOW">
+									</form>
+								</div>
+                </div>
+                <div>
+                    <div id="tab4" class="tab-grid" style="display: block;">
+							<div class="row">
+                        <div class="col-md-6">
+                            <img class="pp-img" src="images/paypal.png" alt="Image Alternative text" title="Image Title">
+                            <p>Important: You will be redirected to PayPal's website to securely complete your payment.</p><a class="btn btn-primary">Checkout via Paypal</a>	
+                        </div>
+                        <div class="col-md-6">
+                            <form class="cc-form">
+                                <div class="clearfix">
+                                    <div class="form-group form-group-cc-number">
+                                        <label>Card Number</label>
+                                        <input class="form-control" placeholder="xxxx xxxx xxxx xxxx" type="text"><span class="cc-card-icon"></span>
+                                    </div>
+                                    <div class="form-group form-group-cc-cvc">
+                                        <label>CVV</label>
+                                        <input class="form-control" placeholder="xxxx" type="text">
+                                    </div>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="form-group form-group-cc-name">
+                                        <label>Card Holder Name</label>
+                                        <input class="form-control" type="text">
+                                    </div>
+                                    <div class="form-group form-group-cc-date">
+                                        <label>Valid Thru</label>
+                                        <input class="form-control" placeholder="mm/yy" type="text">
+                                    </div>
+                                </div>
+                                <div class="checkbox checkbox-small">
+                                    <label>
+                                        <input class="i-check" type="checkbox" checked="">Add to My Cards</label>
+                                </div>
+                                <input class="btn btn-primary submit" type="submit" class="submit" value="Proceed Payment">
+                            </form>
+                        </div>
+                    </div>
+                        
+						</div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+ </div>
+	
+	<!--Plug-in Initialisation-->
+	<script type="text/javascript">
+    $(document).ready(function() {
+        //Horizontal Tab
+        $('#parentHorizontalTab').easyResponsiveTabs({
+            type: 'default', //Types: default, vertical, accordion
+            width: 'auto', //auto or any width like 600px
+            fit: true, // 100% fit in a container
+            tabidentify: 'hor_1', // The tab groups identifier
+            activate: function(event) { // Callback function if tab is switched
+                var $tab = $(this);
+                var $info = $('#nested-tabInfo');
+                var $name = $('span', $info);
+                $name.text($tab.text());
+                $info.show();
+            }
+        });
+    });
+</script>
+	<!-- // Pay -->
+
+<!-- subscribe -->
+	<div class="w3-subscribe agileits-w3layouts"> 
+		<div class="container">
+			<div class="col-md-6 social-icons w3-agile-icons">
+				<h4>Join Us</h4>  
+				<ul>
+					<li><a href="#" class="fa fa-facebook sicon facebook"> </a></li>
+					<li><a href="#" class="fa fa-twitter sicon twitter"> </a></li>
+					<li><a href="#" class="fa fa-google-plus sicon googleplus"> </a></li>
+					<li><a href="#" class="fa fa-dribbble sicon dribbble"> </a></li>
+					<li><a href="#" class="fa fa-rss sicon rss"> </a></li> 
+				</ul> 
+			</div> 
+			<div class="col-md-6 w3-agile-subscribe-right">
+				<h3 class="w3ls-title">Subscribe to Our <br><span>Newsletter</span></h3>  
+				<form action="#" method="post"> 
+					<input type="email" name="email" placeholder="Enter your Email..." required="">
+					<input type="submit" value="Subscribe">
+					<div class="clearfix"> </div> 
+				</form>  
+			</div>
+			<div class="clearfix"> </div> 
+		</div>
+	</div>
+	<!-- //subscribe --> 
+
+<!--footer-->
+<footer>
+	<div class="container-fluid">
+		<div class="w3-agile-footer-top-at">
+			<div class="col-md-2 agileits-amet-sed">
+				<h4>Company</h4>
+				<ul class="w3ls-nav-bottom">
+					<li><a href="about.html">About Us</a></li>
+					<li><a href="support.html">Support</a></li>
+					<li><a href="sitemap.html">Sitemap</a></li>
+					<li><a href="terms.html">Terms & Conditions</a></li>
+					<li><a href="faq.html">Faq</a></li>	
+					<li><a href="index.html#mobileappagileits">Mobile</a></li>	
+					<li><a href="feedback.html">Feedback</a></li>	
+					<li><a href="contact.html">Contact</a></li>
+					<li><a href="shortcodes.html">Shortcodes</a></li>
+					<li><a href="icons.html">Icons Page</a></li>
+					
+				</ul>	
+			</div>
+			<div class="col-md-3 agileits-amet-sed ">
+				<h4>Mobile Recharges</h4>
+					<ul class="w3ls-nav-bottom">
+						<li><a href="index.html#parentVerticalTab1">Airtel</a></li>
+						<li><a href="index.html#parentVerticalTab1">Aircel</a></li>
+						<li><a href="index.html#parentVerticalTab1">Vodafone</a></li>
+						<li><a href="index.html#parentVerticalTab1">BSNL</a></li>
+						<li><a href="index.html#parentVerticalTab1">Tata Docomo</a></li>
+						<li><a href="index.html#parentVerticalTab1">Reliance GSM</a></li>	
+						<li><a href="index.html#parentVerticalTab1">Reliance CDMA</a></li>	
+						<li><a href="index.html#parentVerticalTab1">Telenor</a></li>	
+						<li><a href="index.html#parentVerticalTab1">MTS</a></li>	
+						<li><a href="index.html#parentVerticalTab1">Jio</a></li>	
+					</ul>	
+			</div>
+			<div class="col-md-3 agileits-amet-sed ">
+				<h4>DATACARD RECHARGES</h4>
+				   <ul class="w3ls-nav-bottom">
+						<li><a href="index.html#parentVerticalTab3">Tata Photon</a></li>
+						<li><a href="index.html#parentVerticalTab3">MTS MBlaze</a></li>
+						<li><a href="index.html#parentVerticalTab3">MTS MBrowse</a></li>
+						<li><a href="index.html#parentVerticalTab3">Airtel</a></li>
+						<li><a href="index.html#parentVerticalTab3">Aircel</a></li>
+						<li><a href="index.html#parentVerticalTab3">BSNL</a></li>	
+						<li><a href="index.html#parentVerticalTab3">MTNL Delhi</a></li>	
+						<li><a href="index.html#parentVerticalTab3">Vodafone</a></li>	
+						<li><a href="index.html#parentVerticalTab3">Idea</a></li>	
+						<li><a href="index.html#parentVerticalTab3">MTNL Mumbai</a></li>
+						<li><a href="index.html#parentVerticalTab3">Tata Photon Whiz</a></li>	
+					</ul>	
+			</div>
+			<div class="col-md-2 agileits-amet-sed">
+				<h4>DTH Recharges</h4>
+				<ul class="w3ls-nav-bottom">
+						<li><a href="index.html#parentVerticalTab2"> Airtel Digital TV Recharges</a></li>
+						<li><a href="index.html#parentVerticalTab2">Dish TV Recharges</a></li>
+						<li><a href="index.html#parentVerticalTab2">Tata Sky Recharges</a></li>
+						<li><a href="index.html#parentVerticalTab2">Reliance Digital TV Recharges</a></li>
+						<li><a href="index.html#parentVerticalTab2">Sun Direct Recharges</a></li>
+						<li><a href="index.html#parentVerticalTab2">Videocon D2H Recharges</a></li>	
+					</ul>	
+			</div>
+            <div class="col-md-2 agileits-amet-sed ">
+				<h4>Payment Options</h4>
+				   <ul class="w3ls-nav-bottom">
+						<li>Credit Cards</li>
+						<li>Debit Cards</li>
+						<li>Any Visa Debit Card (VBV)</li>
+						<li>Direct Bank Debits</li>
+						<li>Cash Cards</li>	
+					</ul>	
+			</div>
+		<div class="clearfix"> </div>
+		</div>
+    </div>
+	<div class="w3l-footer-bottom">
+		<div class="container-fluid">
+			<div class="col-md-4 w3-footer-logo">
+				<h2><a href="index.html">ONLINE RECHARGE</a></h2>
+			</div>
+			<div class="col-md-8 agileits-footer-class">
+				<p >Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+			</div>
+		<div class="clearfix"> </div>
+	 	</div>
+	</div>
+</footer>
+<!--//footer-->
+<!-- for bootstrap working -->
+		<script src="js/bootstrap.js"></script>
+<!-- //for bootstrap working -->
+<!-- easy-responsive-tabs -->    
+<link rel="stylesheet" type="text/css" href="css/easy-responsive-tabs.css " />
+<script src="js/easyResponsiveTabs.js"></script>
+<!-- //easy-responsive-tabs --> 
+<!-- here stars scrolling icon -->
+			<script type="text/javascript">
+				$(document).ready(function() {
+					/*
+						var defaults = {
+						containerID: 'toTop', // fading element id
+						containerHoverID: 'toTopHover', // fading element hover id
+						scrollSpeed: 1200,
+						easingType: 'linear' 
+						};
+					*/
+										
+					$().UItoTop({ easingType: 'easeOutQuart' });
+										
+					});
+			</script>
+			<!-- start-smoth-scrolling -->
+			<script type="text/javascript" src="js/move-top.js"></script>
+			<script type="text/javascript" src="js/easing.js"></script>
+			<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					$(".scroll").click(function(event){		
+						event.preventDefault();
+						$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+					});
+				});
+			</script>
+			<!-- start-smoth-scrolling -->
+		<!-- //here ends scrolling icon -->
+</body>
+<!-- /body -->
+</html>
+<!-- /html -->
