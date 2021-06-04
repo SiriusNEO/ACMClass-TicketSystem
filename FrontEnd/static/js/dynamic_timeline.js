@@ -53,7 +53,7 @@ function modify_len(len) {
     let i;
     node_pre = node_total;
     remove_node(node_total);
-    node_total = len;
+    node_total = parseInt(len);
     if (node_pre < node_total) {
         for (i = node_pre; i <= node_total; ++i) {
             append_node(i);

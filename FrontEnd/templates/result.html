@@ -3,7 +3,8 @@
 <html>
 <!-- head -->
 <head>
-<title>index</title>
+<title>{{ query_name }}-ACM火车票管理系统</title>
+<link href="static/images/favicon.ico" rel="shortcut icon">
 <link href="static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" /><!-- bootstrap-CSS -->
 <link rel="stylesheet" href="static/css/bootstrap-select.css"><!-- bootstrap-select-CSS -->
 <link href="static/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" /><!-- Fontawesome-CSS -->
@@ -322,7 +323,7 @@
                                         <!-- 购票界面 -->
                                         <div class="modal fade" id="ticket_modal{{ loop.index }}" tabindex="-1" role="dialog"
                                             aria-hidden="true">
-                                            <div class="modal-dialog modal-lg" style="margin-left: 650px">
+                                            <div class="modal-dialog modal-lg" style="margin-left: 512px">
                                                 <div class="modal-content" style="width: 600px; height: 700px">
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -649,16 +650,16 @@
                                                     {% if row[0] == '[refunded]' %}
                                                         <a href="#" class="seat-button two" style="background-color: darkgrey">退票</a>
                                                     {% else %}
-                                                        <a href="#" onclick="RefundWarning()" class="seat-button two" style="background-color: #f63205">退票</a>
+                                                        <a href="#" onclick="RefundWarning({{ loop.index }})" class="seat-button two" style="background-color: #f63205">退票</a>
                                                     {% endif %}
                                                     <form action='/refund_ticket' method=post name=form1 style='display:none'>
                                                         <input type="hidden" name="refund_n" value="{{ loop.index }}">
-                                                        <input type="submit" id="refund_submit" class="submit" style='display:none'/>
+                                                        <input type="submit" id="refund_submit{{ loop.index }}" class="submit" style='display:none'/>
                                                     </form>
                                                     <script>
-                                                        function RefundWarning() {
+                                                        function RefundWarning(cnt) {
                                                             xtip.confirm('确定要退票吗？',function(){
-                                                                $("#refund_submit").click();
+                                                                $("#refund_submit"+cnt).click();
                                                             });
                                                         }
                                                     </script>

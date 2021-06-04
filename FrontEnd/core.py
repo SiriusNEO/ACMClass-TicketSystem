@@ -136,7 +136,7 @@ class Courier:
         ret = self.read()
         retList = ret.split('\n')
         if retList[0] == "train_not_found" or retList[0] == "day_error":
-            return False, retList, date
+            return False, retList[0], date
         for i in range(len(retList)):
             retList[i] = retList[i].split(' ')
         print(retList)
