@@ -3,76 +3,87 @@
 <html>
 <!-- head -->
 <head>
-<title>首页-ACM火车票管理系统</title>
-<link href="static/images/favicon.ico" rel="shortcut icon">
-<link href="static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" /><!-- bootstrap-CSS -->
-<link rel="stylesheet" href="static/css/bootstrap-select.css"><!-- bootstrap-select-CSS -->
-<link href="static/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" /><!-- Fontawesome-CSS -->
-<link href="static/css/xui.css" rel="stylesheet" type="text/css" media="all" /><!-- xtiper-CSS -->
-<link href="static/css/xtiper.css" rel="stylesheet" type="text/css" media="all" /><!-- xtiper-CSS -->
-<link href="static/css/layout.css" rel="stylesheet" type="text/css" media="all" /><!-- xtiper-CSS -->
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script type='text/javascript' src='static/js/jquery-2.2.3.min.js'></script>
-<script type='text/javascript' src='static/js/xtiper.min.js'></script>
-<!-- Custom Theme files -->
-<!--theme-style-->
-<link href="static/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="static/css/flowChart.css" rel="stylesheet" type="text/css" media="all" />
+    <title>首页-ACM火车票管理系统</title>
+    <link href="static/images/favicon.ico" rel="shortcut icon">
+    <link href="static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/><!-- bootstrap-CSS -->
+    <link rel="stylesheet" href="static/css/bootstrap-select.css"><!-- bootstrap-select-CSS -->
+    <link href="static/css/font-awesome.css" rel="stylesheet" type="text/css" media="all"/><!-- Fontawesome-CSS -->
+    <link href="static/css/xui.css" rel="stylesheet" type="text/css" media="all"/><!-- xtiper-CSS -->
+    <link href="static/css/xtiper.css" rel="stylesheet" type="text/css" media="all"/><!-- xtiper-CSS -->
+    <link href="static/css/layout.css" rel="stylesheet" type="text/css" media="all"/><!-- xtiper-CSS -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type='text/javascript' src='static/js/jquery-2.2.3.min.js'></script>
+    <script type='text/javascript' src='static/js/xtiper.min.js'></script>
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="static/css/flowChart.css" rel="stylesheet" type="text/css" media="all"/>
 
-<!--//theme-style-->
-<!--meta data-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--//meta data-->
-<!-- online fonts -->
-<link href="http://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext,vietnamese" rel="stylesheet">
-<link href="http://fonts.googleapis.com/css?family=Oxygen:300,400,700&amp;subset=latin-ext" rel="stylesheet">
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
-<!-- /online fonts -->
+    <!--//theme-style-->
+    <!--meta data-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <!--//meta data-->
+    <!-- online fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext,vietnamese"
+          rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Oxygen:300,400,700&amp;subset=latin-ext" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+          rel="stylesheet">
+    <!-- /online fonts -->
 </head>
 <!-- //head -->
 <!-- body -->
-<body >
+<body>
 <!--头部与登录注册-->
 <header>
-	<div class="container">
-		<!--logo-->
-			<div class="logo">
-				<h1><a href="/">ACM Class Ticket System</a></h1>
-			</div>
-		<!--//logo-->
-		  <div class="w3layouts-login">
-              {% if is_login[0] == True %}
+    <div class="container">
+        <!--logo-->
+        <div class="logo">
+            <h1><a href="/">ACM Class Ticket System</a></h1>
+        </div>
+        <!--//logo-->
+        <div class="w3layouts-login">
+            {% if is_login[0] == True %}
                 <a><i class="glyphicon glyphicon-user"></i>欢迎您, {{ is_login[1] }}</a>
-                  <a href="#"><i class="icon fa fa-power-off" onclick="logout();"></i>注销</a>
-                  <script>
+                <a href="#"><i class="icon fa fa-power-off" onclick="logout();"></i>注销</a>
+                <script>
                     function logout() {
-                        xtip.confirm('确认注销吗？',function(){
+                        xtip.confirm('确认注销吗？', function () {
                             window.location.href = '/logout';
-                        }, {icon:'a', title:'提示'});
+                        }, {icon: 'a', title: '提示'});
                     }
-                  </script>
-              {% else %}
-				<a data-toggle="modal" data-target="#myModal" href="#"><i class="glyphicon glyphicon-user"> </i>登录/注册</a>
-              {% endif %}
-			</div>
-				<div class="clearfix"></div>
-    <!--登录界面-->
+                </script>
+            {% else %}
+                <a data-toggle="modal" data-target="#myModal" href="#"><i
+                        class="glyphicon glyphicon-user"> </i>登录/注册</a>
+            {% endif %}
+        </div>
+        <div class="clearfix"></div>
+        <!--登录界面-->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-            aria-hidden="true">
+             aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            &times;</button>
+                            &times;
+                        </button>
                         <h4 class="modal-title" id="myModalLabel">
                             ACM Class Ticket System</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-md-8 extra-w3layouts" style="border-right: 1px dotted #C2C2C2;padding-right: 30px;">
+                            <div class="col-md-8 extra-w3layouts"
+                                 style="border-right: 1px dotted #C2C2C2;padding-right: 30px;">
                                 <!-- Nav tabs -->
                                 <ul class="nav nav-tabs">
                                     <li class="active"><a href="#Login" data-toggle="tab">登录</a></li>
@@ -81,19 +92,24 @@
                                 <!-- Tab panes -->
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="Login">
-                                        <form class="form-horizontal" id="login_form" name="login_form" action="/login" method="post">
+                                        <form class="form-horizontal" id="login_form" name="login_form" action="/login"
+                                              method="post">
                                             <div class="form-group">
                                                 <label for="userid" class="col-sm-2 control-label">
                                                     用户名</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="login_userid_input" name="login_userid_input" placeholder="不是昵称噢" required="required" />
+                                                    <input type="text" class="form-control" id="login_userid_input"
+                                                           name="login_userid_input" placeholder="不是昵称噢"
+                                                           required="required"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="login_passwd" class="col-sm-2 control-label">
                                                     密码</label>
                                                 <div class="col-sm-10">
-                                                    <input type="password" class="form-control" id="login_passwd_input" name="login_passwd_input" placeholder="不会给别人看哒" required="required" />
+                                                    <input type="password" class="form-control" id="login_passwd_input"
+                                                           name="login_passwd_input" placeholder="不会给别人看哒"
+                                                           required="required"/>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -101,57 +117,70 @@
                                                 </div>
                                                 <div class="col-sm-10">
                                                     <button type="submit" class="submit btn btn-primary btn-sm">
-                                                        提交</button>
-                                                    &emsp;<a href="#" class="agileits-forgot" onclick="xtip.alert('喜欢忘？重新注册吧','e')">忘记密码?</a>
+                                                        提交
+                                                    </button>
+                                                    &emsp;<a href="#" class="agileits-forgot"
+                                                             onclick="xtip.alert('喜欢忘？重新注册吧','e')">忘记密码?</a>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="tab-pane" id="Registration">
-                                        <form  class="form-horizontal" action="/register" method="post">
-                                        <div class="form-group">
-                                            <label for="email" class="col-sm-2 control-label">
-                                                邮箱</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="register_email" name="register_email" placeholder="邮箱地址格式" required="required" />
+                                        <form class="form-horizontal" action="/register" method="post">
+                                            <div class="form-group">
+                                                <label for="email" class="col-sm-2 control-label">
+                                                    邮箱</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="register_email"
+                                                           name="register_email" placeholder="邮箱地址格式"
+                                                           required="required"/>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="userid" class="col-sm-2 control-label">
-                                                用户名</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="register_userid" name="register_userid" placeholder="字母开头，仅限字母、数字和下划线，长度不超过20" required="required" />
+                                            <div class="form-group">
+                                                <label for="userid" class="col-sm-2 control-label">
+                                                    用户名</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="register_userid"
+                                                           name="register_userid" placeholder="字母开头，仅限字母、数字和下划线，长度不超过20"
+                                                           required="required"/>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name" class="col-sm-2 control-label">
-                                                昵称</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="register_name" name="register_name" placeholder="二至五个汉字" required="required" />
+                                            <div class="form-group">
+                                                <label for="name" class="col-sm-2 control-label">
+                                                    昵称</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="register_name"
+                                                           name="register_name" placeholder="二至五个汉字"
+                                                           required="required"/>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="passwd" class="col-sm-2 control-label">
-                                                密码</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="register_passwd" name="register_passwd" placeholder="仅限字母、数字和下划线，长度6到30之间" required="required" />
+                                            <div class="form-group">
+                                                <label for="passwd" class="col-sm-2 control-label">
+                                                    密码</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="register_passwd"
+                                                           name="register_passwd" placeholder="仅限字母、数字和下划线，长度6到30之间"
+                                                           required="required"/>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-2">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <button type="submit" class="submit btn btn-primary btn-sm">
+                                                        保存并继续
+                                                    </button>
+                                                    <button type="reset" class="submit btn btn-default btn-sm">
+                                                        取消
+                                                    </button>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-10">
-                                                <button type="submit" class="submit btn btn-primary btn-sm">
-                                                    保存并继续</button>
-                                                <button type="reset" class="submit btn btn-default btn-sm">
-                                                    取消</button>
-                                            </div>
-                                        </div>
                                         </form>
                                     </div>
                                 </div>
-                                <div id="OR" >
-                                    或</div>
+                                <div id="OR">
+                                    或
+                                </div>
                             </div>
                             <div class="col-md-4 extra-agileits">
                                 <div class="row text-center sign-with">
@@ -174,585 +203,695 @@
                 </div>
             </div>
         </div>
-    <!--//Login modal-->
+        <!--//Login modal-->
     </div>
 </header>
 
 <!--上方滑动栏-->
-	<div class=" header-right">
-		<div class="banner">
-			 <div class="slider">
-			    <div class="callbacks_container">
-			      <ul class="rslides" id="slider">
-					 <li>
-			          	 <div class="banner1">
-			           		<div class="caption">
-					          	<h3><span>期末周</span> 快要来啦</h3>
-					          	<p><a href="#" class="scroll">我复习不完了我裂开来了</a></p>
-			          		</div>
-			          	</div>
-			         </li>
-					 <li>
-			          	 <div class="banner2">
-			           		<div class="caption">
-					          	<h3><span>限时半价</span> 上院到东中院</h3>
+<div class=" header-right">
+    <div class="banner">
+        <div class="slider">
+            <div class="callbacks_container">
+                <ul class="rslides" id="slider">
+                    <li>
+                        <div class="banner1">
+                            <div class="caption">
+                                <h3><span>期末周</span> 快要来啦</h3>
+                                <p><a href="#" class="scroll">我复习不完了我裂开来了</a></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="banner2">
+                            <div class="caption">
+                                <h3><span>限时半价</span> 上院到东中院</h3>
                                 <p><a href="#">让你西方文明史不再迟到</a></p>
-			          		</div>
-			          	</div>
-			         </li>
-			         <li>
-			          	 <div class="banner3">
-			           		<div class="caption">
-					          	<h3><span>重铸ACM班荣光</span>  吾辈义不容辞</h3>
-					          	<p><a href="#">这学期不被退远就算成功</a></p>
-			          		</div>
-			          	</div>
-			         </li>
-			      </ul>
-			  </div>
-			</div>
-		</div>
-	</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="banner3">
+                            <div class="caption">
+                                <h3><span>重铸ACM班荣光</span> 吾辈义不容辞</h3>
+                                <p><a href="#">这学期不被退远就算成功</a></p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!--左侧菜单选择项-->
 <div class="categories-section main-grid-border" id="mobilew3layouts">
-<div class="container">
-<div class="category-list">
-<div id="parentVerticalTab">
-    <div class="agileits-tab_nav">
-        <ul class="resp-tabs-list hor_1">
-            <li><i class="icon fa fa-user-circle" aria-hidden="true"></i>用户信息</li>
-            <li><i class="icon fa fa-train" aria-hidden="true"></i>列车信息</li>
-            <li><i class="icon fa fa-road" aria-hidden="true"></i>出行助手</li>
-            <li><i class="icon fa fa-shopping-cart" aria-hidden="true"></i>订单管理</li>
-            <li><i class="icon fa fa-code" aria-hidden="true"></i>控制台</li>
-        </ul>
-    </div>
-    <a href="static/help.pdf" style="float: right"><font color=SandyBrown><i class="icon fa fa-question-circle" aria-hidden="true"></i> 需要帮助吗？</font></a>
-<div class="resp-tabs-container hor_1">
-
-<!-- user tab -->
-<div>
-    <div class="tabs-box">
-        <i class="icon fa fa-user-circle inner-icon" aria-hidden="true"></i>
-        <ul class="tabs-menu" id="menu1">
-            <li><a href="#tab1"><label class="radio"><input type="radio" name="user_tab" checked=true id="tab1b"><i></i>添加</label></a></li>&emsp;&emsp;&emsp;
-            <li><a href="#tab2"><label class="radio"><input type="radio" name="user_tab" id="tab2b"><i></i>查询</label></a></li>&emsp;&emsp;&emsp;
-            <li><a href="#tab3"><label class="radio"><input type="radio" name="user_tab" id="tab3b"><i></i>修改</label></a></li>
-        </ul><br><br>
-         <div class="clearfix"> </div>
-         <div class="tab-grids" id="grids1">
-             <div id="tab1" class="tab-grid">
-                      <div class="login-form">
-                <div class="login-form">
-            <form action="/add_user" method="post" id="signup">
-            <ol>
-                <h4>请输入新用户的信息，每一项均为必填项</h4>
-                <li>
-                        <div class="mobile-right ">
-                            <input type="text" id="add_userid" name="add_userid" class="form-control" placeholder="用户名，字母开头，仅限字母、数字和下划线，长度不超过20"  required="required">
-                        </div>
-                </li>
-                <li>
-                        <div class="mobile-right ">
-                                <input type="text" id="add_email" name="add_email" class="form-control" placeholder="邮箱，按邮箱地址格式"  required="required">
-                            </div>
-                </li>
-                <li>
-                        <div class="mobile-right ">
-                                <input type="text" id="add_passwd" name="add_passwd" class="form-control" placeholder="密码，仅限字母、数字和下划线，长度6到30之间"  required="required">
-                            </div>
-                </li>
-                <li>
-                        <div class="mobile-right ">
-                                <input type="text" id="add_name" name="add_name" class="form-control" placeholder="昵称，二至五个汉字"  required="required">
-                            </div>
-                </li>
-                <li>
-                    <h4>注意，新用户权限等级必须低于您当前用户</h4>
-                    <div class="mobile-right ">
-                        <div class="mobile-rchge">
-                            <input type="number" name="add_privilege" class="form-control" style="width: 400px" placeholder="权限等级，为一个 0 到 10 范围内的数字" required="required"  />
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </li>
-                <li>
-                    <input type="submit" class="submit" value="添加用户" />
-                </li>
-
-            </ol>
-            </form>
-          </div>
+    <div class="container">
+        <div class="category-list">
+            <div id="parentVerticalTab">
+                <div class="agileits-tab_nav">
+                    <ul class="resp-tabs-list hor_1">
+                        <li><i class="icon fa fa-user-circle" aria-hidden="true"></i>用户信息</li>
+                        <li><i class="icon fa fa-train" aria-hidden="true"></i>列车信息</li>
+                        <li><i class="icon fa fa-road" aria-hidden="true"></i>出行助手</li>
+                        <li><i class="icon fa fa-shopping-cart" aria-hidden="true"></i>订单管理</li>
+                        <li><i class="icon fa fa-code" aria-hidden="true"></i>控制台</li>
+                    </ul>
                 </div>
-            </div>
-            <div id="tab2" class="tab-grid">
-                      <div class="login-form">
-                <form action="/query_profile" method="post" id="signup">
-                <ol>
-                    <h4>注意，是用户名，不是昵称噢</h4>
-                    <div class="mobile-right ">
-                            <input type="text" id="query_id" name="query_id" class="form-control" placeholder="查询目标用户名"  required="required">
-                        </div>
-                    <li>
-                        <input type="submit" class="submit" value="查找用户" />
-                    </li>
-                </ol>
-                </form>
-                </div>
-            </div>
-            <div id="tab3" class="tab-grid">
-                      <div class="login-form">
-                <form action="/modify_profile" method="post" id="signup">
-                <ol>
-                    <li><div class="mobile-right ">
-                    <h4>目标用户名一定要填</h4>
-                            <input type="text" id="modify_userid" name="modify_userid" class="form-control" placeholder="待修改目标用户名"  required="required">
-                    </div></li>
-                    <h4>下面为选填项</h4>
-                    <li><div class="mobile-right ">
-                            <input type="text" id="modify_email" name="modify_email" class="form-control" placeholder="新邮箱">
-                    </div></li>
-                    <li><div class="mobile-right ">
-                            <input type="text" id="modify_passwd" name="modify_passwd" class="form-control" placeholder="新密码">
-                    </div></li>
-                    <li><div class="mobile-right ">
-                            <input type="text" id="modify_name" name="modify_name" class="form-control" placeholder="新昵称">
-                    </div></li>
-                    <li>
-                        <h4>注意，待修改用户权限等级必须低于您当前用户</h4>
-                        <div class="mobile-right ">
-                            <div class="mobile-rchge">
-                                <input type="number" name="modify_privilege" class="form-control" style="width: 400px" placeholder="新权限等级"/>
-                            </div>
+                <a href="static/doc/help.pdf" style="float: right"><font color=SandyBrown><i
+                        class="icon fa fa-question-circle" aria-hidden="true"></i> 需要帮助吗？</font></a>
+                <div class="resp-tabs-container hor_1">
+
+                    <!-- user tab -->
+                    <div>
+                        <div class="tabs-box">
+                            <i class="icon fa fa-user-circle inner-icon" aria-hidden="true"></i>
+                            <ul class="tabs-menu" id="menu1">
+                                <li><a href="#tab1"><label class="radio"><input type="radio" name="user_tab"
+                                                                                checked=true
+                                                                                id="tab1b"><i></i>添加</label></a></li>&emsp;&emsp;&emsp;
+                                <li><a href="#tab2"><label class="radio"><input type="radio" name="user_tab" id="tab2b"><i></i>查询</label></a>
+                                </li>&emsp;&emsp;&emsp;
+                                <li><a href="#tab3"><label class="radio"><input type="radio" name="user_tab" id="tab3b"><i></i>修改</label></a>
+                                </li>
+                            </ul>
+                            <br><br>
                             <div class="clearfix"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <input type="submit" class="submit" value="修改信息">
-                    </li>
-                </ol>
-                </form>
+                            <div class="tab-grids" id="grids1">
+                                <div id="tab1" class="tab-grid">
+                                    <div class="login-form">
+                                        <div class="login-form">
+                                            <form action="/add_user" method="post" id="signup">
+                                                <ol>
+                                                    <h4>请输入新用户的信息，每一项均为必填项</h4>
+                                                    <li>
+                                                        <div class="mobile-right ">
+                                                            <input type="text" id="add_userid" name="add_userid"
+                                                                   class="form-control"
+                                                                   placeholder="用户名，字母开头，仅限字母、数字和下划线，长度不超过20"
+                                                                   required="required">
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="mobile-right ">
+                                                            <input type="text" id="add_email" name="add_email"
+                                                                   class="form-control" placeholder="邮箱，按邮箱地址格式"
+                                                                   required="required">
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="mobile-right ">
+                                                            <input type="text" id="add_passwd" name="add_passwd"
+                                                                   class="form-control"
+                                                                   placeholder="密码，仅限字母、数字和下划线，长度6到30之间"
+                                                                   required="required">
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="mobile-right ">
+                                                            <input type="text" id="add_name" name="add_name"
+                                                                   class="form-control" placeholder="昵称，二至五个汉字"
+                                                                   required="required">
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <h4>注意，新用户权限等级必须低于您当前用户</h4>
+                                                        <div class="mobile-right ">
+                                                            <div class="mobile-rchge">
+                                                                <input type="number" name="add_privilege"
+                                                                       class="form-control" style="width: 400px"
+                                                                       placeholder="权限等级，为一个 0 到 10 范围内的数字"
+                                                                       required="required"/>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <input type="submit" class="submit" value="添加用户"/>
+                                                    </li>
 
-                </div>
-            </div>
-        </div>
+                                                </ol>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tab2" class="tab-grid">
+                                    <div class="login-form">
+                                        <form action="/query_profile" method="post" id="signup">
+                                            <ol>
+                                                <h4>注意，是用户名，不是昵称噢</h4>
+                                                <div class="mobile-right ">
+                                                    <input type="text" id="query_id" name="query_id"
+                                                           class="form-control" placeholder="查询目标用户名"
+                                                           required="required">
+                                                </div>
+                                                <li>
+                                                    <input type="submit" class="submit" value="查找用户"/>
+                                                </li>
+                                            </ol>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div id="tab3" class="tab-grid">
+                                    <div class="login-form">
+                                        <form action="/modify_profile" method="post" id="signup">
+                                            <ol>
+                                                <li>
+                                                    <div class="mobile-right ">
+                                                        <h4>目标用户名一定要填</h4>
+                                                        <input type="text" id="modify_userid" name="modify_userid"
+                                                               class="form-control" placeholder="待修改目标用户名"
+                                                               required="required">
+                                                    </div>
+                                                </li>
+                                                <h4>下面为选填项</h4>
+                                                <li>
+                                                    <div class="mobile-right ">
+                                                        <input type="text" id="modify_email" name="modify_email"
+                                                               class="form-control" placeholder="新邮箱">
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="mobile-right ">
+                                                        <input type="text" id="modify_passwd" name="modify_passwd"
+                                                               class="form-control" placeholder="新密码">
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="mobile-right ">
+                                                        <input type="text" id="modify_name" name="modify_name"
+                                                               class="form-control" placeholder="新昵称">
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <h4>注意，待修改用户权限等级必须低于您当前用户</h4>
+                                                    <div class="mobile-right ">
+                                                        <div class="mobile-rchge">
+                                                            <input type="number" name="modify_privilege"
+                                                                   class="form-control" style="width: 400px"
+                                                                   placeholder="新权限等级"/>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <input type="submit" class="submit" value="修改信息">
+                                                </li>
+                                            </ol>
+                                        </form>
 
-    <div class="clearfix"> </div>
-</div>
-	<!-- script -->
-    <script>
-        $(document).ready(function() {
-            $("#tab2").hide();
-            $("#tab3").hide();
-            $("#menu1 a").click(function(event){
-                event.preventDefault();
-                var tab=$(this).attr("href");
-                $(tab+'b').prop("checked", true);
-                $("#tab1").hide();
-                $("#tab2").hide();
-                $("#tab3").hide();
-                $(tab).fadeIn("slow");
-            });
-        });
-    </script>
-</div>
-
-<!-- train tab -->
-<div>
-    <i class="icon fa fa-train inner-icon" aria-hidden="true"></i>
-    <ul class="tabs-menu", id="menu2">
-            <li><a href="#tab4"><label class="radio"><input type="radio" name="train_tab" checked=true id="tab4b" /><i></i>添加</label></a></li>&emsp;&emsp;&emsp;
-            <li><a href="#tab5"><label class="radio"><input type="radio" name="train_tab" id="tab5b" /><i></i>查询</label></a></li>&emsp;&emsp;&emsp;
-            <li><a href="#tab6"><label class="radio"><input type="radio" name="train_tab" id="tab6b" /><i></i>操作</label></a></li>
-        </ul><br><br>
-         <div class="clearfix"> </div>
-         <div class="tab-grids", id="grids2">
-             <div id="tab4" class="tab-grid">
-                      <div class="login-form">
-             <div class="login-form">
-            <form action="/add_train" method="post" id="signup">
-                <ol>
-                    <h4>请输入新火车信息，每一项均为必填项</h4>
-                    <li>
-                            <div class="mobile-right ">
-                                <input type="text" name="add_trainid" class="form-control" placeholder="车次编号，由字母开头，仅限字母、数字和下划线，长度不超过20" style="width: 500px" required="required">
-                            </div>
-                    </li>
-                    <li>
-                            <div class="mobile-right ">
-                                    <input type="number" name="add_seatnum" class="form-control" placeholder="车次的座位数，不超过100000的整数" style="width: 500px"  required="required">
-                            </div>
-                    </li>
-                    <li>
-                            <div class="mobile-right ">
-                                    <input type="text" name="add_type" class="form-control" placeholder="列车类型，为一个大写字母" style="width: 500px"  required="required">
-                            </div>
-                    </li>
-                    <li>
-                        <h4>开售于</h4>
-                            <div class="mobile-right ">
-                                    <input type="date" name="add_startdate" class="form-control" required="required">
-
-                        <h4>截止于</h4>
-                                <input type="date" name="add_enddate" class="form-control"  required="required">
-                        <h4>每天售卖时间</h4>
-                                <input type="time" name="add_starttime" class="form-control"  required="required">
-                            </div>
-                    </li>
-
-                    <h4>请输入该火车的行程路线</h4>
-                    <div class="mobile-right ">
-                            <div class="mobile-rchge">
-                                <input type="text" id="station_num" name="station_num" onchange="
-                                modify_len($(this).val())
-                                " class="form-control" style="width: 400px" placeholder="途径站台总数" required="required"  />
-                            </div>
-                    <div class="clearfix"></div><br>
-                    </div>
-
-                    <div class="flowChart">
-                        <div class="flowChart-left"><div class="dashed"></div></div>
-                        <div class="flowChart-right" id="node_set">
-                            <div class="oneNode"></div>
-                            <div class="oneNode" id="node_"+cnt>
-                                <div class="check check-success">起</div>
-                                <div class="tag-boder"><div class="tag"></div></div>
-                                <div class="NodeDetail">
-                                    <div class="NodeDetail-content">
-                                            &emsp;<i class="icon fa fa-map-marker"></i>
-                                            <input type="text" name="station_name1" class="form-control-static" placeholder="站名" required="required" style="font-size: small; width: 180px; border-color: Blue; text-indent: 10px">&emsp;&emsp;
-                                            <br><br>
-                                            &emsp;<input type="number" name="travel_time1" class="form-control-static" placeholder="到下站历时" style="font-size: small; text-indent: 10px; width: 160px" required="required"  />
-                                            &emsp;&emsp;<input type="number" name="stopover_time1" class="form-control-static" placeholder="起点站无停靠时长" disabled="true" style="font-size: small; text-indent: 10px; width: 160px" required="required"  />
-                                            &emsp;&emsp;<input type="number" name="price1" class="form-control-static" placeholder="到下站票价" style="font-size: small; text-indent: 10px; width: 160px" required="required"  />
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="clearfix"></div>
                         </div>
+                        <!-- script -->
+                        <script>
+                            $(document).ready(function () {
+                                $("#tab2").hide();
+                                $("#tab3").hide();
+                                $("#menu1 a").click(function (event) {
+                                    event.preventDefault();
+                                    var tab = $(this).attr("href");
+                                    $(tab + 'b').prop("checked", true);
+                                    $("#tab1").hide();
+                                    $("#tab2").hide();
+                                    $("#tab3").hide();
+                                    $(tab).fadeIn("slow");
+                                });
+                            });
+                        </script>
                     </div>
-                    <li>
-                        <input type="submit" class="submit" value="添加火车" />
-                    </li>
-                </ol>
-            </form>
-          </div>
-          </div>
-            </div>
-            <div id="tab5" class="tab-grid">
-                      <div class="login-form">
-                <form action="/query_train" method="post" id="signup">
-                <h4>查询某一日期发车的指定车次的情况</h4>
-                <ol>
-                    <li>
-                    <div class="mobile-right ">
-                            <input type="text" name="query_trainid" class="form-control" placeholder="查询目标车次编号"  required="required">
-                        </div>
-                    </li>
-                    <li>
-                    <div class="mobile-right ">
-                            <h4>发车日期</h4>
-                            <input type="date" name="query_date" class="form-control" placeholder="发车日期"  required="required">
-                        </div>
-                    </li>
-                    <li>
-                        <input type="submit" class="submit" value="查找车次" />
-                    </li>
-                </ol>
-                </form>
-                </div>
-            </div>
-            <div id="tab6" class="tab-grid">
-                      <div class="login-form">
-                <form method="post" id="release_delete_form">
-                <ol>
-                    <h4>Tips: 发布前的车次可被删除，不可发售车票；发布后的车次不可被删除，可发售车票。</h4>
-                    <div class="mobile-right ">
-                            <input type="text" id="release_delete_tid" name="release_delete_tid" class="form-control" placeholder="目标车次编号"  required="required">
-                            <input type="submit" class="submit" id="rd_hidden" style="display: none">
-                        </div>
-                </ol>
-                </form>
-                    <input type="submit" class="submit" onclick="
+
+                    <!-- train tab -->
+                    <div>
+                        <i class="icon fa fa-train inner-icon" aria-hidden="true"></i>
+                        <ul class="tabs-menu" , id="menu2">
+                            <li><a href="#tab4"><label class="radio"><input type="radio" name="train_tab" checked=true
+                                                                            id="tab4b"/><i></i>添加</label></a></li>&emsp;&emsp;&emsp;
+                            <li><a href="#tab5"><label class="radio"><input type="radio" name="train_tab"
+                                                                            id="tab5b"/><i></i>查询</label></a></li>&emsp;&emsp;&emsp;
+                            <li><a href="#tab6"><label class="radio"><input type="radio" name="train_tab"
+                                                                            id="tab6b"/><i></i>操作</label></a></li>
+                        </ul>
+                        <br><br>
+                        <div class="clearfix"></div>
+                        <div class="tab-grids" , id="grids2">
+                            <div id="tab4" class="tab-grid">
+                                <div class="login-form">
+                                    <div class="login-form">
+                                        <form action="/add_train" method="post" id="signup">
+                                            <ol>
+                                                <h4>请输入新火车信息，每一项均为必填项</h4>
+                                                <li>
+                                                    <div class="mobile-right ">
+                                                        <input type="text" name="add_trainid" class="form-control"
+                                                               placeholder="车次编号，由字母开头，仅限字母、数字和下划线，长度不超过20"
+                                                               style="width: 500px" required="required">
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="mobile-right ">
+                                                        <input type="number" name="add_seatnum" class="form-control"
+                                                               placeholder="车次的座位数，不超过100000的整数" style="width: 500px"
+                                                               required="required">
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="mobile-right ">
+                                                        <input type="text" name="add_type" class="form-control"
+                                                               placeholder="列车类型，为一个大写字母" style="width: 500px"
+                                                               required="required">
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <h4>开售于</h4>
+                                                    <div class="mobile-right ">
+                                                        <input type="date" name="add_startdate" class="form-control"
+                                                               required="required">
+
+                                                        <h4>截止于</h4>
+                                                        <input type="date" name="add_enddate" class="form-control"
+                                                               required="required">
+                                                        <h4>每天售卖时间</h4>
+                                                        <input type="time" name="add_starttime" class="form-control"
+                                                               required="required">
+                                                    </div>
+                                                </li>
+
+                                                <h4>请输入该火车的行程路线</h4>
+                                                <div class="mobile-right ">
+                                                    <div class="mobile-rchge">
+                                                        <input type="text" id="station_num" name="station_num"
+                                                               onchange="
+                                modify_len($(this).val())
+                                " class="form-control" style="width: 400px" placeholder="途径站台总数" required="required"/>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <br>
+                                                </div>
+
+                                                <div class="flowChart">
+                                                    <div class="flowChart-left">
+                                                        <div class="dashed"></div>
+                                                    </div>
+                                                    <div class="flowChart-right" id="node_set">
+                                                        <div class="oneNode"></div>
+                                                        <div class="oneNode" id="node_" +cnt>
+                                                            <div class="check check-success">起</div>
+                                                            <div class="tag-boder">
+                                                                <div class="tag"></div>
+                                                            </div>
+                                                            <div class="NodeDetail">
+                                                                <div class="NodeDetail-content">
+                                                                    &emsp;<i class="icon fa fa-map-marker"></i>
+                                                                    <input type="text" name="station_name1"
+                                                                           class="form-control-static" placeholder="站名"
+                                                                           required="required"
+                                                                           style="font-size: small; width: 180px; border-color: Blue; text-indent: 10px">&emsp;&emsp;
+                                                                    <br><br>
+                                                                    &emsp;<input type="number" name="travel_time1"
+                                                                                 class="form-control-static"
+                                                                                 placeholder="到下站历时"
+                                                                                 style="font-size: small; text-indent: 10px; width: 160px"
+                                                                                 required="required"/>
+                                                                    &emsp;&emsp;<input type="number"
+                                                                                       name="stopover_time1"
+                                                                                       class="form-control-static"
+                                                                                       placeholder="起点站无停靠时长"
+                                                                                       disabled="true"
+                                                                                       style="font-size: small; text-indent: 10px; width: 160px"
+                                                                                       required="required"/>
+                                                                    &emsp;&emsp;<input type="number" name="price1"
+                                                                                       class="form-control-static"
+                                                                                       placeholder="到下站票价"
+                                                                                       style="font-size: small; text-indent: 10px; width: 160px"
+                                                                                       required="required"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <li>
+                                                    <input type="submit" class="submit" value="添加火车"/>
+                                                </li>
+                                            </ol>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab5" class="tab-grid">
+                                <div class="login-form">
+                                    <form action="/query_train" method="post" id="signup">
+                                        <h4>查询某一日期发车的指定车次的情况</h4>
+                                        <ol>
+                                            <li>
+                                                <div class="mobile-right ">
+                                                    <input type="text" name="query_trainid" class="form-control"
+                                                           placeholder="查询目标车次编号" required="required">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="mobile-right ">
+                                                    <h4>发车日期</h4>
+                                                    <input type="date" name="query_date" class="form-control"
+                                                           placeholder="发车日期" required="required">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <input type="submit" class="submit" value="查找车次"/>
+                                            </li>
+                                        </ol>
+                                    </form>
+                                </div>
+                            </div>
+                            <div id="tab6" class="tab-grid">
+                                <div class="login-form">
+                                    <form method="post" id="release_delete_form">
+                                        <ol>
+                                            <h4>Tips: 发布前的车次可被删除，不可发售车票；发布后的车次不可被删除，可发售车票。</h4>
+                                            <div class="mobile-right ">
+                                                <input type="text" id="release_delete_tid" name="release_delete_tid"
+                                                       class="form-control" placeholder="目标车次编号" required="required">
+                                                <input type="submit" class="submit" id="rd_hidden"
+                                                       style="display: none">
+                                            </div>
+                                        </ol>
+                                    </form>
+                                    <input type="submit" class="submit" onclick="
                         xtip.confirm('确定要发行吗？',function(){
                             $('#release_delete_form').attr('action', '/release_train')
                             $('#release_delete_form').submit();
                         });
-                    " name="release_button" value="发行车次" />
-                    &emsp;&emsp;
-                    <input type="submit" class="submit" onclick="
+                    " name="release_button" value="发行车次"/>
+                                    &emsp;&emsp;
+                                    <input type="submit" class="submit" onclick="
                         xtip.confirm('确认删除吗？',function(){
                             $('#release_delete_form').attr('action', '/delete_train')
                             $('#rd_hidden').click();
                         });
-                    " name="delete_button" style="background-color: red" value="删除车次" />
+                    " name="delete_button" style="background-color: red" value="删除车次"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <!-- script -->
+                        <script>
+                            $(document).ready(function () {
+                                $("#tab5").hide();
+                                $("#tab6").hide();
+                                $("#menu2 a").click(function (event) {
+                                    event.preventDefault();
+                                    var tab = $(this).attr("href");
+                                    $(tab + 'b').prop("checked", true);
+                                    $("#tab4").hide();
+                                    $("#tab5").hide();
+                                    $("#tab6").hide();
+                                    $(tab).fadeIn("slow");
+                                });
+                            });
+                        </script>
+                    </div>
+
+                    <!-- ticket & transfer -->
+                    <div>
+                        <i class="icon fa fa-road inner-icon" aria-hidden="true"></i>
+                        <ul class="tabs-menu" id="menu3">
+                            <li><a href="#tab7"><label class="radio"><input type="radio" name="ticket_tab" checked=true
+                                                                            id="tab7b"/><i></i>查询车票</label></a></li>&emsp;&emsp;&emsp;
+                            <li><a href="#tab8"><label class="radio"><input type="radio" name="ticket_tab"
+                                                                            id="tab8b"/><i></i>换乘方案</label></a></li>&emsp;&emsp;&emsp;
+                        </ul>
+                        <br><br>
+                        <div class="clearfix"></div>
+                        <div class="tab-grids" , id="grids3">
+                            <div id="tab7" class="tab-grid">
+                                <div class="login-form">
+                                    <div class="login-form">
+                                        <form action="/query_ticket" method="post" id="signup">
+                                            <ol>
+                                                <li>
+                                                    <h4>请告诉我们您期望的出发日期</h4>
+                                                    <div class="mobile-right ">
+                                                        <input type="date" class="form-control" id="ticket_date"
+                                                               name="ticket_date" required="required"
+                                                               style="width:490px">
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <h4>请告诉我们您的路线</h4>
+                                                    <i class="icon fa fa-map-marker" aria-hidden="true"></i>
+                                                    <input type="text" id="ticket_s" name="ticket_s"
+                                                           class="form-control-static" placeholder="出发车站"
+                                                           required="required"
+                                                           style="font-size: small; width: 180px; border-color: Green; text-indent: 10px">&emsp;&emsp;
+                                                    <i class="icon fa fa-arrow-right" aria-hidden="true"></i>&emsp;&emsp;
+                                                    <i class="icon fa fa-map-marker" aria-hidden="true"></i>
+                                                    <input type="text" id="ticket_t" name="ticket_t"
+                                                           class="form-control-static" placeholder="到达车站"
+                                                           style="font-size: small; width: 180px; border-color: Red; text-indent: 10px"
+                                                           required="required">
+                                                </li>
+                                                <li>
+                                                    <div class="bootstrap-select">
+                                                        <h4>您希望的优先级是？</h4>
+                                                        <select class="selectpicker show-tick" data-live-search="true"
+                                                                name="ticket_priority">
+                                                            <option data-tokens="Operator1">越快越好</option>
+                                                            <option data-tokens="Operator2">实惠优先</option>
+                                                        </select>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <input type="submit" class="submit" value="查询车票"/>
+                                                </li>
+                                            </ol>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab8" class="tab-grid">
+                                <div class="login-form">
+                                    <form action="/query_transfer" method="post" id="signup">
+                                        <ol>
+                                            <li>
+                                                <h4>请告诉我们您期望的出发日期</h4>
+                                                <div class="mobile-right ">
+                                                    <input type="date" class="form-control" id="transfer_date"
+                                                           name="transfer_date" required="required" style="width:490px">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <h4>请告诉我们您的路线</h4>
+                                                <i class="icon fa fa-map-marker" aria-hidden="true"></i>
+                                                <input type="text" id="transfer_s" name="transfer_s"
+                                                       class="form-control-static" placeholder="出发车站"
+                                                       required="required"
+                                                       style="font-size: small; width: 180px; border-color: Green; text-indent: 10px">&emsp;&emsp;
+                                                <i class="icon fa fa-arrow-right" aria-hidden="true"></i>&emsp;&emsp;
+                                                <i class="icon fa fa-map-marker" aria-hidden="true"></i>
+                                                <input type="text" id="transfer_t" name="transfer_t"
+                                                       class="form-control-static" placeholder="到达车站"
+                                                       style="font-size: small; width: 180px; border-color: Red; text-indent: 10px"
+                                                       required="required">
+                                            </li>
+                                            <li>
+                                                <h4>您希望的优先级是？</h4>
+                                                <div class="bootstrap-select">
+                                                    <select class="selectpicker show-tick" data-live-search="true"
+                                                            name="transfer_priority">
+                                                        <option data-tokens="Operator1">越快越好</option>
+                                                        <option data-tokens="Operator2">实惠优先</option>
+                                                    </select>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <input type="submit" class="submit" value="方案查询"/>
+                                            </li>
+                                        </ol>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!-- script -->
+                        <script>
+                            $(document).ready(function () {
+                                $("#tab8").hide();
+                                $("#menu3 a").click(function (event) {
+                                    event.preventDefault();
+                                    var tab = $(this).attr("href")
+                                    $(tab + 'b').prop("checked", true);
+                                    $("#tab7").hide();
+                                    $("#tab8").hide();
+                                    $(tab).fadeIn("slow");
+                                });
+                            });
+                        </script>
+                    </div>
+
+                    <!-- order -->
+                    <div>
+                        <i class="icon fa fa-shopping-cart inner-icon" aria-hidden="true"></i>
+                        <ul class="tabs-menu" id="menu4">
+                            <li><a href="#tab9"><label class="radio"><input type="radio" name="order_tab" checked=true
+                                                                            id="tab9b"/><i></i>新订单</label></a></li>&emsp;&emsp;&emsp;
+                            <li><a href="#tab10"><label class="radio"><input type="radio" name="order_tab" id="tab10b"/><i></i>我的订单</label></a>
+                            </li>&emsp;&emsp;&emsp;
+                        </ul>
+                        <br><br>
+                        <div class="clearfix"></div>
+                        <div class="tab-grids" , id="grids4">
+                            <div id="tab9" class="tab-grid">
+                                <div class="login-form">
+                                    <form action="/buy_ticket" method="post" id="signup">
+                                        <ol>
+                                            <li>
+                                                <h4>请告诉我们您想要购买的车次号</h4>
+                                                <div class="mobile-right ">
+                                                    <input type="text" class="form-control" id="buy_trainid"
+                                                           name="buy_trainid" placeholder="由字母开头，仅限字母、数字和下划线，长度不超过20"
+                                                           required="required" style="width:490px">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <h4>请告诉我们您期望的出发日期</h4>
+                                                <div class="mobile-right ">
+                                                    <input type="date" class="form-control" id="buy_date"
+                                                           name="buy_date" required="required" style="width:490px">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <h4>请告诉我们您的路线</h4>
+                                                <i class="icon fa fa-map-marker" aria-hidden="true"></i>
+                                                <input type="text" id="buy_s" name="buy_s" class="form-control-static"
+                                                       placeholder="出发车站" required="required"
+                                                       style="font-size: small; width: 180px; border-color: Green; text-indent: 10px">&emsp;&emsp;
+                                                <i class="icon fa fa-arrow-right" aria-hidden="true"></i>&emsp;&emsp;
+                                                <i class="icon fa fa-map-marker" aria-hidden="true"></i>
+                                                <input type="text" id="buy_t" name="buy_t" class="form-control-static"
+                                                       placeholder="到达车站"
+                                                       style="font-size: small; width: 180px; border-color: Red; text-indent: 10px"
+                                                       required="required">
+                                            </li>
+                                            <li>
+                                                <h4>请填写购票张数</h4>
+                                                <input type="number" id="buy_n" name="buy_n" class="form-control"
+                                                       style="width: 400px">
+                                            </li>
+                                            <li>
+                                                <h4>是否接受候补购票？</h4>
+                                                <div class="bootstrap-select">
+                                                    <select class="selectpicker show-tick" data-live-search="true"
+                                                            name="buy_q">
+                                                        <option data-tokens="Operator1">不接受（余票不足将直接购买失败）</option>
+                                                        <option data-tokens="Operator2">接受（余票不足进入候补队列，有票时立即购买）</option>
+                                                    </select>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <input type="submit" class="submit" value="确认购买"/>
+                                            </li>
+                                        </ol>
+                                    </form>
+                                </div>
+                            </div>
+                            <div id="tab10" class="tab-grid">
+                                <div class="login-form">
+                                    <form action="/query_order" method="post" id="signup">
+                                        <ol>
+                                            <h4>Tips: 购买失败的记录将不会出现在订单列表中，<br>而候补队列中的订单以及已经退票的订单均会出现在列表中</h4>
+                                            <li>
+                                                <input type="submit" class="submit" value="查询订单"/>
+                                            </li>
+                                        </ol>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <!-- script -->
+                        <script>
+                            $(document).ready(function () {
+                                $("#tab10").hide();
+                                $("#menu4 a").click(function (event) {
+                                    event.preventDefault();
+                                    var tab = $(this).attr("href")
+                                    $(tab + 'b').prop("checked", true);
+                                    $("#tab9").hide();
+                                    $("#tab10").hide();
+                                    $(tab).fadeIn("slow");
+                                });
+                            });
+                        </script>
+                    </div>
+
+                    <!--cmd-->
+                    <div>
+                        <i class="icon fa fa-code inner-icon" aria-hidden="true"></i><br><br>
+                        <div class="clearfix"></div>
+                        <div class="login-form">
+                            <form action="/cmd" method="post" id="cmd_form" , name="cmd_form">
+                                <ol>
+                                    <div class="mobile-right ">
+                                        <h4>欢迎使用终端控制台，请输入对应的格式化命令</h4>
+                                        <input type="text" id="cmd_input" class="form-control" name="cmd_input"
+                                               placeholder="Command" required="required">
+                                    </div>
+                                    <br>
+                                    <input type="submit" class="submit" value="执行"/>
+
+                                    <div class="mobile-right "><cite>
+                                        <br><br>
+                                        離れ離れの街を<br>
+                                        将四散分离的街道<br><br>
+                                        繋ぐ列車は行ってしまったねを<br>
+                                        连接起来的列车开走了呢<br><br>
+                                        失くした言葉を知らないなら<br>
+                                        如果不知道那些失去了的言语<br><br>
+                                        ポケットで握りしめて<br>
+                                        就在口袋里握紧双手吧<br><br>
+                                        あがいた息を捨てて<br>
+                                        舍弃拼命挣扎的呼吸<br><br>
+                                        延びる今日は眠って誤魔化せ<br>
+                                        动摇的今天就这样睡过去吧<br><br>
+                                        失くした言葉を知らないなら<br>
+                                        如果不知道那些失去了的言语<br><br>
+                                        各駅停車に乗り込んで<br>
+                                        就乘坐上每站停靠的列车吧<br><br>
+                                        <b>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; ラグトレイン(延误列车), 稲葉曇</b>
+                                    </cite></div>
+
+
+                                </ol>
+                            </form>
+                        </div>
+                    </div>
                 </div>
+                <div class="clearfix"></div>
             </div>
         </div>
-
-    <div class="clearfix"> </div>
-    <!-- script -->
-    <script>
-        $(document).ready(function() {
-            $("#tab5").hide();
-            $("#tab6").hide();
-            $("#menu2 a").click(function(event){
-                event.preventDefault();
-                var tab=$(this).attr("href");
-                $(tab + 'b').prop("checked", true);
-                $("#tab4").hide();
-                $("#tab5").hide();
-                $("#tab6").hide();
-                $(tab).fadeIn("slow");
-            });
-        });
-    </script>
-</div>
-
-<!-- ticket & transfer -->
-<div>
-    <i class="icon fa fa-road inner-icon" aria-hidden="true"></i>
-    <ul class="tabs-menu" id="menu3">
-            <li><a href="#tab7"><label class="radio"><input type="radio" name="ticket_tab" checked=true id="tab7b" /><i></i>查询车票</label></a></li>&emsp;&emsp;&emsp;
-            <li><a href="#tab8"><label class="radio"><input type="radio" name="ticket_tab" id="tab8b" /><i></i>换乘方案</label></a></li>&emsp;&emsp;&emsp;
-        </ul><br><br>
-         <div class="clearfix"> </div>
-         <div class="tab-grids", id="grids3">
-             <div id="tab7" class="tab-grid">
-                      <div class="login-form">
-                <div class="login-form">
-            <form action="/query_ticket" method="post" id="signup">
-            <ol>
-                <li>
-                    <h4>请告诉我们您期望的出发日期</h4>
-                        <div class="mobile-right ">
-                            <input type="date" class="form-control" id="ticket_date" name="ticket_date"  required="required" style="width:490px">
-                        </div>
-                </li>
-                <li>
-                    <h4>请告诉我们您的路线</h4>
-                        <i class="icon fa fa-map-marker"  aria-hidden="true"></i>
-                        <input type="text" id="ticket_s" name="ticket_s" class="form-control-static" placeholder="出发车站" required="required" style="font-size: small; width: 180px; border-color: Green; text-indent: 10px">&emsp;&emsp;
-                        <i class="icon fa fa-arrow-right"  aria-hidden="true"></i>&emsp;&emsp;
-                        <i class="icon fa fa-map-marker"  aria-hidden="true"></i>
-                        <input type="text" id="ticket_t" name="ticket_t" class="form-control-static" placeholder="到达车站" style="font-size: small; width: 180px; border-color: Red; text-indent: 10px" required="required">
-                    </li>
-                <li>
-                    <div class="bootstrap-select">
-                    <h4>您希望的优先级是？</h4>
-                    <select class="selectpicker show-tick" data-live-search="true" name="ticket_priority">
-                      <option data-tokens="Operator1">越快越好</option>
-                      <option data-tokens="Operator2">实惠优先</option>
-                    </select>
-                    </div>
-                </li>
-                <li>
-                    <input type="submit" class="submit" value="查询车票" />
-                </li>
-            </ol>
-            </form>
-          </div>
-                </div>
-            </div>
-            <div id="tab8" class="tab-grid">
-                      <div class="login-form">
-                <form action="/query_transfer" method="post" id="signup">
-                <ol>
-                    <li>
-                    <h4>请告诉我们您期望的出发日期</h4>
-                        <div class="mobile-right ">
-                            <input type="date" class="form-control" id="transfer_date" name="transfer_date" required="required" style="width:490px">
-                        </div>
-                    </li>
-                    <li>
-                    <h4>请告诉我们您的路线</h4>
-                        <i class="icon fa fa-map-marker"  aria-hidden="true"></i>
-                        <input type="text" id="transfer_s" name="transfer_s" class="form-control-static" placeholder="出发车站" required="required" style="font-size: small; width: 180px; border-color: Green; text-indent: 10px">&emsp;&emsp;
-                        <i class="icon fa fa-arrow-right"  aria-hidden="true"></i>&emsp;&emsp;
-                        <i class="icon fa fa-map-marker"  aria-hidden="true"></i>
-                        <input type="text" id="transfer_t" name="transfer_t" class="form-control-static" placeholder="到达车站" style="font-size: small; width: 180px; border-color: Red; text-indent: 10px" required="required">
-                    </li>
-                    <li>
-                        <h4>您希望的优先级是？</h4>
-                        <div class="bootstrap-select">
-                        <select class="selectpicker show-tick" data-live-search="true" name="transfer_priority">
-                          <option data-tokens="Operator1">越快越好</option>
-                          <option data-tokens="Operator2">实惠优先</option>
-                        </select>
-                        </div>
-                    </li>
-                    <li>
-                        <input type="submit" class="submit" value="方案查询" />
-                    </li>
-                </ol>
-                </form>
-                </div>
-            </div>
-            </div>
-    <div class="clearfix"> </div>
-    <!-- script -->
-    <script>
-        $(document).ready(function() {
-            $("#tab8").hide();
-            $("#menu3 a").click(function(event){
-                event.preventDefault();
-                var tab=$(this).attr("href")
-                $(tab + 'b').prop("checked", true);
-                $("#tab7").hide();
-                $("#tab8").hide();
-                $(tab).fadeIn("slow");
-            });
-        });
-    </script>
-</div>
-
-<!-- order -->
-<div>
-    <i class="icon fa fa-shopping-cart inner-icon" aria-hidden="true"></i>
-    <ul class="tabs-menu" id="menu4">
-            <li><a href="#tab9"><label class="radio"><input type="radio" name="order_tab" checked=true id="tab9b" /><i></i>新订单</label></a></li>&emsp;&emsp;&emsp;
-            <li><a href="#tab10"><label class="radio"><input type="radio" name="order_tab" id="tab10b" /><i></i>我的订单</label></a></li>&emsp;&emsp;&emsp;
-        </ul><br><br>
-         <div class="clearfix"> </div>
-         <div class="tab-grids", id="grids4">
-             <div id="tab9" class="tab-grid">
-            <div class="login-form">
-            <form action="/buy_ticket" method="post" id="signup">
-            <ol>
-                <li>
-                <h4>请告诉我们您想要购买的车次号</h4>
-                    <div class="mobile-right ">
-                        <input type="text" class="form-control" id="buy_trainid" name="buy_trainid" placeholder="由字母开头，仅限字母、数字和下划线，长度不超过20" required="required" style="width:490px">
-                    </div>
-                </li>
-                <li>
-                <h4>请告诉我们您期望的出发日期</h4>
-                    <div class="mobile-right ">
-                        <input type="date" class="form-control" id="buy_date" name="buy_date" required="required" style="width:490px">
-                    </div>
-                </li>
-                <li>
-                    <h4>请告诉我们您的路线</h4>
-                        <i class="icon fa fa-map-marker"  aria-hidden="true"></i>
-                        <input type="text" id="buy_s" name="buy_s" class="form-control-static" placeholder="出发车站" required="required" style="font-size: small; width: 180px; border-color: Green; text-indent: 10px">&emsp;&emsp;
-                        <i class="icon fa fa-arrow-right"  aria-hidden="true"></i>&emsp;&emsp;
-                        <i class="icon fa fa-map-marker"  aria-hidden="true"></i>
-                        <input type="text" id="buy_t" name="buy_t" class="form-control-static" placeholder="到达车站" style="font-size: small; width: 180px; border-color: Red; text-indent: 10px" required="required">
-                </li>
-                <li>
-                    <h4>请填写购票张数</h4>
-                    <input type="number" id="buy_n" name="buy_n" class="form-control" style="width: 400px">
-                </li>
-                <li>
-                    <h4>是否接受候补购票？</h4>
-                    <div class="bootstrap-select">
-                    <select class="selectpicker show-tick" data-live-search="true" name="buy_q">
-                      <option data-tokens="Operator1">不接受（余票不足将直接购买失败）</option>
-                      <option data-tokens="Operator2">接受（余票不足进入候补队列，有票时立即购买）</option>
-                    </select>
-                    </div>
-                </li>
-                <li>
-                    <input type="submit" class="submit" value="确认购买" />
-                </li>
-            </ol>
-            </form>
-          </div>
-          </div>
-            <div id="tab10" class="tab-grid">
-                      <div class="login-form">
-                <form action="/query_order" method="post" id="signup">
-                <ol>
-                    <h4>Tips: 购买失败的记录将不会出现在订单列表中，<br>而候补队列中的订单以及已经退票的订单均会出现在列表中</h4>
-                    <li>
-                        <input type="submit" class="submit" value="查询订单" />
-                    </li>
-                </ol>
-                </form>
-                </div>
-            </div>
-            </div>
-
-    <div class="clearfix"> </div>
-    <!-- script -->
-    <script>
-        $(document).ready(function() {
-            $("#tab10").hide();
-            $("#menu4 a").click(function(event){
-                event.preventDefault();
-                var tab=$(this).attr("href")
-                $(tab + 'b').prop("checked", true);
-                $("#tab9").hide();
-                $("#tab10").hide();
-                $(tab).fadeIn("slow");
-            });
-        });
-    </script>
-</div>
-
-<!--cmd-->
-<div>
-    <i class="icon fa fa-code inner-icon" aria-hidden="true"></i><br><br>
-    <div class="clearfix"> </div>
-    <div class="login-form">
-        <form action="/cmd" method="post" id="cmd_form", name="cmd_form">
-                <ol>
-                    <div class="mobile-right ">
-                            <h4>欢迎使用终端控制台，请输入对应的格式化命令</h4>
-                            <input type="text" id="cmd_input" class="form-control" name="cmd_input" placeholder="Command"  required="required">
-                        </div>
-                    <br>
-                        <input type="submit" class="submit" value="执行" />
-
-                    <div class="mobile-right "><cite>
-                        <br><br>
-                        離れ離れの街を<br>
-                        将四散分离的街道<br><br>
-                        繋ぐ列車は行ってしまったねを<br>
-                        连接起来的列车开走了呢<br><br>
-                        失くした言葉を知らないなら<br>
-                        如果不知道那些失去了的言语<br><br>
-                        ポケットで握りしめて<br>
-                        就在口袋里握紧双手吧<br><br>
-                        あがいた息を捨てて<br>
-                        舍弃拼命挣扎的呼吸<br><br>
-                        延びる今日は眠って誤魔化せ<br>
-                        动摇的今天就这样睡过去吧<br><br>
-                        失くした言葉を知らないなら<br>
-                        如果不知道那些失去了的言语<br><br>
-                        各駅停車に乗り込んで<br>
-                        就乘坐上每站停靠的列车吧<br><br>
-                        <b>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; ラグトレイン(延误列车), 稲葉曇</b>
-                    </cite></div>
-
-
-                </ol>
-        </form>
     </div>
 </div>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 <div class="w3l-footer-bottom">
-		<div class="container-fluid">
-			<div class="col-md-4 w3-footer-logo">
-				<h2><a href="index.html">ACM Class Ticket System</a></h2>
-			</div>
-			<div class="col-md-8 agileits-footer-class">
-                <p>2021 © ACM Class, PingPong Doubles Smash Locomotive.</p>
-			</div>
-		<div class="clearfix"> </div>
-	 	</div>
+    <div class="container-fluid">
+        <div class="col-md-4 w3-footer-logo">
+            <h2><a href="index.html">ACM Class Ticket System</a></h2>
+        </div>
+        <div class="col-md-8 agileits-footer-class">
+            <p>2021 © ACM Class, PingPong Doubles Smash Locomotive.</p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
 </div>
 
 <!--Plug-in Initialisation-->
-	<script type="text/javascript">
-    $(document).ready(function() {
+<script type="text/javascript">
+    $(document).ready(function () {
 
         //Vertical Tab
         $('#parentVerticalTab').easyResponsiveTabs({
@@ -761,7 +900,7 @@
             fit: true, // 100% fit in a container
             closed: 'accordion', // Start closed if in accordion view
             tabidentify: 'hor_1', // The tab groups identifier
-            activate: function(event) { // Callback function if tab is switched
+            activate: function (event) { // Callback function if tab is switched
                 var $tab = $(this);
                 var $info = $('#nested-tabInfo2');
                 var $name = $('span', $info);
@@ -771,85 +910,85 @@
         });
     });
 </script>
-	<!-- //Categories -->
+<!-- //Categories -->
 
 <!-- timeline -->
-    <script src="static/js/dynamic_timeline.js"></script>
+<script src="static/js/dynamic_timeline.js"></script>
 
 <!-- for bootstrap working -->
-		<script src="static/js/bootstrap.js"></script>
+<script src="static/js/bootstrap.js"></script>
 <!-- //for bootstrap working --><!-- Responsive-slider -->
-    <!-- Banner-slider -->
+<!-- Banner-slider -->
 <script src="static/js/responsiveslides.min.js"></script>
-   <script>
+<script>
     $(function () {
-      $("#slider").responsiveSlides({
-      	auto: true,
-      	speed: 500,
-        namespace: "callbacks",
-        pager: true,
-      });
+        $("#slider").responsiveSlides({
+            auto: true,
+            speed: 500,
+            namespace: "callbacks",
+            pager: true,
+        });
     });
-  </script>
-    <!-- //Banner-slider -->
-<!-- //Responsive-slider -->   
+</script>
+<!-- //Banner-slider -->
+<!-- //Responsive-slider -->
 <!-- Bootstrap select option script -->
 <script src="static/js/bootstrap-select.js"></script>
 <script>
-  $(document).ready(function () {
-    var mySelect = $('#first-disabled2');
+    $(document).ready(function () {
+        var mySelect = $('#first-disabled2');
 
-    $('#special').on('click', function () {
-      mySelect.find('option:selected').prop('disabled', true);
-      mySelect.selectpicker('refresh');
-    });
+        $('#special').on('click', function () {
+            mySelect.find('option:selected').prop('disabled', true);
+            mySelect.selectpicker('refresh');
+        });
 
-    $('#special2').on('click', function () {
-      mySelect.find('option:disabled').prop('disabled', false);
-      mySelect.selectpicker('refresh');
-    });
+        $('#special2').on('click', function () {
+            mySelect.find('option:disabled').prop('disabled', false);
+            mySelect.selectpicker('refresh');
+        });
 
-    $('#basic2').selectpicker({
-      liveSearch: true,
-      maxOptions: 1
+        $('#basic2').selectpicker({
+            liveSearch: true,
+            maxOptions: 1
+        });
     });
-  });
 </script>
 <!-- //Bootstrap select option script -->
-    
-<!-- easy-responsive-tabs -->    
-<link rel="stylesheet" type="text/css" href="static/css/easy-responsive-tabs.css " />
+
+<!-- easy-responsive-tabs -->
+<link rel="stylesheet" type="text/css" href="static/css/easy-responsive-tabs.css "/>
 <script src="static/js/easyResponsiveTabs.js"></script>
-<!-- //easy-responsive-tabs --> 
-    <!-- here stars scrolling icon -->
-			<script type="text/javascript">
-				$(document).ready(function() {
-					/*
-						var defaults = {
-						containerID: 'toTop', // fading element id
-						containerHoverID: 'toTopHover', // fading element hover id
-						scrollSpeed: 1200,
-						easingType: 'linear' 
-						};
-					*/
-										
-					$().UItoTop({ easingType: 'easeOutQuart' });
-										
-					});
-			</script>
-			<!-- start-smoth-scrolling -->
-			<script type="text/javascript" src="static/js/move-top.js"></script>
-			<script type="text/javascript" src="static/js/easing.js"></script>
-			<script type="text/javascript">
-				jQuery(document).ready(function($) {
-					$(".scroll").click(function(event){		
-						event.preventDefault();
-						$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-					});
-				});
-			</script>
-			<!-- start-smoth-scrolling -->
-		<!-- //here ends scrolling icon -->
+<!-- //easy-responsive-tabs -->
+<!-- here stars scrolling icon -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*
+            var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+            };
+        */
+
+        $().UItoTop({easingType: 'easeOutQuart'});
+
+    });
+</script>
+<!-- start-smoth-scrolling -->
+<script type="text/javascript" src="static/js/move-top.js"></script>
+<script type="text/javascript" src="static/js/easing.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(".scroll").click(function (event) {
+            event.preventDefault();
+            $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+        });
+    });
+</script>
+<!-- start-smoth-scrolling -->
+<!-- //here ends scrolling icon -->
 </body>
 <!-- //body -->
 </html>

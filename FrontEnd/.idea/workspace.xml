@@ -57,7 +57,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
-    <property name="settings.editor.selected.configurable" value="project.propDebugger" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -131,7 +131,7 @@
       <workItem from="1622428977218" duration="38664000" />
       <workItem from="1622478574049" duration="9606000" />
       <workItem from="1622559398350" duration="65567000" />
-      <workItem from="1622794582510" duration="5416000" />
+      <workItem from="1622794582510" duration="8514000" />
     </task>
     <servers />
   </component>
@@ -171,15 +171,19 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="372" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1622196639563" />
-    <state x="369" y="113" key="SettingsEditor" timestamp="1622430545223">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="638" y="187" key="SettingsEditor" timestamp="1622823560828">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="369" y="113" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1622430545223" />
-    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1622197321111" />
+    <state x="638" y="187" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1622823560828" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1622450359174">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1622450359174" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1622823332666">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1622823332666" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/FrontEnd$Flask__apb_front_py_.coverage" NAME="Flask (apb_front.py) Coverage Results" MODIFIED="1622196612237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />

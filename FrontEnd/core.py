@@ -1,5 +1,6 @@
 import subprocess
 
+
 class Courier:
     def __init__(self, backend):
         self.backend = backend
@@ -37,10 +38,10 @@ class Courier:
         retList = ret.split('\n')
         print(retList)
         if retList[0] == "wrong_passwd" or retList[0] == "user_not_found":
-           return False, retList[0], userid, passwd
+            return False, retList[0], userid, passwd
         elif retList[0] == "0":
-           return True, retList[1], userid, passwd
-        return True, retList[1], userid, passwd #重复提交表单
+            return True, retList[1], userid, passwd
+        return True, retList[1], userid, passwd  # 重复提交表单
 
     def logout(self, userid):
         self.write('logout -u ' + userid)
@@ -48,7 +49,8 @@ class Courier:
         print(ret)
 
     def add_user(self, curuserid, userid, passwd, name, mailAddr, privilege):
-        self.write('add_user -c ' + curuserid + ' -u ' + userid + ' -p ' + passwd + ' -n ' + name + ' -m ' + mailAddr + ' -g ' + privilege)
+        self.write(
+            'add_user -c ' + curuserid + ' -u ' + userid + ' -p ' + passwd + ' -n ' + name + ' -m ' + mailAddr + ' -g ' + privilege)
         ret = self.read()
         retList = ret.split('\n')
         if retList[0] == "not_logged" or retList[0] == "privilege_error" or retList[0] == "uid_duplicate":
@@ -100,10 +102,12 @@ class Courier:
         return True, retList
 
     def buy_ticket(self, userid, trainid, date, f, t, n, q):
-        self.write('buy_ticket -u ' + userid + ' -i ' + trainid + ' -d ' + date + ' -f ' + f + ' -t ' + t + ' -n ' + n + ' -q ' + q)
+        self.write(
+            'buy_ticket -u ' + userid + ' -i ' + trainid + ' -d ' + date + ' -f ' + f + ' -t ' + t + ' -n ' + n + ' -q ' + q)
         ret = self.read()
         retList = ret.split('\n')
-        if retList[0] == "not_logged" or retList[0] == "train_not_found" or retList[0] == "not_released" or retList[0] == "day_error" or retList[0] == "seat_not_enough":
+        if retList[0] == "not_logged" or retList[0] == "train_not_found" or retList[0] == "not_released" or retList[
+            0] == "day_error" or retList[0] == "seat_not_enough":
             return False, retList[0]
         return True, retList[0]
 

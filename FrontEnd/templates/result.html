@@ -3,78 +3,88 @@
 <html>
 <!-- head -->
 <head>
-<title>{{ query_name }}-ACM火车票管理系统</title>
-<link href="static/images/favicon.ico" rel="shortcut icon">
-<link href="static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" /><!-- bootstrap-CSS -->
-<link rel="stylesheet" href="static/css/bootstrap-select.css"><!-- bootstrap-select-CSS -->
-<link href="static/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" /><!-- Fontawesome-CSS -->
-<link href="static/css/xui.css" rel="stylesheet" type="text/css" media="all" /><!-- xtiper-CSS -->
-<link href="static/css/xtiper.css" rel="stylesheet" type="text/css" media="all" /><!-- xtiper-CSS -->
-<link href="static/css/layout.css" rel="stylesheet" type="text/css" media="all" /><!-- xtiper-CSS -->
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script type='text/javascript' src='static/js/jquery-2.2.3.min.js'></script>
-<script type='text/javascript' src='static/js/xtiper.min.js'></script>
-<!-- Custom Theme files -->
-<!--theme-style-->
-<link href="static/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="static/css/flowChart.css" rel="stylesheet" type="text/css" media="all" />
+    <title>{{ query_name }}-ACM火车票管理系统</title>
+    <link href="static/images/favicon.ico" rel="shortcut icon">
+    <link href="static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/><!-- bootstrap-CSS -->
+    <link rel="stylesheet" href="static/css/bootstrap-select.css"><!-- bootstrap-select-CSS -->
+    <link href="static/css/font-awesome.css" rel="stylesheet" type="text/css" media="all"/><!-- Fontawesome-CSS -->
+    <link href="static/css/xui.css" rel="stylesheet" type="text/css" media="all"/><!-- xtiper-CSS -->
+    <link href="static/css/xtiper.css" rel="stylesheet" type="text/css" media="all"/><!-- xtiper-CSS -->
+    <link href="static/css/layout.css" rel="stylesheet" type="text/css" media="all"/><!-- xtiper-CSS -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type='text/javascript' src='static/js/jquery-2.2.3.min.js'></script>
+    <script type='text/javascript' src='static/js/xtiper.min.js'></script>
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="static/css/flowChart.css" rel="stylesheet" type="text/css" media="all"/>
 
-<!--//theme-style-->
-<!--meta data-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--//meta data-->
-<!-- online fonts -->
-<link href="http://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext,vietnamese" rel="stylesheet">
-<link href="http://fonts.googleapis.com/css?family=Oxygen:300,400,700&amp;subset=latin-ext" rel="stylesheet">
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
-<!-- /online fonts -->
+    <!--//theme-style-->
+    <!--meta data-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <!--//meta data-->
+    <!-- online fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext,vietnamese"
+          rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Oxygen:300,400,700&amp;subset=latin-ext" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+          rel="stylesheet">
+    <!-- /online fonts -->
 </head>
 <!-- /head -->
 <!-- body -->
 <body>
 <!--header-->
 <header>
-	<div class="container">
-		<!--logo-->
-			<div class="logo">
-				<h1><a href="/">ACM Class Ticket System</a></h1>
-			</div>
+    <div class="container">
+        <!--logo-->
+        <div class="logo">
+            <h1><a href="/">ACM Class Ticket System</a></h1>
+        </div>
     </div>
 </header>
 <!-- //header -->
-	
-<!-- innerbanner -->	
-	<div class="agileits-inner-banner">
-		
-	</div>
+
+<!-- innerbanner -->
+<div class="agileits-inner-banner">
+
+</div>
 <!-- //innerbanner -->
 
 <!-- breadcrumbs -->
-	<div class="w3layouts-breadcrumbs text-center">
-		<div class="container">
+<div class="w3layouts-breadcrumbs text-center">
+    <div class="container">
 			<span class="agile-breadcrumbs"><a href="/"><i class="fa fa-home home_1"></i></a> / <span>
                 {{ query_name }}
             </span></span>
-		</div>
-	</div>
+    </div>
+</div>
 
 <!-- prework -->
 <script>
     function Fail(message, url) {
         xtip.alert(message, 'e', {times: 2});
-        setTimeout(function (){
+        setTimeout(function () {
             window.location.href = url;
         }, 1000)
     }
+
     function Success(message, url) {
         xtip.alert(message, 's', {times: 2});
-        setTimeout(function (){
+        setTimeout(function () {
             window.location.href = url;
         }, 1000)
     }
+
     function Success1(message) {
         xtip.alert(message, 's', {times: 2});
     }
@@ -84,35 +94,36 @@
 <!-- cmd show -->
 {% if query_name == "控制台命令" %}
 
-<div class="agile-trains w3layouts-content">
- <div class="container">
-<div class="col-md-4 bann-info1">
-    <i class="icon fa fa-code inner-icon"></i>
-</div>
-<div class="col-md-5 bann-info">
-    <h3>命令执行结果</h3>
-    <div class="book-a-ticket">
-                <div class=" bann-info">
-                    <form>
-                        <div class="ban-top">
-                        </div>
-                         <div class="ban-bottom">
-                             <div class="bnr-right">
-                                 <br><br><br><br>
-                                 <textarea rows="20" cols="60" style="background-color: #0b1213; color: #f0f0f0; font-family: 'DejaVu Sans Mono'">
+    <div class="agile-trains w3layouts-content">
+        <div class="container">
+            <div class="col-md-4 bann-info1">
+                <i class="icon fa fa-code inner-icon"></i>
+            </div>
+            <div class="col-md-5 bann-info">
+                <h3>命令执行结果</h3>
+                <div class="book-a-ticket">
+                    <div class=" bann-info">
+                        <form>
+                            <div class="ban-top">
+                            </div>
+                            <div class="ban-bottom">
+                                <div class="bnr-right">
+                                    <br><br><br><br>
+                                    <textarea rows="20" cols="60"
+                                              style="background-color: #0b1213; color: #f0f0f0; font-family: 'DejaVu Sans Mono'">
                                      {{ hint1 }}
                                      {{ output }}
                                      {{ hint2 }}
                                  </textarea>
-                                 </div>
+                                </div>
                             </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
+            </div>
+            <div class="clearfix"></div>
         </div>
-</div>
-<div class="clearfix"></div>
-</div>
-</div>
+    </div>
 
 {% elif query_name == "密码验证结果" %}
     {% if output[1] == "wrong_passwd" %}
@@ -162,45 +173,45 @@
 {% elif query_name == "用户查询结果" %}
     {% if output[0] == True %}
         <div class="agile-trains-list w3layouts-content">
-     <div class="container">
-	<!--bus-single -->
-            <div class="w3agile single-bus">
-			         <h3 class="w3-head">用户名单
-                     <i class="fa fa-user"></i></h3>
-			 <!-- train-routes -->
-					<div class="bus-tp">
-						<div class="bus-tp-inner">
-							<h3>查询到用户名为 <font color="SandyBrown">{{ output[1][0] }}</font> 的用户信息如下</h3>
-							<div class="clearfix"></div>
-						</div>
-					</div>
-				<!-- /train-routes -->
-				<!-- bus-midd -->
-                <div class="w3agile bus-midd">
-                         <div class="table-responsive">
-                           <table class="table table-bordered agileinfo">
-                               <thead>
-                                   <tr>
-                                       <th>用户名</th>
-                                       <th>昵称</th>
-                                       <th>邮箱</th>
-                                       <th>权限等级</th>
-                                   </tr>
-                              </thead>
-                           <tbody>
-                             <tr>
-                                <td class="wthree"><i class="icon fa fa-user-o"></i>{{ output[1][0] }}</td>
-                                <td class="wthree"><i class="icon fa fa-smile-o"></i>{{ output[1][1] }}</td>
-                                <td class="wthree"><i class="icon fa fa-envelope"></i>{{ output[1][2] }}</td>
-                                <td class="wthree"><i class="icon fa fa-eye"></i>{{ output[1][3] }}</td>
-                             </tr>
-                             </tbody>
-                        </table>
+            <div class="container">
+                <!--bus-single -->
+                <div class="w3agile single-bus">
+                    <h3 class="w3-head">用户名单
+                        <i class="fa fa-user"></i></h3>
+                    <!-- train-routes -->
+                    <div class="bus-tp">
+                        <div class="bus-tp-inner">
+                            <h3>查询到用户名为 <font color="SandyBrown">{{ output[1][0] }}</font> 的用户信息如下</h3>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <!-- /train-routes -->
+                    <!-- bus-midd -->
+                    <div class="w3agile bus-midd">
+                        <div class="table-responsive">
+                            <table class="table table-bordered agileinfo">
+                                <thead>
+                                <tr>
+                                    <th>用户名</th>
+                                    <th>昵称</th>
+                                    <th>邮箱</th>
+                                    <th>权限等级</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="wthree"><i class="icon fa fa-user-o"></i>{{ output[1][0] }}</td>
+                                    <td class="wthree"><i class="icon fa fa-smile-o"></i>{{ output[1][1] }}</td>
+                                    <td class="wthree"><i class="icon fa fa-envelope"></i>{{ output[1][2] }}</td>
+                                    <td class="wthree"><i class="icon fa fa-eye"></i>{{ output[1][3] }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                </div>
-                </div>
+            </div>
+        </div>
     {% elif output[1] == "not_logged" %}
         <script>
             Fail('未登录状态无此操作权限', '/');
@@ -222,45 +233,45 @@
             Success1('修改成功，请检查该用户的新信息！');
         </script>
         <div class="agile-trains-list w3layouts-content">
-     <div class="container">
-	<!--bus-single -->
-            <div class="w3agile single-bus">
-			         <h3 class="w3-head">用户名单
-                     <i class="fa fa-user"></i></h3>
-			 <!-- train-routes -->
-					<div class="bus-tp">
-						<div class="bus-tp-inner">
-							<h3>用户名为 <font color="SandyBrown">{{ output[1][0] }}</font> 的用户信息现在修改如下</h3>
-							<div class="clearfix"></div>
-						</div>
-					</div>
-				<!-- /train-routes -->
-				<!-- bus-midd -->
-                <div class="w3agile bus-midd">
-                         <div class="table-responsive">
-                           <table class="table table-bordered agileinfo">
-                               <thead>
-                                   <tr>
-                                       <th>用户名</th>
-                                       <th>昵称</th>
-                                       <th>邮箱</th>
-                                       <th>权限等级</th>
-                                   </tr>
-                              </thead>
-                           <tbody>
-                             <tr>
-                                <td class="wthree"><i class="icon fa fa-user-o"></i>{{ output[1][0] }}</td>
-                                <td class="wthree"><i class="icon fa fa-smile-o"></i>{{ output[1][1] }}</td>
-                                <td class="wthree"><i class="icon fa fa-envelope"></i>{{ output[1][2] }}</td>
-                                <td class="wthree"><i class="icon fa fa-eye"></i>{{ output[1][3] }}</td>
-                             </tr>
-                             </tbody>
-                        </table>
+            <div class="container">
+                <!--bus-single -->
+                <div class="w3agile single-bus">
+                    <h3 class="w3-head">用户名单
+                        <i class="fa fa-user"></i></h3>
+                    <!-- train-routes -->
+                    <div class="bus-tp">
+                        <div class="bus-tp-inner">
+                            <h3>用户名为 <font color="SandyBrown">{{ output[1][0] }}</font> 的用户信息现在修改如下</h3>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <!-- /train-routes -->
+                    <!-- bus-midd -->
+                    <div class="w3agile bus-midd">
+                        <div class="table-responsive">
+                            <table class="table table-bordered agileinfo">
+                                <thead>
+                                <tr>
+                                    <th>用户名</th>
+                                    <th>昵称</th>
+                                    <th>邮箱</th>
+                                    <th>权限等级</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="wthree"><i class="icon fa fa-user-o"></i>{{ output[1][0] }}</td>
+                                    <td class="wthree"><i class="icon fa fa-smile-o"></i>{{ output[1][1] }}</td>
+                                    <td class="wthree"><i class="icon fa fa-envelope"></i>{{ output[1][2] }}</td>
+                                    <td class="wthree"><i class="icon fa fa-eye"></i>{{ output[1][3] }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                </div>
-                </div>
+            </div>
+        </div>
     {% elif output[1] == "not_logged" %}
         <script>
             Fail('未登录状态无此操作权限', '/');
@@ -278,288 +289,396 @@
 
 
 {% elif query_name == "车票查询结果" %}
-   <div class="agile-trains-list w3layouts-content">
-   <div class="container">
-    <div class="w3agile single-bus">
-			         <h3 class="w3-head">车票清单
-                     <i class="fa fa-road"></i></h3>
-			 <!-- train-routes -->
-					<div class="bus-tp">
-						<div class="bus-tp-inner">
-							<h3>符合条件的车票路线共有<font color=SandyBrown> {{ output[0] }} </font>条</h3>
-							<div class="clearfix"></div>
-						</div>
-					</div>
-				<!-- /train-routes -->
-				<!-- bus-midd -->
+    <div class="agile-trains-list w3layouts-content">
+        <div class="container">
+            <div class="w3agile single-bus">
+                <h3 class="w3-head">车票清单
+                    <i class="fa fa-road"></i></h3>
+                <!-- train-routes -->
+                <div class="bus-tp">
+                    <div class="bus-tp-inner">
+                        <h3>符合条件的车票路线共有<font color=SandyBrown> {{ output[0] }} </font>条</h3>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <!-- /train-routes -->
+                <!-- bus-midd -->
                 <div class="w3agile bus-midd">
-                         <div class="table-responsive">
-                           <table class="table table-bordered agileinfo">
-                               <thead>
-                                   <tr>
-                                       <th>车次编号</th>
-                                       <th>起始站</th>
-                                       <th>出发时间</th>
-                                       <th>终点站</th>
-                                       <th>到达时间</th>
-                                       <th>座位数</th>
-                                       <th>价格</th>
-                                   </tr>
-                              </thead>
-                           <tbody>
-                             {% for row in output[1:] %}
+                    <div class="table-responsive">
+                        <table class="table table-bordered agileinfo">
+                            <thead>
+                            <tr>
+                                <th>车次编号</th>
+                                <th>起始站</th>
+                                <th>出发时间</th>
+                                <th>终点站</th>
+                                <th>到达时间</th>
+                                <th>座位数</th>
+                                <th>价格</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for row in output[1:] %}
                                 <tr>
                                     {% if (row[0] >= 'a' and row[0] <= 'z') or (row[0] >= 'A' and row[0] <= 'Z') %}
                                         <td class="wthree"><i class="icon fa fa-train"></i>{{ row[0] }}</td>
                                         <td class="wthree"><i class="icon fa fa-map-marker"></i>{{ row[1] }}</td>
-                                        <td class="wthree"><i class="icon fa fa-clock-o"></i>{{ row[2] + ' ' + row[3] }}</td>
+                                        <td class="wthree"><i class="icon fa fa-clock-o"></i>{{ row[2] + ' ' + row[3] }}
+                                        </td>
                                         <td class="wthree"><i class="icon fa fa-map-marker"></i>{{ row[5] }}</td>
-                                        <td class="wthree"><i class="icon fa fa-clock-o"></i>{{ row[6] + ' ' + row[7] }}</td>
+                                        <td class="wthree"><i class="icon fa fa-clock-o"></i>{{ row[6] + ' ' + row[7] }}
+                                        </td>
                                         <td class="wthree"><i class="icon fa fa-ticket"></i>{{ row[9] }}</td>
                                         <td class="price us">
-                                            <s><font color=#a9a9a9><i class="icon fa fa-cny"></i>{{ row[8] }}0 </font></s><i class="icon fa fa-cny"></i>{{ row[8] }}
-                                            <a href="#" data-toggle="modal" data-target="#ticket_modal{{ loop.index }}" class="seat-button two">订购</a>
+                                            <s><font color=#a9a9a9><i class="icon fa fa-cny"></i>{{ row[8] }}0
+                                            </font></s><i class="icon fa fa-cny"></i>{{ row[8] }}
+                                            <a href="#" data-toggle="modal" data-target="#ticket_modal{{ loop.index }}"
+                                               class="seat-button two">订购</a>
                                         </td>
                                         <!-- 购票界面 -->
-                                        <div class="modal fade" id="ticket_modal{{ loop.index }}" tabindex="-1" role="dialog"
-                                            aria-hidden="true">
+                                        <div class="modal fade" id="ticket_modal{{ loop.index }}" tabindex="-1"
+                                             role="dialog"
+                                             aria-hidden="true">
                                             <div class="modal-dialog modal-lg" style="margin-left: 512px">
                                                 <div class="modal-content" style="width: 600px; height: 700px">
                                                     <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                            &times;</button>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-hidden="true">
+                                                            &times;
+                                                        </button>
                                                         <h4 class="modal-title" id="myModalLabel">
                                                             明智的选择！确认您的订单</h4><br>
-                                                        <h4 class="modal-title"><i class="icon fa fa-barcode inner-icon"></i> </h4>
+                                                        <h4 class="modal-title"><i
+                                                                class="icon fa fa-barcode inner-icon"></i></h4>
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="tab-content">
                                                             <div class="tab-pane active" id="Login">
-                                                            <div class="login-form">
-                                                                <form action="/buy_ticket" method="post">
-                                                                    <ol>
-                                                                        <h4>想要购买的车次号</h4>
+                                                                <div class="login-form">
+                                                                    <form action="/buy_ticket" method="post">
+                                                                        <ol>
+                                                                            <h4>想要购买的车次号</h4>
                                                                             <div class="mobile-right ">
-                                                                                <input type="text" class="form-control" name="buy_trainid" value="{{ output[loop.index][0] }}" required="required" style="width:490px">
+                                                                                <input type="text" class="form-control"
+                                                                                       name="buy_trainid"
+                                                                                       value="{{ output[loop.index][0] }}"
+                                                                                       required="required"
+                                                                                       style="width:490px">
                                                                             </div>
-                                                                        <h4>期望的出发日期</h4>
+                                                                            <h4>期望的出发日期</h4>
                                                                             <div class="mobile-right ">
-                                                                                <input type="date" class="form-control" name="buy_date" value="2021-{{ output[loop.index][2] }}" required="required" style="width:490px">
+                                                                                <input type="date" class="form-control"
+                                                                                       name="buy_date"
+                                                                                       value="2021-{{ output[loop.index][2] }}"
+                                                                                       required="required"
+                                                                                       style="width:490px">
                                                                             </div>
                                                                             <h4>您的路线</h4>
-                                                                                <i class="icon fa fa-map-marker"  aria-hidden="true"></i>
-                                                                                <input type="text" name="buy_s" class="form-control-static" value="{{ output[loop.index][1] }}" required="required" style="font-size: small; width: 180px; border-color: Green; text-indent: 10px">&emsp;&emsp;
-                                                                                <i class="icon fa fa-arrow-right"  aria-hidden="true"></i>&emsp;&emsp;
-                                                                                <i class="icon fa fa-map-marker"  aria-hidden="true"></i>
-                                                                                <input type="text" name="buy_t" class="form-control-static" value="{{ output[loop.index][5] }}" style="font-size: small; width: 180px; border-color: Red; text-indent: 10px" required="required">
+                                                                            <i class="icon fa fa-map-marker"
+                                                                               aria-hidden="true"></i>
+                                                                            <input type="text" name="buy_s"
+                                                                                   class="form-control-static"
+                                                                                   value="{{ output[loop.index][1] }}"
+                                                                                   required="required"
+                                                                                   style="font-size: small; width: 180px; border-color: Green; text-indent: 10px">&emsp;&emsp;
+                                                                            <i class="icon fa fa-arrow-right"
+                                                                               aria-hidden="true"></i>&emsp;&emsp;
+                                                                            <i class="icon fa fa-map-marker"
+                                                                               aria-hidden="true"></i>
+                                                                            <input type="text" name="buy_t"
+                                                                                   class="form-control-static"
+                                                                                   value="{{ output[loop.index][5] }}"
+                                                                                   style="font-size: small; width: 180px; border-color: Red; text-indent: 10px"
+                                                                                   required="required">
                                                                             <h4>请填写购票张数</h4>
-                                                                            <input type="number" name="buy_n" class="form-control" style="width: 400px">
+                                                                            <input type="number" name="buy_n"
+                                                                                   class="form-control"
+                                                                                   style="width: 400px">
                                                                             <h4>是否接受候补购票？</h4>
                                                                             <select name="buy_q" class="form-control">
-                                                                              <option value="不接受（余票不足将直接购买失败）">不接受（余票不足将直接购买失败）</option>
-                                                                              <option value="接受（余票不足进入候补队列，有票时立即购买）">接受（余票不足进入候补队列，有票时立即购买）</option>
+                                                                                <option value="不接受（余票不足将直接购买失败）">
+                                                                                    不接受（余票不足将直接购买失败）
+                                                                                </option>
+                                                                                <option value="接受（余票不足进入候补队列，有票时立即购买）">
+                                                                                    接受（余票不足进入候补队列，有票时立即购买）
+                                                                                </option>
                                                                             </select>
                                                                             <br><br>
-                                                                            <input type="submit" class="submit" value="确认购买" style="margin-left: 200px"/>
-                                                                    </ol>
-                                                                </form>
-                                                              </div>
-                                                            </div></div>
+                                                                            <input type="submit" class="submit"
+                                                                                   value="确认购买"
+                                                                                   style="margin-left: 200px"/>
+                                                                        </ol>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     {% endif %}
                                 </tr>
-                             {% endfor %}
-                             </tbody>
+                            {% endfor %}
+                            </tbody>
                         </table>
-                        </div>
                     </div>
                 </div>
-                </div>
-   </div>
+            </div>
+        </div>
+    </div>
 
 {% elif query_name == "换乘查询结果" %}
     {% if output[0] == True %}
-   <div class="agile-trains-list w3layouts-content">
-   <div class="container">
-        <div class="w3agile single-bus">
-         <h3 class="w3-head">最优换乘方案
-         <i class="fa fa-road"></i></h3>
-                <p>
-                    根据您的要求，我们提供给您的最优换乘方案如下。建议您：
-                </p><br>
-                <h4><b>先乘坐</b></h4><br>
-                <!-- bus-midd -->
-                <div class="w3agile bus-midd">
-                         <div class="table-responsive">
-                           <table class="table table-bordered agileinfo">
-                               <thead>
-                                   <tr>
-                                       <th>车次编号</th>
-                                       <th>起始站</th>
-                                       <th>出发时间</th>
-                                       <th>终点站</th>
-                                       <th>到达时间</th>
-                                       <th>座位数</th>
-                                       <th>价格</th>
-                                   </tr>
-                              </thead>
-                           <tbody>
-                             <tr>
-                                <td class="wthree"><i class="icon fa fa-train"></i>{{ output[1][0][0] }}</td>
-                                <td class="wthree"><i class="icon fa fa-map-marker"></i>{{ output[1][0][1] }}</td>
-                                <td class="wthree"><i class="icon fa fa-clock-o"></i>{{ output[1][0][2] + ' ' + output[1][0][3] }}</td>
-                                <td class="wthree"><i class="icon fa fa-map-marker"></i>{{ output[1][0][5] }}</td>
-                                <td class="wthree"><i class="icon fa fa-clock-o"></i>{{ output[1][0][6] + ' ' + output[1][0][7] }}</td>
-                                <td class="wthree"><i class="icon fa fa-ticket"></i>{{ output[1][0][9] }}</td>
-                                <td class="price us">
-                                            <s><font color=#a9a9a9><i class="icon fa fa-cny"></i>{{ output[1][0][8] }}0 </font></s><i class="icon fa fa-cny"></i>{{ output[1][0][8] }}
-                                            <a href="#" data-toggle="modal" data-target="#transfer_modal1" class="seat-button two">订购</a>
-                                        </td>
-                                 <!-- 购票界面 -->
-                                <div class="modal fade" id="transfer_modal1" tabindex="-1" role="dialog"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog modal-lg" style="margin-left: 650px">
-                                        <div class="modal-content" style="width: 600px; height: 700px">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                    &times;</button>
-                                                <h4 class="modal-title" id="myModalLabel">
-                                                    明智的选择！确认您的订单</h4><br>
-                                                <h4 class="modal-title"><i class="icon fa fa-barcode inner-icon"></i> </h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="tab-content">
-                                                    <div class="tab-pane active" id="Login">
-                                                    <div class="login-form">
-                                                        <form action="/buy_ticket" method="post" id="signup">
-                                                        <ol>
-                                                            <h4>想要购买的车次号</h4>
-                                                                <div class="mobile-right ">
-                                                                    <input type="text" class="form-control" id="buy_trainid" name="buy_trainid" value="{{ output[1][0][0] }}" required="required" style="width:490px">
-                                                                </div>
-                                                            <h4>期望的出发日期</h4>
-                                                                <div class="mobile-right ">
-                                                                    <input type="date" class="form-control" id="buy_date" name="buy_date" value="2021-{{ output[1][0][2] }}" required="required" style="width:490px">
-                                                                </div>
-                                                                <h4>您的路线</h4>
-                                                                    <i class="icon fa fa-map-marker"  aria-hidden="true"></i>
-                                                                    <input type="text" id="buy_s" name="buy_s" class="form-control-static" value="{{ output[1][0][1] }}" required="required" style="font-size: small; width: 180px; border-color: Green; text-indent: 10px">&emsp;&emsp;
-                                                                    <i class="icon fa fa-arrow-right"  aria-hidden="true"></i>&emsp;&emsp;
-                                                                    <i class="icon fa fa-map-marker"  aria-hidden="true"></i>
-                                                                    <input type="text" id="buy_t" name="buy_t" class="form-control-static" value="{{ output[1][0][5] }}" style="font-size: small; width: 180px; border-color: Red; text-indent: 10px" required="required">
-                                                                <h4>请填写购票张数</h4>
-                                                                <input type="number" id="buy_n" name="buy_n" class="form-control" style="width: 400px">
-                                                                <h4>是否接受候补购票？</h4>
-                                                                <select name="buy_q" class="form-control">
-                                                                  <option value="不接受（余票不足将直接购买失败）">不接受（余票不足将直接购买失败）</option>
-                                                                  <option value="接受（余票不足进入候补队列，有票时立即购买）">接受（余票不足进入候补队列，有票时立即购买）</option>
-                                                                </select>
-                                                                <br><br>
-                                                                <input type="submit" class="submit" value="确认购买" style="margin-left: 200px"/>
-                                                        </ol>
-                                                        </form>
-                                                      </div>
-                                                    </div></div>
+        <div class="agile-trains-list w3layouts-content">
+            <div class="container">
+                <div class="w3agile single-bus">
+                    <h3 class="w3-head">最优换乘方案
+                        <i class="fa fa-road"></i></h3>
+                    <p>
+                        根据您的要求，我们提供给您的最优换乘方案如下。建议您：
+                    </p><br>
+                    <h4><b>先乘坐</b></h4><br>
+                    <!-- bus-midd -->
+                    <div class="w3agile bus-midd">
+                        <div class="table-responsive">
+                            <table class="table table-bordered agileinfo">
+                                <thead>
+                                <tr>
+                                    <th>车次编号</th>
+                                    <th>起始站</th>
+                                    <th>出发时间</th>
+                                    <th>终点站</th>
+                                    <th>到达时间</th>
+                                    <th>座位数</th>
+                                    <th>价格</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="wthree"><i class="icon fa fa-train"></i>{{ output[1][0][0] }}</td>
+                                    <td class="wthree"><i class="icon fa fa-map-marker"></i>{{ output[1][0][1] }}</td>
+                                    <td class="wthree"><i
+                                            class="icon fa fa-clock-o"></i>{{ output[1][0][2] + ' ' + output[1][0][3] }}
+                                    </td>
+                                    <td class="wthree"><i class="icon fa fa-map-marker"></i>{{ output[1][0][5] }}</td>
+                                    <td class="wthree"><i
+                                            class="icon fa fa-clock-o"></i>{{ output[1][0][6] + ' ' + output[1][0][7] }}
+                                    </td>
+                                    <td class="wthree"><i class="icon fa fa-ticket"></i>{{ output[1][0][9] }}</td>
+                                    <td class="price us">
+                                        <s><font color=#a9a9a9><i class="icon fa fa-cny"></i>{{ output[1][0][8] }}0
+                                        </font></s><i class="icon fa fa-cny"></i>{{ output[1][0][8] }}
+                                        <a href="#" data-toggle="modal" data-target="#transfer_modal1"
+                                           class="seat-button two">订购</a>
+                                    </td>
+                                    <!-- 购票界面 -->
+                                    <div class="modal fade" id="transfer_modal1" tabindex="-1" role="dialog"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" style="margin-left: 650px">
+                                            <div class="modal-content" style="width: 600px; height: 700px">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-hidden="true">
+                                                        &times;
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">
+                                                        明智的选择！确认您的订单</h4><br>
+                                                    <h4 class="modal-title"><i
+                                                            class="icon fa fa-barcode inner-icon"></i></h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active" id="Login">
+                                                            <div class="login-form">
+                                                                <form action="/buy_ticket" method="post" id="signup">
+                                                                    <ol>
+                                                                        <h4>想要购买的车次号</h4>
+                                                                        <div class="mobile-right ">
+                                                                            <input type="text" class="form-control"
+                                                                                   id="buy_trainid" name="buy_trainid"
+                                                                                   value="{{ output[1][0][0] }}"
+                                                                                   required="required"
+                                                                                   style="width:490px">
+                                                                        </div>
+                                                                        <h4>期望的出发日期</h4>
+                                                                        <div class="mobile-right ">
+                                                                            <input type="date" class="form-control"
+                                                                                   id="buy_date" name="buy_date"
+                                                                                   value="2021-{{ output[1][0][2] }}"
+                                                                                   required="required"
+                                                                                   style="width:490px">
+                                                                        </div>
+                                                                        <h4>您的路线</h4>
+                                                                        <i class="icon fa fa-map-marker"
+                                                                           aria-hidden="true"></i>
+                                                                        <input type="text" id="buy_s" name="buy_s"
+                                                                               class="form-control-static"
+                                                                               value="{{ output[1][0][1] }}"
+                                                                               required="required"
+                                                                               style="font-size: small; width: 180px; border-color: Green; text-indent: 10px">&emsp;&emsp;
+                                                                        <i class="icon fa fa-arrow-right"
+                                                                           aria-hidden="true"></i>&emsp;&emsp;
+                                                                        <i class="icon fa fa-map-marker"
+                                                                           aria-hidden="true"></i>
+                                                                        <input type="text" id="buy_t" name="buy_t"
+                                                                               class="form-control-static"
+                                                                               value="{{ output[1][0][5] }}"
+                                                                               style="font-size: small; width: 180px; border-color: Red; text-indent: 10px"
+                                                                               required="required">
+                                                                        <h4>请填写购票张数</h4>
+                                                                        <input type="number" id="buy_n" name="buy_n"
+                                                                               class="form-control"
+                                                                               style="width: 400px">
+                                                                        <h4>是否接受候补购票？</h4>
+                                                                        <select name="buy_q" class="form-control">
+                                                                            <option value="不接受（余票不足将直接购买失败）">
+                                                                                不接受（余票不足将直接购买失败）
+                                                                            </option>
+                                                                            <option value="接受（余票不足进入候补队列，有票时立即购买）">
+                                                                                接受（余票不足进入候补队列，有票时立即购买）
+                                                                            </option>
+                                                                        </select>
+                                                                        <br><br>
+                                                                        <input type="submit" class="submit" value="确认购买"
+                                                                               style="margin-left: 200px"/>
+                                                                    </ol>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                             </tr>
-                             </tbody>
-                        </table>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-                <div class="container">
-                    <!--bus-single -->
-                            <div class="w3agile single-bus">
-                                     <h4><b>再换乘</b></h4><br>
+            <div class="container">
+                <!--bus-single -->
+                <div class="w3agile single-bus">
+                    <h4><b>再换乘</b></h4><br>
                     <div class="w3agile bus-midd">
-                         <div class="table-responsive">
-                           <table class="table table-bordered agileinfo">
-                               <thead>
-                                   <tr>
-                                       <th>车次编号</th>
-                                       <th>起始站</th>
-                                       <th>出发时间</th>
-                                       <th>终点站</th>
-                                       <th>到达时间</th>
-                                       <th>座位数</th>
-                                       <th>价格</th>
-                                   </tr>
-                              </thead>
-                           <tbody>
-                             <tr>
-                                <td class="wthree"><i class="icon fa fa-train"></i>{{ output[1][1][0] }}</td>
-                                <td class="wthree"><i class="icon fa fa-map-marker"></i>{{ output[1][1][1] }}</td>
-                                <td class="wthree"><i class="icon fa fa-clock-o"></i>{{ output[1][1][2] + ' ' + output[1][1][3] }}</td>
-                                <td class="wthree"><i class="icon fa fa-map-marker"></i>{{ output[1][1][5] }}</td>
-                                <td class="wthree"><i class="icon fa fa-clock-o"></i>{{ output[1][1][6] + ' ' + output[1][1][7] }}</td>
-                                <td class="wthree"><i class="icon fa fa-ticket"></i>{{ output[1][1][9] }}</td>
-                                <td class="price us">
-                                            <s><font color=#a9a9a9><i class="icon fa fa-cny"></i>{{ output[1][1][8] }}0 </font></s><i class="icon fa fa-cny"></i>{{ output[1][1][8] }}
-                                            <a href="#" data-toggle="modal" data-target="#transfer_modal2" class="seat-button two">订购</a>
-                                        </td>
-                                  <!-- 购票界面 -->
-                                <div class="modal fade" id="transfer_modal2" tabindex="-1" role="dialog"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog modal-lg" style="margin-left: 650px">
-                                        <div class="modal-content" style="width: 600px; height: 700px">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                    &times;</button>
-                                                <h4 class="modal-title" id="myModalLabel">
-                                                    明智的选择！确认您的订单</h4><br>
-                                                <h4 class="modal-title"><i class="icon fa fa-barcode inner-icon"></i> </h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="tab-content">
-                                                    <div class="tab-pane active" id="Login">
-                                                    <div class="login-form">
-                                                        <form action="/buy_ticket" method="post" id="signup">
-                                                        <ol>
-                                                            <h4>想要购买的车次号</h4>
-                                                                <div class="mobile-right ">
-                                                                    <input type="text" class="form-control" id="buy_trainid" name="buy_trainid" value="{{ output[1][1][0] }}" required="required" style="width:490px">
-                                                                </div>
-                                                            <h4>期望的出发日期</h4>
-                                                                <div class="mobile-right ">
-                                                                    <input type="date" class="form-control" id="buy_date" name="buy_date" value="2021-{{ output[1][1][2] }}" required="required" style="width:490px">
-                                                                </div>
-                                                                <h4>您的路线</h4>
-                                                                    <i class="icon fa fa-map-marker"  aria-hidden="true"></i>
-                                                                    <input type="text" id="buy_s" name="buy_s" class="form-control-static" value="{{ output[1][1][1] }}" required="required" style="font-size: small; width: 180px; border-color: Green; text-indent: 10px">&emsp;&emsp;
-                                                                    <i class="icon fa fa-arrow-right"  aria-hidden="true"></i>&emsp;&emsp;
-                                                                    <i class="icon fa fa-map-marker"  aria-hidden="true"></i>
-                                                                    <input type="text" id="buy_t" name="buy_t" class="form-control-static" value="{{ output[1][1][5] }}" style="font-size: small; width: 180px; border-color: Red; text-indent: 10px" required="required">
-                                                                <h4>请填写购票张数</h4>
-                                                                <input type="number" id="buy_n" name="buy_n" class="form-control" style="width: 400px">
-                                                                <h4>是否接受候补购票？</h4>
-                                                                <select name="buy_q" class="form-control">
-                                                                  <option value="不接受（余票不足将直接购买失败）">不接受（余票不足将直接购买失败）</option>
-                                                                  <option value="接受（余票不足进入候补队列，有票时立即购买）">接受（余票不足进入候补队列，有票时立即购买）</option>
-                                                                </select>
-                                                                <br><br>
-                                                                <input type="submit" class="submit" value="确认购买" style="margin-left: 200px"/>
-                                                        </ol>
-                                                        </form>
-                                                      </div>
-                                                    </div></div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered agileinfo">
+                                <thead>
+                                <tr>
+                                    <th>车次编号</th>
+                                    <th>起始站</th>
+                                    <th>出发时间</th>
+                                    <th>终点站</th>
+                                    <th>到达时间</th>
+                                    <th>座位数</th>
+                                    <th>价格</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="wthree"><i class="icon fa fa-train"></i>{{ output[1][1][0] }}</td>
+                                    <td class="wthree"><i class="icon fa fa-map-marker"></i>{{ output[1][1][1] }}</td>
+                                    <td class="wthree"><i
+                                            class="icon fa fa-clock-o"></i>{{ output[1][1][2] + ' ' + output[1][1][3] }}
+                                    </td>
+                                    <td class="wthree"><i class="icon fa fa-map-marker"></i>{{ output[1][1][5] }}</td>
+                                    <td class="wthree"><i
+                                            class="icon fa fa-clock-o"></i>{{ output[1][1][6] + ' ' + output[1][1][7] }}
+                                    </td>
+                                    <td class="wthree"><i class="icon fa fa-ticket"></i>{{ output[1][1][9] }}</td>
+                                    <td class="price us">
+                                        <s><font color=#a9a9a9><i class="icon fa fa-cny"></i>{{ output[1][1][8] }}0
+                                        </font></s><i class="icon fa fa-cny"></i>{{ output[1][1][8] }}
+                                        <a href="#" data-toggle="modal" data-target="#transfer_modal2"
+                                           class="seat-button two">订购</a>
+                                    </td>
+                                    <!-- 购票界面 -->
+                                    <div class="modal fade" id="transfer_modal2" tabindex="-1" role="dialog"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" style="margin-left: 650px">
+                                            <div class="modal-content" style="width: 600px; height: 700px">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-hidden="true">
+                                                        &times;
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">
+                                                        明智的选择！确认您的订单</h4><br>
+                                                    <h4 class="modal-title"><i
+                                                            class="icon fa fa-barcode inner-icon"></i></h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active" id="Login">
+                                                            <div class="login-form">
+                                                                <form action="/buy_ticket" method="post" id="signup">
+                                                                    <ol>
+                                                                        <h4>想要购买的车次号</h4>
+                                                                        <div class="mobile-right ">
+                                                                            <input type="text" class="form-control"
+                                                                                   id="buy_trainid" name="buy_trainid"
+                                                                                   value="{{ output[1][1][0] }}"
+                                                                                   required="required"
+                                                                                   style="width:490px">
+                                                                        </div>
+                                                                        <h4>期望的出发日期</h4>
+                                                                        <div class="mobile-right ">
+                                                                            <input type="date" class="form-control"
+                                                                                   id="buy_date" name="buy_date"
+                                                                                   value="2021-{{ output[1][1][2] }}"
+                                                                                   required="required"
+                                                                                   style="width:490px">
+                                                                        </div>
+                                                                        <h4>您的路线</h4>
+                                                                        <i class="icon fa fa-map-marker"
+                                                                           aria-hidden="true"></i>
+                                                                        <input type="text" id="buy_s" name="buy_s"
+                                                                               class="form-control-static"
+                                                                               value="{{ output[1][1][1] }}"
+                                                                               required="required"
+                                                                               style="font-size: small; width: 180px; border-color: Green; text-indent: 10px">&emsp;&emsp;
+                                                                        <i class="icon fa fa-arrow-right"
+                                                                           aria-hidden="true"></i>&emsp;&emsp;
+                                                                        <i class="icon fa fa-map-marker"
+                                                                           aria-hidden="true"></i>
+                                                                        <input type="text" id="buy_t" name="buy_t"
+                                                                               class="form-control-static"
+                                                                               value="{{ output[1][1][5] }}"
+                                                                               style="font-size: small; width: 180px; border-color: Red; text-indent: 10px"
+                                                                               required="required">
+                                                                        <h4>请填写购票张数</h4>
+                                                                        <input type="number" id="buy_n" name="buy_n"
+                                                                               class="form-control"
+                                                                               style="width: 400px">
+                                                                        <h4>是否接受候补购票？</h4>
+                                                                        <select name="buy_q" class="form-control">
+                                                                            <option value="不接受（余票不足将直接购买失败）">
+                                                                                不接受（余票不足将直接购买失败）
+                                                                            </option>
+                                                                            <option value="接受（余票不足进入候补队列，有票时立即购买）">
+                                                                                接受（余票不足进入候补队列，有票时立即购买）
+                                                                            </option>
+                                                                        </select>
+                                                                        <br><br>
+                                                                        <input type="submit" class="submit" value="确认购买"
+                                                                               style="margin-left: 200px"/>
+                                                                    </ol>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                             </tr>
-                             </tbody>
-                        </table>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
         </div>
 
     {% else %}
@@ -595,85 +714,94 @@
 
 {% elif query_name == "订单查询结果" %}
     {% if output[0] == False %}
-        <script>Fail('查询目标用户未登录','/')</script>
+        <script>Fail('查询目标用户未登录', '/')</script>
     {% else %}
         <div class="agile-trains-list w3layouts-content">
-           <div class="container">
-            <div class="w3agile single-bus">
-                             <h3 class="w3-head">订单列表
-                             <i class="fa fa-shopping-cart"></i></h3>
-                     <!-- train-routes -->
-                            <div class="bus-tp">
-                                <div class="bus-tp-inner">
-                                    <h3>您的订单共有<font color=SandyBrown> {{ output[1][0] }}</font> 份</h3>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                        <!-- /train-routes -->
-                        <!-- bus-midd -->
-                        <div class="w3agile bus-midd">
-                                 <div class="table-responsive">
-                                   <table class="table table-bordered agileinfo">
-                                       <thead>
-                                           <tr>
-                                               <th>订单状态</th>
-                                               <th>车次编号</th>
-                                               <th>起始站</th>
-                                               <th>出发时间</th>
-                                               <th>终点站</th>
-                                               <th>到达时间</th>
-                                               <th>购票数量</th>
-                                               <th>总价</th>
-                                           </tr>
-                                      </thead>
-                                   <tbody>
-                                     {% for row in output[1][1:] %}
-                                        <tr>
-                                            {% if row[0][0] == '[' %}
-                                                <td class="wthree">
-                                                    {% if row[0] == '[success]' %}
-                                                        <div style="color: #00B70C"><i class="icon fa fa-info-circle"></i>Success</div>
-                                                    {% elif row[0] == '[pending]' %}
-                                                        <div style="color: #0e73e9"><i class="icon fa fa-info-circle"></i>Pending</div>
-                                                    {% elif row[0] == '[refunded]' %}
-                                                        <div style="color: #f63205"><i class="icon fa fa-info-circle"></i>Refunded</div>
-                                                    {% endif %}
-                                                </td>
-                                                <td class="wthree"><i class="icon fa fa-train"></i>{{ row[1] }}</td>
-                                                <td class="wthree"><i class="icon fa fa-map-marker"></i>{{ row[2] }}</td>
-                                                <td class="wthree"><i class="icon fa fa-clock-o"></i>{{ row[3] + ' ' + row[4] }}</td>
-                                                <td class="wthree"><i class="icon fa fa-map-marker"></i>{{ row[6] }}</td>
-                                                <td class="wthree"><i class="icon fa fa-clock-o"></i>{{ row[7] + ' ' + row[8] }}</td>
-                                                <td class="wthree">{{ row[10] }}</td>
-                                                <td class="price us">
-                                                    <i class="icon fa fa-cny"></i>{{ row[9] }}
-                                                    {% if row[0] == '[refunded]' %}
-                                                        <a href="#" class="seat-button two" style="background-color: darkgrey">退票</a>
-                                                    {% else %}
-                                                        <a href="#" onclick="RefundWarning({{ loop.index }})" class="seat-button two" style="background-color: #f63205">退票</a>
-                                                    {% endif %}
-                                                    <form action='/refund_ticket' method=post name=form1 style='display:none'>
-                                                        <input type="hidden" name="refund_n" value="{{ loop.index }}">
-                                                        <input type="submit" id="refund_submit{{ loop.index }}" class="submit" style='display:none'/>
-                                                    </form>
-                                                    <script>
-                                                        function RefundWarning(cnt) {
-                                                            xtip.confirm('确定要退票吗？',function(){
-                                                                $("#refund_submit"+cnt).click();
-                                                            });
-                                                        }
-                                                    </script>
-                                                </td>
-                                            {% endif %}
-                                        </tr>
-                                     {% endfor %}
-                                     </tbody>
-                                </table>
-                                </div>
-                            </div>
+            <div class="container">
+                <div class="w3agile single-bus">
+                    <h3 class="w3-head">订单列表
+                        <i class="fa fa-shopping-cart"></i></h3>
+                    <!-- train-routes -->
+                    <div class="bus-tp">
+                        <div class="bus-tp-inner">
+                            <h3>您的订单共有<font color=SandyBrown> {{ output[1][0] }}</font> 份</h3>
+                            <div class="clearfix"></div>
                         </div>
+                    </div>
+                    <!-- /train-routes -->
+                    <!-- bus-midd -->
+                    <div class="w3agile bus-midd">
+                        <div class="table-responsive">
+                            <table class="table table-bordered agileinfo">
+                                <thead>
+                                <tr>
+                                    <th>订单状态</th>
+                                    <th>车次编号</th>
+                                    <th>起始站</th>
+                                    <th>出发时间</th>
+                                    <th>终点站</th>
+                                    <th>到达时间</th>
+                                    <th>购票数量</th>
+                                    <th>总价</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for row in output[1][1:] %}
+                                    <tr>
+                                        {% if row[0][0] == '[' %}
+                                            <td class="wthree">
+                                                {% if row[0] == '[success]' %}
+                                                    <div style="color: #00B70C"><i class="icon fa fa-info-circle"></i>Success
+                                                    </div>
+                                                {% elif row[0] == '[pending]' %}
+                                                    <div style="color: #0e73e9"><i class="icon fa fa-info-circle"></i>Pending
+                                                    </div>
+                                                {% elif row[0] == '[refunded]' %}
+                                                    <div style="color: #f63205"><i class="icon fa fa-info-circle"></i>Refunded
+                                                    </div>
+                                                {% endif %}
+                                            </td>
+                                            <td class="wthree"><i class="icon fa fa-train"></i>{{ row[1] }}</td>
+                                            <td class="wthree"><i class="icon fa fa-map-marker"></i>{{ row[2] }}</td>
+                                            <td class="wthree"><i
+                                                    class="icon fa fa-clock-o"></i>{{ row[3] + ' ' + row[4] }}</td>
+                                            <td class="wthree"><i class="icon fa fa-map-marker"></i>{{ row[6] }}</td>
+                                            <td class="wthree"><i
+                                                    class="icon fa fa-clock-o"></i>{{ row[7] + ' ' + row[8] }}</td>
+                                            <td class="wthree">{{ row[10] }}</td>
+                                            <td class="price us">
+                                                <i class="icon fa fa-cny"></i>{{ row[9] }}
+                                                {% if row[0] == '[refunded]' %}
+                                                    <a href="#" class="seat-button two"
+                                                       style="background-color: darkgrey">退票</a>
+                                                {% else %}
+                                                    <a href="#" onclick="RefundWarning({{ loop.index }})"
+                                                       class="seat-button two" style="background-color: #f63205">退票</a>
+                                                {% endif %}
+                                                <form action='/refund_ticket' method=post name=form1
+                                                      style='display:none'>
+                                                    <input type="hidden" name="refund_n" value="{{ loop.index }}">
+                                                    <input type="submit" id="refund_submit{{ loop.index }}"
+                                                           class="submit" style='display:none'/>
+                                                </form>
+                                                <script>
+                                                    function RefundWarning(cnt) {
+                                                        xtip.confirm('确定要退票吗？', function () {
+                                                            $("#refund_submit" + cnt).click();
+                                                        });
+                                                    }
+                                                </script>
+                                            </td>
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
-           </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     {% endif %}
 
 {% elif query_name == "退票结果" %}
@@ -705,12 +833,12 @@
         {% endif %}
     {% else %}
         <div class="agile-trains-list w3layouts-content">
-         <div class="container">
-        <!--bus-single -->
-             <h3 class="w3-head">车次行程<i class="fa fa-train"></i></h3>
-            <div class="w3agile single-bus">
-                <div class="col-md-4 movies-by-category movie-booking">
-                    <div class="movie-ticket-book">
+            <div class="container">
+                <!--bus-single -->
+                <h3 class="w3-head">车次行程<i class="fa fa-train"></i></h3>
+                <div class="w3agile single-bus">
+                    <div class="col-md-4 movies-by-category movie-booking">
+                        <div class="movie-ticket-book">
                             <div class="bahubali-details">
                                 <img src="static/images/train.jpg" alt="">
                                 <h4>车次编号</h4>
@@ -722,57 +850,65 @@
                                 <h4>发行情况</h4>
                                 <p>
                                     {% if output[1][0][2] == "0" %}
-                                        <font color=Red>未发行</font>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                        <font color=Red>未发行</font>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                        &emsp;
                                         <a href="#" class="seat-button two" onclick="ReleaseWarning()">现在发行它</a>
-                                         <form action='/release_train' method=post name=form1 style='display:none'>
-                                                        <input type="hidden" name="release_delete_tid" value="{{ output[1][0][0] }}">
-                                                        <input type="submit" id="release_submit" class="submit" style='display:none'/>
+                                        <form action='/release_train' method=post name=form1 style='display:none'>
+                                            <input type="hidden" name="release_delete_tid"
+                                                   value="{{ output[1][0][0] }}">
+                                            <input type="submit" id="release_submit" class="submit"
+                                                   style='display:none'/>
                                         </form>
                                         <script>
                                             function ReleaseWarning() {
-                                                xtip.confirm('确定要发行吗？',function(){
+                                                xtip.confirm('确定要发行吗？', function () {
                                                     $("#release_submit").click();
                                                 });
                                             }
                                         </script>
                                     {% else %}
-                                        <font color=Green>已发行</font>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                                        <a href="#" class="seat-button two" style="background-color: darkgrey" disabled="disabled">现在发行它</a>
+                                        <font color=Green>已发行</font>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                        &emsp;&emsp;
+                                        <a href="#" class="seat-button two" style="background-color: darkgrey"
+                                           disabled="disabled">现在发行它</a>
                                     {% endif %}
                                 </p>
-                             </div>
-                        </div>
-                </div>
-				<!-- bus-midd -->
-            <div class="col-md-8 movies-dates">
-                {% for row in output[1][1:] %}
-                    {% if row[0] != '' %}
-                        <div class="col-md-8 movies-dates">
-                            <div class="movie-date-selection" style="width: 800px">
-                                <ul>
-                                    <li>
-                                        <h3><i class="fa fa-map-marker"></i>
-                                            <b> {{ row[0] }}</b></h3>
-                                    </li>
-                                    <li class="time">
-                                         <font color=Green face="Times New Roman"><i class="fa fa-clock-o"></i> {{ row[1] + ' ' + row[2] }} </font>
-                                    </li>
-                                    <li>
-                                        <font color=Red face="Times New Roman"><i class="fa fa-clock-o"></i> {{ row[4] + ' ' + row[5] }} </font>
-                                    </li>
-                                    <li>
-                                        <b>余 <font color=SandyBrown>{{ row[7] }}</font> 票</b>
-                                    </li>
-                                        <b>到此累计花费 <font color=SandyBrown><i class="fa fa-cny"></i> {{ row[6] }}</font> </b>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
-                    {% endif %}
-                {% endfor %}
+                    </div>
+                    <!-- bus-midd -->
+                    <div class="col-md-8 movies-dates">
+                        {% for row in output[1][1:] %}
+                            {% if row[0] != '' %}
+                                <div class="col-md-8 movies-dates">
+                                    <div class="movie-date-selection" style="width: 800px">
+                                        <ul>
+                                            <li>
+                                                <h3><i class="fa fa-map-marker"></i>
+                                                    <b> {{ row[0] }}</b></h3>
+                                            </li>
+                                            <li class="time">
+                                                <font color=Green face="Times New Roman"><i
+                                                        class="fa fa-clock-o"></i> {{ row[1] + ' ' + row[2] }} </font>
+                                            </li>
+                                            <li>
+                                                <font color=Red face="Times New Roman"><i
+                                                        class="fa fa-clock-o"></i> {{ row[4] + ' ' + row[5] }} </font>
+                                            </li>
+                                            <li>
+                                                <b>余 <font color=SandyBrown>{{ row[7] }}</font> 票</b>
+                                            </li>
+                                            <b>到此累计花费 <font color=SandyBrown><i class="fa fa-cny"></i> {{ row[6] }}
+                                            </font> </b>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
-                </div>
-                </div>
         </div>
     {% endif %}
 
@@ -805,92 +941,92 @@
 {% endif %}
 
 <div class="agile-trains w3layouts-content">
-		<div class="container">
-			<div class="clearfix"> </div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="clearfix"></div>
+    </div>
+</div>
 <div class="agile-trains w3layouts-content">
-		<div class="container">
-			<div class="clearfix"> </div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="clearfix"></div>
+    </div>
+</div>
 <div class="agile-trains w3layouts-content">
-		<div class="container">
-			<div class="clearfix"> </div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="clearfix"></div>
+    </div>
+</div>
 <!-- //subscribe -->
 
 <!--//footer-->
 <div class="w3l-footer-bottom">
-		<div class="container-fluid">
-			<div class="col-md-4 w3-footer-logo">
-				<h2><a href="index.html">ACM Class Ticket System</a></h2>
-			</div>
-			<div class="col-md-8 agileits-footer-class">
-                <p>2021 © ACM Class, PingPong Doubles Smash Locomotive.</p>
-			</div>
-		<div class="clearfix"> </div>
-	 	</div>
+    <div class="container-fluid">
+        <div class="col-md-4 w3-footer-logo">
+            <h2><a href="index.html">ACM Class Ticket System</a></h2>
+        </div>
+        <div class="col-md-8 agileits-footer-class">
+            <p>2021 © ACM Class, PingPong Doubles Smash Locomotive.</p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
 </div>
 
 
 <!-- for bootstrap working -->
-		<script src="static/js/bootstrap.js"></script>
+<script src="static/js/bootstrap.js"></script>
 <!-- //for bootstrap working -->
 
 <script src="static/js/bootstrap-select.js"></script>
 <script>
-  $(document).ready(function () {
-    var mySelect = $('#first-disabled2');
+    $(document).ready(function () {
+        var mySelect = $('#first-disabled2');
 
-    $('#special').on('click', function () {
-      mySelect.find('option:selected').prop('disabled', true);
-      mySelect.selectpicker('refresh');
-    });
+        $('#special').on('click', function () {
+            mySelect.find('option:selected').prop('disabled', true);
+            mySelect.selectpicker('refresh');
+        });
 
-    $('#special2').on('click', function () {
-      mySelect.find('option:disabled').prop('disabled', false);
-      mySelect.selectpicker('refresh');
-    });
+        $('#special2').on('click', function () {
+            mySelect.find('option:disabled').prop('disabled', false);
+            mySelect.selectpicker('refresh');
+        });
 
-    $('#basic2').selectpicker({
-      liveSearch: true,
-      maxOptions: 1
+        $('#basic2').selectpicker({
+            liveSearch: true,
+            maxOptions: 1
+        });
     });
-  });
 </script>
 <!-- //Bootstrap select option script -->
 
 <!-- here stars scrolling icon -->
-			<script type="text/javascript">
-				$(document).ready(function() {
-					/*
-						var defaults = {
-						containerID: 'toTop', // fading element id
-						containerHoverID: 'toTopHover', // fading element hover id
-						scrollSpeed: 1200,
-						easingType: 'linear' 
-						};
-					*/
-										
-					$().UItoTop({ easingType: 'easeOutQuart' });
-										
-					});
-			</script>
-			<!-- start-smoth-scrolling -->
-			<script type="text/javascript" src="static/js/move-top.js"></script>
-			<script type="text/javascript" src="static/js/easing.js"></script>
-			<script type="text/javascript">
-				jQuery(document).ready(function($) {
-					$(".scroll").click(function(event){		
-						event.preventDefault();
-						$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-					});
-				});
-			</script>
-			<!-- start-smoth-scrolling -->
-		<!-- //here ends scrolling icon -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*
+            var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+            };
+        */
+
+        $().UItoTop({easingType: 'easeOutQuart'});
+
+    });
+</script>
+<!-- start-smoth-scrolling -->
+<script type="text/javascript" src="static/js/move-top.js"></script>
+<script type="text/javascript" src="static/js/easing.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(".scroll").click(function (event) {
+            event.preventDefault();
+            $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+        });
+    });
+</script>
+<!-- start-smoth-scrolling -->
+<!-- //here ends scrolling icon -->
 </body>
 <!-- /body -->
 </html>
