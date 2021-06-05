@@ -54,7 +54,7 @@
         <div class="w3layouts-login">
             {% if is_login[0] == True %}
                 <a><i class="glyphicon glyphicon-user"></i>欢迎您, {{ is_login[1] }}</a>
-                <a href="#"><i class="icon fa fa-power-off" onclick="logout();"></i>注销</a>
+                <a href="#"  onclick="logout()"><i class="icon fa fa-power-off"></i>注销</a>
                 <script>
                     function logout() {
                         xtip.confirm('确认注销吗？', function () {
@@ -130,7 +130,6 @@
                                     <div class="tab-pane" id="Registration">
                                         <form class="form-horizontal" action="/register" method="post">
                                             <div class="form-group">
-                                                <div class="form-group">
                                                 <label for="userid" class="col-sm-2 control-label">
                                                     用户名</label>
                                                 <div class="col-sm-10">
@@ -140,6 +139,8 @@
                                                            required="required"/>
                                                 </div>
                                             </div>
+
+                                            <div class="form-group">
                                                 <label for="email" class="col-sm-2 control-label">
                                                     邮箱</label>
                                                 <div class="col-sm-10">
