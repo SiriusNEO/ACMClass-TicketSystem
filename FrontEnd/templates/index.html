@@ -100,6 +100,7 @@
                                                 <div class="col-sm-10">
                                                     <input type="text" class="form-control" id="login_userid_input"
                                                            name="login_userid_input" placeholder="不是昵称噢"
+                                                           onchange="hint(userid_validator, $(this).val(), 'login_userid_input')"
                                                            required="required"/>
                                                 </div>
                                             </div>
@@ -109,6 +110,7 @@
                                                 <div class="col-sm-10">
                                                     <input type="password" class="form-control" id="login_passwd_input"
                                                            name="login_passwd_input" placeholder="不会给别人看哒"
+                                                           onchange="hint(passwd_validator, $(this).val(), 'login_passwd_input')"
                                                            required="required"/>
                                                 </div>
                                             </div>
@@ -128,29 +130,33 @@
                                     <div class="tab-pane" id="Registration">
                                         <form class="form-horizontal" action="/register" method="post">
                                             <div class="form-group">
-                                                <label for="email" class="col-sm-2 control-label">
-                                                    邮箱</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="register_email"
-                                                           name="register_email" placeholder="邮箱地址格式"
-                                                           required="required"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
+                                                <div class="form-group">
                                                 <label for="userid" class="col-sm-2 control-label">
                                                     用户名</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" class="form-control" id="register_userid"
                                                            name="register_userid" placeholder="字母开头，仅限字母、数字和下划线，长度不超过20"
+                                                           onchange="hint(userid_validator, $(this).val(), 'register_userid')"
                                                            required="required"/>
                                                 </div>
                                             </div>
+                                                <label for="email" class="col-sm-2 control-label">
+                                                    邮箱</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="register_email"
+                                                           name="register_email" placeholder="邮箱地址格式"
+                                                           onchange="hint(mailAddr_validator, $(this).val(), 'register_email')"
+                                                           required="required"/>
+                                                </div>
+                                            </div>
+
                                             <div class="form-group">
                                                 <label for="name" class="col-sm-2 control-label">
                                                     昵称</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" class="form-control" id="register_name"
                                                            name="register_name" placeholder="二至五个汉字"
+                                                           onchange="hint(name_validator, $(this).val(), 'register_name')"
                                                            required="required"/>
                                                 </div>
                                             </div>
@@ -160,6 +166,7 @@
                                                 <div class="col-sm-10">
                                                     <input type="text" class="form-control" id="register_passwd"
                                                            name="register_passwd" placeholder="仅限字母、数字和下划线，长度6到30之间"
+                                                           onchange="hint(passwd_validator, $(this).val(), 'register_passwd')"
                                                            required="required"/>
                                                 </div>
                                             </div>
@@ -288,6 +295,8 @@
                                                             <input type="text" id="add_userid" name="add_userid"
                                                                    class="form-control"
                                                                    placeholder="用户名，字母开头，仅限字母、数字和下划线，长度不超过20"
+                                                                       onchange="hint(userid_validator, $(this).val(), 'add_userid')"
+                                                                   }
                                                                    required="required">
                                                         </div>
                                                     </li>
@@ -295,6 +304,7 @@
                                                         <div class="mobile-right ">
                                                             <input type="text" id="add_email" name="add_email"
                                                                    class="form-control" placeholder="邮箱，按邮箱地址格式"
+                                                                   onchange="hint(mailAddr_validator, $(this).val(), 'add_email')"
                                                                    required="required">
                                                         </div>
                                                     </li>
@@ -303,6 +313,7 @@
                                                             <input type="text" id="add_passwd" name="add_passwd"
                                                                    class="form-control"
                                                                    placeholder="密码，仅限字母、数字和下划线，长度6到30之间"
+                                                                   onchange="hint(passwd_validator, $(this).val(), 'add_passwd')"
                                                                    required="required">
                                                         </div>
                                                     </li>
@@ -310,6 +321,7 @@
                                                         <div class="mobile-right ">
                                                             <input type="text" id="add_name" name="add_name"
                                                                    class="form-control" placeholder="昵称，二至五个汉字"
+                                                                   onchange="hint(name_validator, $(this).val(), 'add_name')"
                                                                    required="required">
                                                         </div>
                                                     </li>
@@ -317,9 +329,10 @@
                                                         <h4>注意，新用户权限等级必须低于您当前用户</h4>
                                                         <div class="mobile-right ">
                                                             <div class="mobile-rchge">
-                                                                <input type="number" name="add_privilege"
+                                                                <input type="number" id="add_privilege" name="add_privilege"
                                                                        class="form-control" style="width: 400px"
                                                                        placeholder="权限等级，为一个 0 到 10 范围内的数字"
+                                                                       onchange="hint(priviledge_validator, $(this).val(), 'add_privilege')"
                                                                        required="required"/>
                                                             </div>
                                                             <div class="clearfix"></div>
@@ -342,6 +355,7 @@
                                                 <div class="mobile-right ">
                                                     <input type="text" id="query_id" name="query_id"
                                                            class="form-control" placeholder="查询目标用户名"
+                                                           onchange="hint(userid_validator, $(this).val(), 'query_id')"
                                                            required="required">
                                                 </div>
                                                 <li>
@@ -360,6 +374,7 @@
                                                         <h4>目标用户名一定要填</h4>
                                                         <input type="text" id="modify_userid" name="modify_userid"
                                                                class="form-control" placeholder="待修改目标用户名"
+                                                               onchange="hint(userid_validator, $(this).val(), 'modify_id')"
                                                                required="required">
                                                     </div>
                                                 </li>
@@ -367,18 +382,21 @@
                                                 <li>
                                                     <div class="mobile-right ">
                                                         <input type="text" id="modify_email" name="modify_email"
-                                                               class="form-control" placeholder="新邮箱">
+                                                               class="form-control"
+                                                           onchange="hint(mailAddr_validator, $(this).val(), 'modify_email')" placeholder="新邮箱">
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="mobile-right ">
                                                         <input type="text" id="modify_passwd" name="modify_passwd"
+                                                           onchange="hint(passwd_validator, $(this).val(), 'modify_passwd')"
                                                                class="form-control" placeholder="新密码">
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="mobile-right ">
                                                         <input type="text" id="modify_name" name="modify_name"
+                                                           onchange="hint(name_validator, $(this).val(), 'modify_name')"
                                                                class="form-control" placeholder="新昵称">
                                                     </div>
                                                 </li>
@@ -386,8 +404,9 @@
                                                     <h4>注意，待修改用户权限等级必须低于您当前用户</h4>
                                                     <div class="mobile-right ">
                                                         <div class="mobile-rchge">
-                                                            <input type="number" name="modify_privilege"
+                                                            <input type="number" id="modify_privilege" name="modify_privilege"
                                                                    class="form-control" style="width: 400px"
+                                                           onchange="hint(priviledge_validator, $(this).val(), 'modify_privilege')"
                                                                    placeholder="新权限等级"/>
                                                         </div>
                                                         <div class="clearfix"></div>
@@ -445,36 +464,39 @@
                                                 <h4>请输入新火车信息，每一项均为必填项</h4>
                                                 <li>
                                                     <div class="mobile-right ">
-                                                        <input type="text" name="add_trainid" class="form-control"
+                                                        <input type="text" id="add_trainid" name="add_trainid" class="form-control"
                                                                placeholder="车次编号，由字母开头，仅限字母、数字和下划线，长度不超过20"
+                                                               onchange="hint(trainid_validator, $(this).val(), 'add_trainid')"
                                                                style="width: 500px" required="required">
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="mobile-right ">
-                                                        <input type="number" name="add_seatnum" class="form-control"
+                                                        <input type="number" id="add_seatnum" name="add_seatnum" class="form-control"
                                                                placeholder="车次的座位数，不超过100000的整数" style="width: 500px"
+                                                               onchange="hint(seatNum_validator, $(this).val(), 'add_seatnum')"
                                                                required="required">
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="mobile-right ">
-                                                        <input type="text" name="add_type" class="form-control"
+                                                        <input type="text" id="add_type" name="add_type" class="form-control"
                                                                placeholder="列车类型，为一个大写字母" style="width: 500px"
+                                                               onchange="hint(type_validator, $(this).val(), 'add_type')"
                                                                required="required">
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <h4>开售于</h4>
                                                     <div class="mobile-right ">
-                                                        <input type="date" name="add_startdate" class="form-control"
+                                                        <input type="date" id="add_startdate" name="add_startdate" class="form-control"
                                                                required="required">
 
                                                         <h4>截止于</h4>
-                                                        <input type="date" name="add_enddate" class="form-control"
+                                                        <input type="date" id="add_enddate" name="add_enddate" class="form-control"
                                                                required="required">
                                                         <h4>每天售卖时间</h4>
-                                                        <input type="time" name="add_starttime" class="form-control"
+                                                        <input type="time" id="add_starttime" name="add_starttime" class="form-control"
                                                                required="required">
                                                     </div>
                                                 </li>
@@ -484,8 +506,10 @@
                                                     <div class="mobile-rchge">
                                                         <input type="text" id="station_num" name="station_num"
                                                                onchange="
-                                modify_len($(this).val())
-                                " class="form-control" style="width: 400px" placeholder="途径站台总数" required="required"/>
+                                    if (hint(stationNum_validator, $(this).val(), 'station_num')) {
+                                            modify_len($(this).val())
+                                        }
+                                " class="form-control" style="width: 400px"  placeholder="途径站台总数" required="required"/>
                                                     </div>
                                                     <div class="clearfix"></div>
                                                     <br>
@@ -505,26 +529,31 @@
                                                             <div class="NodeDetail">
                                                                 <div class="NodeDetail-content">
                                                                     &emsp;<i class="icon fa fa-map-marker"></i>
-                                                                    <input type="text" name="station_name1"
+                                                                    <input type="text" id="station_name1" name="station_name1"
                                                                            class="form-control-static" placeholder="站名"
+                                                                           onchange="hint(station_validator, $(this).val(), 'station_name1')"
                                                                            required="required"
                                                                            style="font-size: small; width: 180px; border-color: Blue; text-indent: 10px">&emsp;&emsp;
                                                                     <br><br>
-                                                                    &emsp;<input type="number" name="travel_time1"
+                                                                    &emsp;<input type="number" id="travel_time1" name="travel_time1"
                                                                                  class="form-control-static"
                                                                                  placeholder="到下站历时"
                                                                                  style="font-size: small; text-indent: 10px; width: 160px"
+                                                                                 onchange="hint(travelTime_validator, $(this).val(), 'travel_time1')"
                                                                                  required="required"/>
                                                                     &emsp;&emsp;<input type="number"
+                                                                                       id="stopover_time1"
                                                                                        name="stopover_time1"
                                                                                        class="form-control-static"
                                                                                        placeholder="起点站无停靠时长"
+                                                                                       onchange="hint(stopoverTime_validator, $(this).val(), 'stopover_time1')"
                                                                                        disabled="true"
                                                                                        style="font-size: small; text-indent: 10px; width: 160px"
                                                                                        required="required"/>
-                                                                    &emsp;&emsp;<input type="number" name="price1"
+                                                                    &emsp;&emsp;<input type="number" id="price1" name="price1"
                                                                                        class="form-control-static"
                                                                                        placeholder="到下站票价"
+                                                                                       onchange="hint(price_validator, $(this).val(), 'price1')"
                                                                                        style="font-size: small; text-indent: 10px; width: 160px"
                                                                                        required="required"/>
                                                                 </div>
@@ -547,7 +576,8 @@
                                         <ol>
                                             <li>
                                                 <div class="mobile-right ">
-                                                    <input type="text" name="query_trainid" class="form-control"
+                                                    <input type="text" id="query_trainid" name="query_trainid" class="form-control"
+                                                           onchange="hint(trainid_validator, $(this).val(), 'query_trainid')"
                                                            placeholder="查询目标车次编号" required="required">
                                                 </div>
                                             </li>
@@ -572,6 +602,7 @@
                                             <h4>Tips: 发布前的车次可被删除，不可发售车票；发布后的车次不可被删除，可发售车票。</h4>
                                             <div class="mobile-right ">
                                                 <input type="text" id="release_delete_tid" name="release_delete_tid"
+                                                       onchange="hint(trainid_validator, $(this).val(), 'release_delete_tid')"
                                                        class="form-control" placeholder="目标车次编号" required="required">
                                                 <input type="submit" class="submit" id="rd_hidden"
                                                        style="display: none">
@@ -644,12 +675,14 @@
                                                     <i class="icon fa fa-map-marker" aria-hidden="true"></i>
                                                     <input type="text" id="ticket_s" name="ticket_s"
                                                            class="form-control-static" placeholder="出发车站"
+                                                           onchange="hint(station_validator, $(this).val(), 'ticket_s')"
                                                            required="required"
                                                            style="font-size: small; width: 180px; border-color: Green; text-indent: 10px">&emsp;&emsp;
                                                     <i class="icon fa fa-arrow-right" aria-hidden="true"></i>&emsp;&emsp;
                                                     <i class="icon fa fa-map-marker" aria-hidden="true"></i>
                                                     <input type="text" id="ticket_t" name="ticket_t"
                                                            class="form-control-static" placeholder="到达车站"
+                                                           onchange="hint(station_validator, $(this).val(), 'ticket_t')"
                                                            style="font-size: small; width: 180px; border-color: Red; text-indent: 10px"
                                                            required="required">
                                                 </li>
@@ -687,12 +720,14 @@
                                                 <i class="icon fa fa-map-marker" aria-hidden="true"></i>
                                                 <input type="text" id="transfer_s" name="transfer_s"
                                                        class="form-control-static" placeholder="出发车站"
+                                                       onchange="hint(station_validator, $(this).val(), 'transfer_s')"
                                                        required="required"
                                                        style="font-size: small; width: 180px; border-color: Green; text-indent: 10px">&emsp;&emsp;
                                                 <i class="icon fa fa-arrow-right" aria-hidden="true"></i>&emsp;&emsp;
                                                 <i class="icon fa fa-map-marker" aria-hidden="true"></i>
                                                 <input type="text" id="transfer_t" name="transfer_t"
                                                        class="form-control-static" placeholder="到达车站"
+                                                       onchange="hint(station_validator, $(this).val(), 'transfer_t')"
                                                        style="font-size: small; width: 180px; border-color: Red; text-indent: 10px"
                                                        required="required">
                                             </li>
@@ -752,6 +787,7 @@
                                                 <div class="mobile-right ">
                                                     <input type="text" class="form-control" id="buy_trainid"
                                                            name="buy_trainid" placeholder="由字母开头，仅限字母、数字和下划线，长度不超过20"
+                                                           onchange="hint(trainid_validator, $(this).val(), 'buy_trainid')"
                                                            required="required" style="width:490px">
                                                 </div>
                                             </li>
@@ -767,18 +803,21 @@
                                                 <i class="icon fa fa-map-marker" aria-hidden="true"></i>
                                                 <input type="text" id="buy_s" name="buy_s" class="form-control-static"
                                                        placeholder="出发车站" required="required"
+                                                       onchange="hint(station_validator, $(this).val(), 'buy_s')"
                                                        style="font-size: small; width: 180px; border-color: Green; text-indent: 10px">&emsp;&emsp;
                                                 <i class="icon fa fa-arrow-right" aria-hidden="true"></i>&emsp;&emsp;
                                                 <i class="icon fa fa-map-marker" aria-hidden="true"></i>
                                                 <input type="text" id="buy_t" name="buy_t" class="form-control-static"
                                                        placeholder="到达车站"
+                                                       onchange="hint(station_validator, $(this).val(), 'buy_t')"
                                                        style="font-size: small; width: 180px; border-color: Red; text-indent: 10px"
                                                        required="required">
                                             </li>
                                             <li>
                                                 <h4>请填写购票张数</h4>
                                                 <input type="number" id="buy_n" name="buy_n" class="form-control"
-                                                       style="width: 400px">
+                                                       onchange="hint(seatNum_validator, $(this).val(), 'buy_n')"
+                                                       style="width: 400px" placeholder="一个正整数，不超过100000">
                                             </li>
                                             <li>
                                                 <h4>是否接受候补购票？</h4>
@@ -914,6 +953,9 @@
 
 <!-- timeline -->
 <script src="static/js/dynamic_timeline.js"></script>
+
+<!--validator-->
+<script src="static/js/validator.js"></script>
 
 <!-- for bootstrap working -->
 <script src="static/js/bootstrap.js"></script>

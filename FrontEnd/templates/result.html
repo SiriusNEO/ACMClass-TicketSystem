@@ -339,7 +339,7 @@
                                         <div class="modal fade" id="ticket_modal{{ loop.index }}" tabindex="-1"
                                              role="dialog"
                                              aria-hidden="true">
-                                            <div class="modal-dialog modal-lg" style="margin-left: 512px">
+                                            <div class="modal-dialog modal-lg" align="center">
                                                 <div class="modal-content" style="width: 600px; height: 700px">
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal"
@@ -360,6 +360,8 @@
                                                                             <h4>想要购买的车次号</h4>
                                                                             <div class="mobile-right ">
                                                                                 <input type="text" class="form-control"
+                                                                                       id="buy_trainid{{ loop.index }}"
+                                                                                       onchange="hint(trainid_validator, $(this).val(), 'buy_trainid{{ loop.index }}')"
                                                                                        name="buy_trainid"
                                                                                        value="{{ output[loop.index][0] }}"
                                                                                        required="required"
@@ -368,6 +370,7 @@
                                                                             <h4>期望的出发日期</h4>
                                                                             <div class="mobile-right ">
                                                                                 <input type="date" class="form-control"
+                                                                                       id="buy_date{{ loop.index }}"
                                                                                        name="buy_date"
                                                                                        value="2021-{{ output[loop.index][2] }}"
                                                                                        required="required"
@@ -377,6 +380,8 @@
                                                                             <i class="icon fa fa-map-marker"
                                                                                aria-hidden="true"></i>
                                                                             <input type="text" name="buy_s"
+                                                                                   id="buy_s{{ loop.index }}"
+                                                                                   onchange="hint(station_validator, $(this).val(), 'buy_s{{ loop.index }}')"
                                                                                    class="form-control-static"
                                                                                    value="{{ output[loop.index][1] }}"
                                                                                    required="required"
@@ -386,13 +391,18 @@
                                                                             <i class="icon fa fa-map-marker"
                                                                                aria-hidden="true"></i>
                                                                             <input type="text" name="buy_t"
+                                                                                   id="buy_t{{ loop.index }}"
+                                                                                   onchange="hint(station_validator, $(this).val(), 'buy_t{{ loop.index }}')"
                                                                                    class="form-control-static"
                                                                                    value="{{ output[loop.index][5] }}"
                                                                                    style="font-size: small; width: 180px; border-color: Red; text-indent: 10px"
                                                                                    required="required">
                                                                             <h4>请填写购票张数</h4>
                                                                             <input type="number" name="buy_n"
+                                                                                   id="buy_n{{ loop.index }}"
+                                                                                   onchange="hint(seatNum_validator, $(this).val(), 'buy_n{{ loop.index }}')"
                                                                                    class="form-control"
+                                                                                   placeholder="一个正整数，不超过100000"
                                                                                    style="width: 400px">
                                                                             <h4>是否接受候补购票？</h4>
                                                                             <select name="buy_q" class="form-control">
@@ -405,8 +415,7 @@
                                                                             </select>
                                                                             <br><br>
                                                                             <input type="submit" class="submit"
-                                                                                   value="确认购买"
-                                                                                   style="margin-left: 200px"/>
+                                                                                   value="确认购买"/>
                                                                         </ol>
                                                                     </form>
                                                                 </div>
@@ -474,7 +483,7 @@
                                     <!-- 购票界面 -->
                                     <div class="modal fade" id="transfer_modal1" tabindex="-1" role="dialog"
                                          aria-hidden="true">
-                                        <div class="modal-dialog modal-lg" style="margin-left: 650px">
+                                        <div class="modal-dialog modal-lg" align="center">
                                             <div class="modal-content" style="width: 600px; height: 700px">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal"
@@ -495,7 +504,8 @@
                                                                         <h4>想要购买的车次号</h4>
                                                                         <div class="mobile-right ">
                                                                             <input type="text" class="form-control"
-                                                                                   id="buy_trainid" name="buy_trainid"
+                                                                                   id="buy_trainid1" name="buy_trainid"
+                                                                                   onchange="hint(trainid_validator, $(this).val(), 'buy_trainid1')"
                                                                                    value="{{ output[1][0][0] }}"
                                                                                    required="required"
                                                                                    style="width:490px">
@@ -503,7 +513,7 @@
                                                                         <h4>期望的出发日期</h4>
                                                                         <div class="mobile-right ">
                                                                             <input type="date" class="form-control"
-                                                                                   id="buy_date" name="buy_date"
+                                                                                   id="buy_date1" name="buy_date"
                                                                                    value="2021-{{ output[1][0][2] }}"
                                                                                    required="required"
                                                                                    style="width:490px">
@@ -511,7 +521,8 @@
                                                                         <h4>您的路线</h4>
                                                                         <i class="icon fa fa-map-marker"
                                                                            aria-hidden="true"></i>
-                                                                        <input type="text" id="buy_s" name="buy_s"
+                                                                        <input type="text" id="buy_s1" name="buy_s"
+                                                                               onchange="hint(station_validator, $(this).val(), 'buy_s1')"
                                                                                class="form-control-static"
                                                                                value="{{ output[1][0][1] }}"
                                                                                required="required"
@@ -520,14 +531,17 @@
                                                                            aria-hidden="true"></i>&emsp;&emsp;
                                                                         <i class="icon fa fa-map-marker"
                                                                            aria-hidden="true"></i>
-                                                                        <input type="text" id="buy_t" name="buy_t"
+                                                                        <input type="text" id="buy_t1" name="buy_t"
+                                                                               onchange="hint(station_validator, $(this).val(), 'buy_t1')"
                                                                                class="form-control-static"
                                                                                value="{{ output[1][0][5] }}"
                                                                                style="font-size: small; width: 180px; border-color: Red; text-indent: 10px"
                                                                                required="required">
                                                                         <h4>请填写购票张数</h4>
-                                                                        <input type="number" id="buy_n" name="buy_n"
+                                                                        <input type="number" id="buy_n1" name="buy_n"
+                                                                               onchange="hint(seatNum_validator, $(this).val(), 'buy_n1')"
                                                                                class="form-control"
+                                                                               placeholder="一个正整数，不超过100000"
                                                                                style="width: 400px">
                                                                         <h4>是否接受候补购票？</h4>
                                                                         <select name="buy_q" class="form-control">
@@ -539,8 +553,7 @@
                                                                             </option>
                                                                         </select>
                                                                         <br><br>
-                                                                        <input type="submit" class="submit" value="确认购买"
-                                                                               style="margin-left: 200px"/>
+                                                                        <input type="submit" class="submit" value="确认购买"/>
                                                                     </ol>
                                                                 </form>
                                                             </div>
@@ -596,7 +609,7 @@
                                     <!-- 购票界面 -->
                                     <div class="modal fade" id="transfer_modal2" tabindex="-1" role="dialog"
                                          aria-hidden="true">
-                                        <div class="modal-dialog modal-lg" style="margin-left: 650px">
+                                        <div class="modal-dialog modal-lg" align="center">
                                             <div class="modal-content" style="width: 600px; height: 700px">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal"
@@ -617,7 +630,8 @@
                                                                         <h4>想要购买的车次号</h4>
                                                                         <div class="mobile-right ">
                                                                             <input type="text" class="form-control"
-                                                                                   id="buy_trainid" name="buy_trainid"
+                                                                                   id="buy_trainid2" name="buy_trainid"
+                                                                                   onchange="hint(trainid_validator, $(this).val(), 'buy_trainid2')"
                                                                                    value="{{ output[1][1][0] }}"
                                                                                    required="required"
                                                                                    style="width:490px">
@@ -625,7 +639,7 @@
                                                                         <h4>期望的出发日期</h4>
                                                                         <div class="mobile-right ">
                                                                             <input type="date" class="form-control"
-                                                                                   id="buy_date" name="buy_date"
+                                                                                   id="buy_date2" name="buy_date"
                                                                                    value="2021-{{ output[1][1][2] }}"
                                                                                    required="required"
                                                                                    style="width:490px">
@@ -633,7 +647,8 @@
                                                                         <h4>您的路线</h4>
                                                                         <i class="icon fa fa-map-marker"
                                                                            aria-hidden="true"></i>
-                                                                        <input type="text" id="buy_s" name="buy_s"
+                                                                        <input type="text" id="buy_s2" name="buy_s"
+                                                                               onchange="hint(station_validator, $(this).val(), 'buy_s2')"
                                                                                class="form-control-static"
                                                                                value="{{ output[1][1][1] }}"
                                                                                required="required"
@@ -642,14 +657,17 @@
                                                                            aria-hidden="true"></i>&emsp;&emsp;
                                                                         <i class="icon fa fa-map-marker"
                                                                            aria-hidden="true"></i>
-                                                                        <input type="text" id="buy_t" name="buy_t"
+                                                                        <input type="text" id="buy_t2" name="buy_t"
+                                                                               onchange="hint(station_validator, $(this).val(), 'buy_t2')"
                                                                                class="form-control-static"
                                                                                value="{{ output[1][1][5] }}"
                                                                                style="font-size: small; width: 180px; border-color: Red; text-indent: 10px"
                                                                                required="required">
                                                                         <h4>请填写购票张数</h4>
-                                                                        <input type="number" id="buy_n" name="buy_n"
+                                                                        <input type="number" id="buy_n2" name="buy_n"
+                                                                               onchange="hint(seatNum_validator, $(this).val(), 'buy_n2')"
                                                                                class="form-control"
+                                                                               placeholder="一个正整数，不超过100000"
                                                                                style="width: 400px">
                                                                         <h4>是否接受候补购票？</h4>
                                                                         <select name="buy_q" class="form-control">
@@ -661,8 +679,7 @@
                                                                             </option>
                                                                         </select>
                                                                         <br><br>
-                                                                        <input type="submit" class="submit" value="确认购买"
-                                                                               style="margin-left: 200px"/>
+                                                                        <input type="submit" class="submit" value="确认购买"/>
                                                                     </ol>
                                                                 </form>
                                                             </div>
@@ -974,6 +991,9 @@
 <!-- for bootstrap working -->
 <script src="static/js/bootstrap.js"></script>
 <!-- //for bootstrap working -->
+
+<!--validator-->
+<script src="static/js/validator.js"></script>
 
 <script src="static/js/bootstrap-select.js"></script>
 <script>
