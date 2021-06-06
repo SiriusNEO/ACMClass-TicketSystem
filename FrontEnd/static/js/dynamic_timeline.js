@@ -20,7 +20,7 @@ function append_node(cnt) {
                         <br><br>\
                         &emsp;<input type="number" id="travel_time'+cnt+'" onchange="hint(travelTime_validator, $(this).val(), \'travel_time'+cnt+'\')" name="travel_time'+cnt+'" class="form-control-static" placeholder="到下站历时" style="font-size: small; text-indent: 10px; width: 160px" required="required"  />\
                         &emsp;&emsp;<input type="number" id="stopover_time'+cnt+'" onchange="hint(stopoverTime_validator, $(this).val(), \'stopover_time'+cnt+'\')" name="stopover_time'+cnt+'" class="form-control-static" placeholder="停靠时长" style="font-size: small; text-indent: 10px; width: 160px" required="required"  />\
-                        &emsp;&emsp;<input type="number" id="price'+cnt+'" onchange="hint(price_validator, $(this).val(), \'price'+cnt+'\')" name="price'+cnt+')" class="form-control-static" placeholder="到下站票价" style="font-size: small; text-indent: 10px; width: 160px" required="required"  />\
+                        &emsp;&emsp;<input type="number" id="price'+cnt+'" onchange="hint(price_validator, $(this).val(), \'price'+cnt+'\')" name="price'+cnt+'" class="form-control-static" placeholder="到下站票价" style="font-size: small; text-indent: 10px; width: 160px" required="required"  />\
                 </div>\
             </div>\
         </div>';
