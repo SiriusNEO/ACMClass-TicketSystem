@@ -51,7 +51,7 @@ function remove_node(cnt) {
 
 function modify_len(len) {
     let i;
-    if (node_pre == len) return;
+    if (node_total == len) return;
     node_pre = node_total;
     remove_node(node_total);
     node_total = parseInt(len);
