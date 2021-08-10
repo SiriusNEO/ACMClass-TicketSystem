@@ -18,7 +18,7 @@ def destruct(): #still debuging
 @app.route('/', methods=['GET', 'POST'])
 def index():
     cur_user_info = request.cookies
-    if cur_user_info:
+    if cur_user_info and ('id' in cur_user_info) and ('passwd' in cur_user_info):
         print("检测到cookies，登录")
         ret = courier.login(cur_user_info['id'], cur_user_info['passwd'])
         if ret[1] == 'user_not_found':  # 用户不存在，cookies作废

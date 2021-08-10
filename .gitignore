@@ -1,0 +1,5 @@
+FrontEnd/venv/
+FrontEnd/.idea/
+cmake-build-debug
+FrontEnd/__pycache__
+FrontEnd/*.bin

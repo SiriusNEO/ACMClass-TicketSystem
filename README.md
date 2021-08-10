@@ -2,6 +2,8 @@
 
 火车票管理系统为组队作业，共15组，每组由两人组成。
 
+
+
 ## 关于我们
 
 ### We are [@PingPong Doubles Smash Locomotive](https://github.com/SiriusNEO/ACMClass-TicketSystem)
@@ -13,6 +15,22 @@
 |  ----  | ----  |
 | 林超凡 [@SiriusNEO](https://github.com/siriusneo)  | 后端逻辑，前端（待定？） |
 | 王崑运 [@wangky-ac](https://github.com/wangky-ac) | B+树，缓存 |
+
+
+
+## 环境需求与部署方式
+
+后端部分 `BackEnd/` 为纯 C++ 编写，支持 C++11 的编译器编译均可。
+
+前端部分用到了 `Flask` 框架，详见 `FrontEnd/requirements.txt`
+
+
+
+启动方式：在 `FrontEnd` 目录下，`flask run` 或者 `python3 app.py` 即可。
+
+可以使用系统预置的数据库 `FrontEnd/datainit` 进行测试。
+
+
 
 ## 概况
 
