@@ -1,5 +1,10 @@
 FrontEnd/venv/
 FrontEnd/.idea/
+FrontEnd/aplusb/
+FrontEnd/ref/
+FrontEnd/source/
 cmake-build-debug
 FrontEnd/__pycache__
 FrontEnd/*.bin
+BackEnd/*.bin
+BackEnd/*.txt
