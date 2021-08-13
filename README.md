@@ -20,7 +20,7 @@ ACM Class 2020, a train ticket manage system based on B+ Tree data structure.
 
 ### 导航
 
-想了解本作业的需求，请查看 [作业需求文档](Document/AssignmentRequirement)
+想了解本作业的需求，请查看 [作业需求文档](Document/AssignmentRequirement.md)
 
 想了解开发情况，请查看 [开发文档](Document/Development/开发文档.pdf)
 
