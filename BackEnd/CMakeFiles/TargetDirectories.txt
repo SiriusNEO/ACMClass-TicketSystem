@@ -1,0 +1,3 @@
+/mnt/c/Users/17138/Desktop/ACMClass-TicketSystem/BackEnd/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/17138/Desktop/ACMClass-TicketSystem/BackEnd/CMakeFiles/edit_cache.dir
+/mnt/c/Users/17138/Desktop/ACMClass-TicketSystem/BackEnd/CMakeFiles/code.dir

@@ -10,3 +10,4 @@ BackEnd/*.bin
 BackEnd/*.txt
 .idea/
 .cmake-build-debug/
+BackEnd/cmake_install.cmake
