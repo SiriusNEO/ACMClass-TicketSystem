@@ -123,7 +123,7 @@ namespace Sirius {
                 std::string result = (this->* Interfaces[info.first.cmdNo])(info.first);
                 return std::make_pair(result != "bye", result);
             }
-            return std::make_pair(false, "parse_error");
+            return std::make_pair(true, "parse_error");
         }
 
         std::string add_user(const cmdType& info) {
