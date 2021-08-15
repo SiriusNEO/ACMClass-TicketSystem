@@ -8,6 +8,8 @@ FrontEnd/__pycache__
 FrontEnd/*.bin
 BackEnd/*.bin
 BackEnd/*.txt
+BackEnd/CMakeFiles/
+BackEnd/code
 .idea/
 .cmake-build-debug/
 BackEnd/cmake_install.cmake
