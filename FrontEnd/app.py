@@ -59,7 +59,7 @@ def login():
 def logout():
     print("success")
     cur_user_info = request.cookies
-    if cur_user_info:
+    if cur_user_info and ('id' in cur_user_info) and ('passwd' in cur_user_info):
         cur_id = cur_user_info['id']
     else:
         cur_id = "404_not_logged"
@@ -74,7 +74,7 @@ def logout():
 @app.route('/add_user', methods=['POST'])
 def add_user():
     cur_user_info = request.cookies
-    if cur_user_info:
+    if cur_user_info and ('id' in cur_user_info) and ('passwd' in cur_user_info):
         cur_id = cur_user_info['id']
     else:
         cur_id = "404_not_logged"
@@ -97,7 +97,7 @@ def register():
 @app.route('/query_profile', methods=['POST'])
 def query_profile():
     cur_user_info = request.cookies
-    if cur_user_info:
+    if cur_user_info and ('id' in cur_user_info) and ('passwd' in cur_user_info):
         cur_id = cur_user_info['id']
     else:
         cur_id = "404_not_logged"
@@ -108,7 +108,7 @@ def query_profile():
 @app.route('/modify_profile', methods=['POST'])
 def modify_profile():
     cur_user_info = request.cookies
-    if cur_user_info:
+    if cur_user_info and ('id' in cur_user_info) and ('passwd' in cur_user_info):
         cur_id = cur_user_info['id']
     else:
         cur_id = "404_not_logged"
@@ -146,7 +146,7 @@ def query_transfer():
 @app.route('/buy_ticket', methods=['POST'])
 def buy_ticket():
     cur_user_info = request.cookies
-    if cur_user_info:
+    if cur_user_info and ('id' in cur_user_info) and ('passwd' in cur_user_info):
         cur_id = cur_user_info['id']
     else:
         cur_id = "404_not_logged"
@@ -165,7 +165,7 @@ def buy_ticket():
 @app.route('/query_order', methods=['POST'])
 def query_order():
     cur_user_info = request.cookies
-    if cur_user_info:
+    if cur_user_info and ('id' in cur_user_info) and ('passwd' in cur_user_info):
         cur_id = cur_user_info['id']
     else:
         cur_id = "404_not_logged"
@@ -176,7 +176,7 @@ def query_order():
 @app.route('/refund_ticket', methods=['POST'])
 def refund_ticket():
     cur_user_info = request.cookies
-    if cur_user_info:
+    if cur_user_info and ('id' in cur_user_info) and ('passwd' in cur_user_info):
         cur_id = cur_user_info['id']
     else:
         cur_id = "404_not_logged"
@@ -236,4 +236,4 @@ def delete_train():
 courier.add_user("root", "root", "root", "root", "root", "10")
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    app.run(port=9000, debug=True)
